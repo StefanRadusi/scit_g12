@@ -1,9 +1,29 @@
 <html>
   <head>
-    <title>Dom Manipulation</title>
+    <title>Dom Manipulation Homework</title>
+    <link type="text/css" rel="stylesheet" href="./style.css" />
   </head>
   <body id="body">
-    <p id="paragraph">test</p>
+    <div class="form-container">
+      <h2>Contact form</h2>
+      <div class="form-fields">
+        <div class="field">
+          <p>Name</p>
+          <input id="name" autocomplete="off" />
+        </div>
+        <div class="field">
+          <p>Surname</p>
+          <input id="surname" autocomplete="off" />
+        </div>
+        <div class="field">
+          <p>Mobile</p>
+          <input id="mobile" autocomplete="off" />
+        </div>
+      </div>
+      <button id="addFiled">Add Field</button>
+      <button id="send">Send</button>
+    </div>
+
     <script src="./script.js"></script>
   </body>
 </html>
