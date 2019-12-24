@@ -17,6 +17,10 @@ input {
   border: 1px solid lightgray;
 }
 
+button {
+  outline: none;
+}
+
 .field {
   display: flex;
   align-items: center;
