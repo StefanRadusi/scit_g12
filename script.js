@@ -10,3 +10,5 @@ function onClickSendButton() {
 
 // we attached a function to click event triggered by send button
 sendButton.addEventListener("click", onClickSendButton);
+
+console.log("this is my solution");
