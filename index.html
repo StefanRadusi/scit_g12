@@ -1,12 +1,33 @@
 <html>
   <head>
-    <title>Git Example</title>
+    <title>Dom Manipulation Homework</title>
+    <link type="text/css" rel="stylesheet" href="./style.css" />
   </head>
-  <body>
-    <p>This is a git</p>
-    <p>This is a awesome git project something</p>
-    <p>This is a git project i do not understand blabla, new text</p>
-    <p>This is something new.</p>
-    <input />
+  <body id="body">
+    <div class="form-container">
+      <h2>Contact form</h2>
+      <div class="form-fields">
+        <div class="field">
+          <p>Name</p>
+          <input id="name" autocomplete="off" />
+        </div>
+        <div class="field">
+          <p>Surname</p>
+          <input id="surname" autocomplete="off" />
+        </div>
+        <div class="field">
+          <p>Mobile</p>
+          <input id="mobile" autocomplete="off" />
+        </div>
+      </div>
+      <div class="add-field-container">
+        <button id="addFiled">Add Field</button>
+        <input id="fieldName" />
+      </div>
+
+      <button id="send">Send</button>
+    </div>
+
+    <script src="./script.js"></script>
   </body>
 </html>
