@@ -43,6 +43,6 @@ field.appendChild(div);
 
 
 if (document.getElementById ("fieldName").value == "") {
-    document.getElementById ("fieldName").style.borderColor = "red";
+  document.getElementById ("fieldName").style.borderColor = "red";
 
 }
