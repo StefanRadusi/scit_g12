@@ -7,11 +7,27 @@ const addButton = document.getElementById("addFiled");
 
 // this the function that will be called when click event is triggered
 function onClickSendButton() {
-    console.log("click on", sendButton);
+    const form = document.getElementsByClassName("form-fields")[0];
+    const inputList = form.getElementsByTagName("input");
+    for (let inputElem of inputList) {
+        if (!inputElem.value) {
+            inputElem.style.borderColor = "red";
+        } else {
+            inputElem.style.borderColor = null;
+        }
+    }
+    let dataString = "Sended info: ";
+    const divFields = document.getElementsByClassName("field");
+    for (let i = 0; i < divFields.length; i++) {
+        let pElem = divFields[i].getElementsByTagName("p")[0];
+        let inputElem = divFields[i].getElementsByTagName("input")[0];
+        dataString += `${pElem.innerText} - ${inputElem.value},`;
+    }
+    document.getElementsByClassName("form-container")[0].innerHTML = dataString;
 }
 
-document.getElementById("fieldName").oninput = function() {
-  this.style.borderColor = null;
+document.getElementById("fieldName").oninput = function () {
+    this.style.borderColor = null;
 };
 
 function addNewField() {
@@ -32,9 +48,9 @@ function addNewField() {
         const newInput = document.createElement("input");
         newInput.id = fieldName;
         newDiv.appendChild(newInput);
+        inputField.value = null;
     }
 }
-
 
 // we attached a function to click event triggered by send button
 sendButton.addEventListener("click", onClickSendButton);
