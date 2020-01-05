@@ -1,12 +1,20 @@
 console.log("start");
 
-// example of reacting to button click
-const sendButton = document.getElementById("send");
+document.getElementById("addFiled").addEventListener("click", function(e) {
+  e.preventDefault();
 
-// this the function that will be called when click event is triggered
-function onClickSendButton() {
-  console.log("click on", sendButton);
-}
+  const addNewFieldValue = document.getElementById("fieldName").value;
 
-// we attached a function to click event triggered by send button
-sendButton.addEventListener("click", onClickSendButton);
+  const newDiv = document.createElement("div");
+  newDiv.classList.add("field");
+  
+  const p = document.createElement("p");
+  p.innerText = addNewFieldValue;
+  newDiv.appendChild(p);
+  
+  const input = document.createElement("input");
+  input.id = addNewFieldValue;
+  newDiv.appendChild(input);
+  
+  document.getElementById("field-container").appendChild(newDiv);
+});
