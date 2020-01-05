@@ -11,6 +11,10 @@ body {
   justify-content: center;
 }
 
+body h1{
+  text-align: center;
+}
+
 input {
   height: 25px;
   outline: none;
