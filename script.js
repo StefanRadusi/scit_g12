@@ -9,21 +9,25 @@ const addButton = document.getElementById("addFiled");
 function onClickSendButton() {
     const form = document.getElementsByClassName("form-fields")[0];
     const inputList = form.getElementsByTagName("input");
+    let error = false;
     for (let inputElem of inputList) {
         if (!inputElem.value) {
             inputElem.style.borderColor = "red";
+            error = true;
         } else {
             inputElem.style.borderColor = null;
         }
     }
-    let dataString = "Sended info: ";
-    const divFields = document.getElementsByClassName("field");
-    for (let i = 0; i < divFields.length; i++) {
-        let pElem = divFields[i].getElementsByTagName("p")[0];
-        let inputElem = divFields[i].getElementsByTagName("input")[0];
-        dataString += `${pElem.innerText} - ${inputElem.value},`;
+    if (!error) {
+        let dataString = "Sent info: ";
+        const divFields = document.getElementsByClassName("field");
+        for (let i = 0; i < divFields.length; i++) {
+            let pElem = divFields[i].getElementsByTagName("p")[0];
+            let inputElem = divFields[i].getElementsByTagName("input")[0];
+            dataString += `${pElem.innerText} - ${inputElem.value},`;
+        }
+        document.getElementsByClassName("form-container")[0].innerHTML = dataString;
     }
-    document.getElementsByClassName("form-container")[0].innerHTML = dataString;
 }
 
 document.getElementById("fieldName").oninput = function () {
