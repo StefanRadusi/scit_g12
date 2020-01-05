@@ -17,6 +17,10 @@ input {
   border: 1px solid lightgray;
 }
 
+input:invalid {
+  border: 1px solid red;
+}
+
 .field {
   display: flex;
   align-items: center;
