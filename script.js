@@ -9,23 +9,23 @@ function onClickSendButton() {
   console.log("click on", sendButton);
   const fields = document.getElementsByClassName("field");
   let empty = 0;
-  for (let i = 0; i < fields.length; i++){
-     const v = fields[i].getElementsByTagName("input")[0].value;
-     if (v === ""){
+  let info = "";
+  for (let i = 0; i < fields.length; i++) {
+    const v = fields[i].getElementsByTagName("input")[0].value;
+    const f = fields[i].getElementsByTagName("p")[0].innerText;
+    if (v === "") {
       fields[i].getElementsByTagName("input")[0].style.borderColor = "red";
       empty = empty + 1;
-     }
-  } 
-  if (empty === 0){
-    let info = "";
-    for (let i = 0; i < fields.length; i++){
-      const f = fields[i].getElementsByTagName("p")[0].innerText;
-      const v = fields[i].getElementsByTagName("input")[0].value;
-      info = info + f + " - " + v + "; ";
     }
+
+    info = info + f + " - " + v + "; ";
+  }
+  if (empty === 0) {
     const infoContent = document.createElement("h1");
     infoContent.innerText = info;
-    document.getElementsByClassName("form-container")[0].replaceWith(infoContent);
+    document
+      .getElementsByClassName("form-container")[0]
+      .replaceWith(infoContent);
   }
 }
 
@@ -42,7 +42,6 @@ function onClickAddButton() {
   newfield.appendChild(input);
   document.getElementById("fff").appendChild(newfield);
 }
-
 
 // we attached a function to click event triggered by send button
 sendButton.addEventListener("click", onClickSendButton);
