@@ -29,7 +29,7 @@ function onClickAddField() {
   const newInput = document.createElement("input");
   newInput.id = "fieldName";
   newDiv.appendChild(newInput);
-  // console.log(newDiv);
+  console.log(newDiv);
 }
 
 newField.addEventListener("click", onClickAddField);
