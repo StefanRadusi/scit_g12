@@ -19,10 +19,8 @@ const fields = document.getElementsByClassName("form-fields");
 
 function onClickAddField() {
   const newDiv = document.createElement("div");
-  newDiv.className = "field";
-  for(let i = 0; i < newDiv.length; i++) {
-    document.getElementsByClassName("field").appendChild(newDiv[i]);
-  }
+  document.getElementById("field").appendChild(newDiv);
+
   const newParagraph = document.createElement("p");
   newDiv.appendChild(newParagraph);
 
