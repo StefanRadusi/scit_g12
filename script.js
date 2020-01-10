@@ -16,6 +16,12 @@ function addContainer () {
   
 
   document.getElementsByClassName("form-fields")[0].appendChild(divContainer);
+
+  if (imputTextField === "") {
+    document.getElementById("fieldName").style.borderColor = "red"; 
+    document.getElementsByClassName("form-fields")[0].removeChild(divContainer);
+  }
+  
 }
 // example of reacting to button click
 const sendButton = document.getElementById("addFiled");
