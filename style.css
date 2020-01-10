@@ -81,6 +81,7 @@ body {
 .comments-buttons button {
   font-size: 20px;
   width: 80px;
+  outline: none;
 }
 
 .selected {
@@ -102,6 +103,29 @@ body {
   display: none;
 }
 
-.comments-selected {
+.comments-edit {
+  width: 300px;
+  height: 500px;
+
+  flex-direction: column;
+}
+
+.comments-selected-read {
   display: block;
+}
+
+.comments-selected-edit {
+  display: flex;
+}
+
+#user-name {
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+#comment-area {
+  height: 200px;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
