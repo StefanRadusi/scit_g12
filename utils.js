@@ -24,3 +24,8 @@ function showEditSection() {
     .getElementById("read-section")
     .classList.remove("comments-selected-read");
 }
+
+function clearFields() {
+  document.getElementById("user-name").value = "";
+  document.getElementById("comment-area").value = "";
+}

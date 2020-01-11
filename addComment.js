@@ -56,6 +56,11 @@ function createComment(userNameValue, commentAreaValue) {
   commentContent.className = "comment-content";
   commentContent.innerText = commentAreaValue;
   commentContainer.appendChild(commentContent);
+
+  clearFields();
+
+  const readSection = document.getElementById("read-section");
+  readSection.insertBefore(commentContainer, readSection.firstChild);
 }
 
 function formatDate(date) {
