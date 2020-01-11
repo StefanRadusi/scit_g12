@@ -24,13 +24,14 @@ function addContainer () {
   
 }
 // example of reacting to button click
-const sendButton = document.getElementById("addFiled");
-
+const addFiled = document.getElementById("addFiled");
+// we attached a function to click event triggered by send button
+addFiled.addEventListener("click", onClickAddFieldButton);
 // this the function that will be called when click event is triggered
-function onClickSendButton() {
-  console.log("click on", addContainer);
+function onClickAddFieldButton() {
+ 
   addContainer();
 }
 
-// we attached a function to click event triggered by send button
-sendButton.addEventListener("click", onClickSendButton);
+
+
