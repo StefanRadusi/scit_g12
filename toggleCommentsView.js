@@ -1,14 +1,5 @@
+// this 2 interactions makes the functionality of toggling between view comments and adding comments
+// the definitions of "showReadSection" and "showEditSection" functions are found in "utils.js"
+// "showReadSection" and "showEditSection" functions are called when "click" event is triggered on "read" and "add" buttons
 document.getElementById("read").addEventListener("click", showReadSection);
-
-document.getElementById("add").addEventListener("click", function(event) {
-  console.log(event);
-
-  document.getElementById("add").classList.add("selected");
-  document.getElementById("read").classList.remove("selected");
-  document
-    .getElementById("edit-section")
-    .classList.add("comments-selected-edit");
-  document
-    .getElementById("read-section")
-    .classList.remove("comments-selected-read");
-});
+document.getElementById("add").addEventListener("click", showEditSection);

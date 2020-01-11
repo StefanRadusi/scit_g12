@@ -89,10 +89,12 @@ body {
   color: white;
 }
 
+/* we need position relative so the if we position absolute the child it will take the position correctly */
 .comments {
   position: relative;
 }
 
+/* we position absolute the 2 containers so that the overlap*/
 .comments-read,
 .comments-edit {
   position: absolute;
@@ -100,6 +102,8 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+
+  /* as default we hide them with display none */
   display: none;
 }
 
@@ -110,10 +114,12 @@ body {
   flex-direction: column;
 }
 
+/* when this class is added the read comments section is visible */
 .comments-selected-read {
   display: block;
 }
 
+/* when this class is added the edit comments section is visible */
 .comments-selected-edit {
   display: flex;
 }
