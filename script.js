@@ -19,4 +19,16 @@ function onAddButton() {
 addButton.addEventListener("click", onAddButton);
 
 //create new field
-const 
+function createNewField(fieldName) {
+const Field = document.createElement("div");
+const pContent = document.createElement("p");
+pContent.innerText = {fieldName};
+Field.appendChild(pContent);
+const fieldNameInput = document.createElement("input");
+Field.appendChild(fieldNameInput);
+document.getElementById("user").appendChild(Field);
+}
+
+
+
+document.getElementById("addField").addEventListener("click", createNewField(fieldName));
