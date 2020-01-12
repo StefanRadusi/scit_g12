@@ -33,5 +33,22 @@ function onClickAddFieldButton() {
   addContainer();
 }
 
+const sendButton = document.getElementById("send");
+sendButton.addEventListener("click", onClickSendButton); 
+function onClickSendButton () {
+    const nameImput = document.getElementById("name").value
+    console.log(nameImput);
+    if (nameImput==="") {
+        document.getElementById("name").style.borderColor = "red";
 
+        const surnameImput = document.getElementById("surname").value
+    console.log(surnameImput);
+    if (surnameImput==="") {
+        document.getElementById("surname").style.borderColor = "red";}
 
+        const mobileImput = document.getElementById("mobile").value
+    console.log(mobileImput);
+    if (mobileImput==="") {
+        document.getElementById("mobile").style.borderColor = "red";}
+    }
+}
