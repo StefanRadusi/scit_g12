@@ -1,35 +1,59 @@
 console.log("start");
 
-// example of reacting to button click
-const sendButton = document.getElementById("send");
 
-// this the function that will be called when click event is triggered
-function onClickSendButton() {
-  console.log("click on", sendButton);
-}
+//My solution
+//1 & 2
 
-// we attached a function to click event triggered by send button
-sendButton.addEventListener("click", onClickSendButton);
-
-
-// 1. 
 const newField = document.getElementById("addField");
-
-const fields = document.getElementsByClassName("form-fields");
-
-function onClickAddField() {
-  const newDiv = document.createElement("div");
-  document.getElementById("field").appendChild(newDiv);
-
-  const newParagraph = document.createElement("p");
-  newDiv.appendChild(newParagraph);
-
-  const newInput = document.createElement("input");
-  newInput.id = "fieldName";
-  newDiv.appendChild(newInput);
-  console.log(newDiv);
-}
-
 newField.addEventListener("click", onClickAddField);
 
+function onClickAddField() {
+  const newData = document.getElementById("fieldName").value;
 
+  if (newData === ""){
+    document.getElementById("fieldName").style.borderColor = "red";
+  } else {
+    document.getElementById("fieldName").style.borderColor = "1px solid lightgrey";
+
+    const newDiv = document.createElement("div");
+    newDiv.className = "field";
+    
+    const newParagraph = document.createElement("p");
+    newParagraph.innerText = newData;
+    
+    const newInput = document.createElement("input");
+    
+    newDiv.appendChild(newParagraph);
+    newDiv.appendChild(newInput);
+    document.getElementById("form-fields").appendChild(newDiv);
+    document.getElementById("fieldName").value = "";
+
+    // checking the generated HTML structure
+    // console.log(newDiv);
+  }
+}
+
+
+// 3 (& 4, but not completed)
+const sendButton = document.getElementById("send");
+sendButton.addEventListener("click", onClickSendButton);
+
+function onClickSendButton() {
+  const fields = document.getElementsByTagName('input');
+  for (i = 0; i < fields.length; i++) {
+    if (fields[i].value === "") {
+      fields[i].style.borderColor = "red";
+      document.getElementById("fieldName").style.borderColor = "lightgrey";
+    }
+  }
+
+  //4 - I will try to finish this one also
+  let name = "Name - " + document.getElementById("name").value;
+  let surname = "Surname - " + document.getElementById("surname").value;
+  let mobile = "Mobile - " + document.getElementById("mobile").value;
+  
+  const form = [name, surname, mobile];
+  // console.log(form);
+  const formContainer = document.getElementById("form-container");
+  formContainer.innerHTML = "Sended data: " + form; 
+}
