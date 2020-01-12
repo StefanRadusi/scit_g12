@@ -46,3 +46,11 @@ input {
   float: right;
   margin-top: 10px;
 }
+
+.redBorder {
+  border: 2px solid red;
+}
+
+.notBorder {
+ border: 1px solid lightgray;
+}
