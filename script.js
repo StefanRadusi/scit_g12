@@ -21,14 +21,38 @@ addButton.addEventListener("click", onAddButton);
 //create new field
 function createNewField(fieldName) {
 const Field = document.createElement("div");
+document.getElementById("user").appendChild(Field);
+
 const pContent = document.createElement("p");
 pContent.innerText = {fieldName};
 Field.appendChild(pContent);
+
 const fieldNameInput = document.createElement("input");
+
 Field.appendChild(fieldNameInput);
-document.getElementById("user").appendChild(Field);
+
 }
 
 
+document.getElementById("send").addEventListener("click" , function() {
+  const nameInput = document.getElementById("name-field");
+  const nameInputValue = nameInput.value;
 
-document.getElementById("addField").addEventListener("click", createNewField(fieldName));
+  if (nameInputValue === "") {
+    nameInputValue.style.borderColor = "red";
+  }
+
+  const surnameInput = document.getElementById("surname-field");
+  const surnameInputValue = surnameInput.value;
+
+  if (surnameInputValue === "") {
+    surnameInputValue.style.borderColor = "red";
+  }
+
+  const mobileInput = document.getElementById("mobile-field");
+  const mobileInputValue = mobileInput.value;
+
+  if (mobileInputValue === "") {
+    mobileInputValue.style.borderColor = "red";
+  }
+}
