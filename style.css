@@ -52,6 +52,14 @@ body {
   margin-bottom: 0px;
 }
 
+.article-header span {
+  font-size: 12px;
+  font-weight: normal;
+  color: grey;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
 .article-date {
   font-weight: bold;
 }
@@ -60,10 +68,7 @@ body {
   height: 100px;
 
   overflow: auto;
-}
-
-.article:last-child {
-  border-bottom: none;
+  display: none;
 }
 
 .comment {
@@ -134,4 +139,8 @@ body {
   height: 200px;
   border-radius: 5px;
   margin-bottom: 10px;
+}
+
+.show {
+  display: block;
 }
