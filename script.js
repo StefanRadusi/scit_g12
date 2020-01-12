@@ -16,6 +16,7 @@ document.getElementById("addFiled").addEventListener("click", function(e) {
   
   const input = document.createElement("input");
   input.id = addNewFieldValue;
+  input.setAttribute("class", "inputVal");
   newDiv.appendChild(input);
   
   document.getElementById("field-container").appendChild(newDiv);
@@ -24,3 +25,29 @@ document.getElementById("addFiled").addEventListener("click", function(e) {
   fieldName.style.borderColor = "red";
 }
 });
+
+document.getElementById("send").addEventListener("click", collectInfo);
+
+const textVal = document.getElementsByClassName("inputVal");
+
+function collectInfo() {
+  for (let i = 0; i < textVal.length; i++) {
+    if (textVal[i].value == "") {
+      textVal[i].style.borderColor = "red";
+    } else {
+      textVal[i].style.borderColor = "lightgray";
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
