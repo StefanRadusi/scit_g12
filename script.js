@@ -16,20 +16,20 @@ console.log("start");
 
 // console.log(a);
 
-function createParagraph(text) {
-  console.log(text);
-  const p = document.createElement("p");
-  p.innerText = text;
+// function createParagraph(text) {
+//   console.log(text);
+//   const p = document.createElement("p");
+//   p.innerText = text;
 
-  document.getElementById("body").appendChild(p);
+//   document.getElementById("body").appendChild(p);
 
-  return p;
-}
+//   return p;
+// }
 
-function updateParagraphText(text, p) {
-  console.log(p);
-  p.innerText = text;
-}
+// function updateParagraphText(text, p) {
+//   console.log(p);
+//   p.innerText = text;
+// }
 
 // function handleInput(event) {
 //   if (event.key === "Enter") {
@@ -41,18 +41,45 @@ function updateParagraphText(text, p) {
 //   }
 // }
 
-document.getElementById("text").addEventListener("keydown", handleInput);
+// document.getElementById("text").addEventListener("keydown", handleInput);
 
-const p = createParagraph(0);
-let a = 0;
-function handleInput(event) {
-  if (event.key === "Enter") {
-    a = a + 1;
-    console.log(a);
-    updateParagraphText(a, p);
-  }
-}
+// const p = createParagraph(0);
+// let a = 0;
+// function handleInput(event) {
+//   if (event.key === "Enter") {
+//     a = a + 1;
+//     console.log(a);
+//     updateParagraphText(a, p);
+//   }
+// }
+
+// setInterval(function() {
+//   console.log("run interval function");
+// }, 1000);
+
+
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
 
 setInterval(function() {
-  console.log("run interval function");
-}, 1000);
+  seconds = seconds + 1;
+  // minutes = minutes + 1;
+  // hours = hours + 1;
+  if (seconds < 10) {
+    document.getElementById("seconds").innerText = "0" + seconds;
+  } else if (seconds < 60) {
+    document.getElementById("seconds").innerText = seconds;
+  } else if (seconds === 60) {
+    seconds = 0;
+    minutes = minutes + 1;
+    document.getElementById("minutes").innerText = "0" + minutes;
+  } else if (minutes >= 10) {
+    document.getElementById("minutes").innerText = minutes;
+  } else if (minutes === 60) {
+    minutes = 0;
+    hours = hours + 1;
+    document.getElementById("hours").innerText = "0" + hours;
+  }
+
+}, 10); 
