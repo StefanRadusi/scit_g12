@@ -5,7 +5,8 @@ function addContainer () {
   divContainer.className = "field"; 
   const newH1 = document.createElement("h1");
   const newP = document.createElement("p");
-  const addImput = document.createElement("input"); 
+  const addImput = document.createElement("input");
+  addImput.className = "textBox";
 
   const imputTextField = document.getElementById("fieldName").value;
   addImput.id = imputTextField; 
@@ -50,5 +51,16 @@ function onClickSendButton () {
     console.log(mobileImput);
     if (mobileImput==="") {
         document.getElementById("mobile").style.borderColor = "red";}
+
     }
 }
+sendButton.addEventListener("click", function() {
+    let addInput = document.getElementsByClassName("textBox");
+    for (let i=0; i<=addInput.length; i++) {
+      if (addInput[i].value == "") {
+      addInput[i].style.borderColor = "red";
+    } else {
+      addInput[i].style.borderColor = "lightgrey";
+    }
+  }
+  });
