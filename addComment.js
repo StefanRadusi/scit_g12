@@ -56,6 +56,10 @@ function createComment(userNameValue, commentAreaValue) {
   commentContent.className = "comment-content";
   commentContent.innerText = commentAreaValue;
   commentContainer.appendChild(commentContent);
+  
+  insertFirstElement(commentContainer);
+  clearFields();
+
 }
 
 function formatDate(date) {
@@ -64,4 +68,19 @@ function formatDate(date) {
   var year = date.getFullYear();
 
   return day + "." + (monthIndex + 1) + "." + year;
+}
+
+function insertFirstElement(elem){
+   let list = document.getElementById("read-section");
+   list.insertBefore(elem,list.firstChild);
+}
+
+function clearFields(){
+  let user = document.getElementById("user-name");
+  user.value="";
+  user.style.borderColor = null;
+
+  let comment = document.getElementById("comment-area");
+  comment.value="";
+  comment.style.borderColor = null;
 }
