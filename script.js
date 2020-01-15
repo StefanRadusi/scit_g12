@@ -16,43 +16,83 @@ console.log("start");
 
 // console.log(a);
 
-function createParagraph(text) {
-  console.log(text);
-  const p = document.createElement("p");
-  p.innerText = text;
+// function createParagraph(text) {
+//   console.log(text);
+//   const p = document.createElement("p");
+//   p.innerText = text;
 
-  document.getElementById("body").appendChild(p);
+//   document.getElementById("body").appendChild(p);
 
-  return p;
-}
+//   return p;
+// }
 
-function updateParagraphText(text, p) {
-  console.log(p);
-  p.innerText = text;
-}
+// function updateParagraphText(text, p) {
+//   console.log(p);
+//   p.innerText = text;
+// }
 
+// // function handleInput(event) {
+// //   if (event.key === "Enter") {
+// //     const inputValue = event.target.value;
+
+// //     setTimeout(function() {
+// //       createParagraph(inputValue);
+// //     }, 2000);
+// //   }
+// // }
+
+// document.getElementById("text").addEventListener("keydown", handleInput);
+
+// const p = createParagraph(0);
+// let a = 0;
 // function handleInput(event) {
 //   if (event.key === "Enter") {
-//     const inputValue = event.target.value;
-
-//     setTimeout(function() {
-//       createParagraph(inputValue);
-//     }, 2000);
+//     a = a + 1;
+//     console.log(a);
+//     updateParagraphText(a, p);
 //   }
 // }
 
-document.getElementById("text").addEventListener("keydown", handleInput);
+// let seconds = 0;
+// let minutes = 0;
+// let hours = 0;
 
-const p = createParagraph(0);
-let a = 0;
-function handleInput(event) {
-  if (event.key === "Enter") {
-    a = a + 1;
-    console.log(a);
-    updateParagraphText(a, p);
-  }
-}
+// const secondsP = document.getElementById("seconds");
+// const minutesP = document.getElementById("minutes");
+// const hoursP = document.getElementById("hours");
 
-setInterval(function() {
-  console.log("run interval function");
-}, 1000);
+// setInterval(function() {
+//   seconds++;
+
+//   if (seconds > 59) {
+//     seconds = 0;
+//     minutes++;
+//   }
+
+//   if (minutes > 59) {
+//     minutes = 0;
+//     hours++;
+//   }
+
+//   if (hours > 24) {
+//     hours = 0;
+//   }
+
+//   // console.log(hours, minutes, seconds);
+
+//   secondsP.innerText = seconds < 10 ? "0" + seconds : seconds;
+//   minutesP.innerText = minutes < 10 ? "0" + minutes : minutes;
+//   hoursP.innerText = hours < 10 ? "0" + hours : hours;
+// }, 5);
+
+fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=Pasta")
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(json) {
+    console.log(json);
+
+    console.log(json.meals[0].strMeal);
+
+    document.getElementById("seconds").innerText = json.meals[0].strMeal;
+  });
