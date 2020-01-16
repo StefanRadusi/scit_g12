@@ -24,15 +24,25 @@ document.getElementById("submit").addEventListener("click", function() {
     // we call the this function in order to see directly the new added comment after the submit button in clicked
     showReadSection();
 
+  function clearTextArea() {
+    let userNameInputDOM = document.getElementById("user-name");
+    userNameInputDOM.value = "";
+    userNameInputDOM.style.removeProperty('border');
+    
+    let commentAreaDOM = document.getElementById("comment-area");
+    commentAreaDOM.value = "";
+    commentAreaDOM.style.removeProperty('border');
+  }
     // this function is responsible creating the new comment using the values from input and textArea
     createComment(userNameValue, commentAreaValue);
-  }
-});
+      clearTextArea();
+
+};
 
 function createComment(userNameValue, commentAreaValue) {
   const commentContainer = document.createElement("div");
   commentContainer.className = "comment";
-  document.getElementById("read-section").appendChild(commentContainer);
+  document.getElementById("read-section").prepend(commentContainer);
 
   const commentHeader = document.createElement("div");
   commentHeader.className = "comment-header";
@@ -65,3 +75,4 @@ function formatDate(date) {
 
   return day + "." + (monthIndex + 1) + "." + year;
 }
+})
