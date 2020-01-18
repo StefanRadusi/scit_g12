@@ -1,104 +1,72 @@
-console.log("start");
+// ---- Example: Use data from a server to display different meals
 
-// let a = 1;
+// this is the DOM element were all the the meals are render
+const mealsContainer = document.getElementById("meals-container");
 
-// function afterSomeTime() {
-//   a = a + 1;
-//   console.log(a);
-// }
+// the DOM element from which we get the value for the parameter of the url used to get data from server
+const input = document.getElementById("meal-name");
 
-// console.log(a);
+// we react to event triggered by clicking on the "get-meal" button
+document.getElementById("get-meal").addEventListener("click", function() {
+  // before we can get data from server we need to generate the correct url using the value of input
+  const url = generateRateUrl(input.value);
 
-// setTimeout(function() {
-//   console.log(a);
-//   setTimeout(afterSomeTime, 2000);
-// }, 2000);
+  //incase the "generateRateUrl" return nothing we don't have a address so we can't hit the server
+  if (url) {
+    // we need to clear the meal container so that new data is shown
+    clearMealContainer();
 
-// console.log(a);
+    //call the server
+    hitServer(url);
+  }
+});
 
-// function createParagraph(text) {
-//   console.log(text);
-//   const p = document.createElement("p");
-//   p.innerText = text;
+// this functions return a generate an url based on the input value that is passed when this function is called
+// in case the "inputValue" parameter is empty then this function will return "undefined"
+function generateRateUrl(inputValue) {
+  if (inputValue) {
+    return `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputValue}`;
+  }
+}
 
-//   document.getElementById("body").appendChild(p);
+// this function replaces the content of DOM element "mealsContainer" with the string "Loading"
+// this is used to show something to user when the request to server is made  and until the response comes back
+function clearMealContainer() {
+  mealsContainer.innerHTML = "Loading";
+}
 
-//   return p;
-// }
-
-// function updateParagraphText(text, p) {
-//   console.log(p);
-//   p.innerText = text;
-// }
-
-// // function handleInput(event) {
-// //   if (event.key === "Enter") {
-// //     const inputValue = event.target.value;
-
-// //     setTimeout(function() {
-// //       createParagraph(inputValue);
-// //     }, 2000);
-// //   }
-// // }
-
-// document.getElementById("text").addEventListener("keydown", handleInput);
-
-// const p = createParagraph(0);
-// let a = 0;
-// function handleInput(event) {
-//   if (event.key === "Enter") {
-//     a = a + 1;
-//     console.log(a);
-//     updateParagraphText(a, p);
-//   }
-// }
-
-// let seconds = 0;
-// let minutes = 0;
-// let hours = 0;
-
-// const secondsP = document.getElementById("seconds");
-// const minutesP = document.getElementById("minutes");
-// const hoursP = document.getElementById("hours");
-
-// setInterval(function() {
-//   seconds++;
-
-//   if (seconds > 59) {
-//     seconds = 0;
-//     minutes++;
-//   }
-
-//   if (minutes > 59) {
-//     minutes = 0;
-//     hours++;
-//   }
-
-//   if (hours > 24) {
-//     hours = 0;
-//   }
-
-//   // console.log(hours, minutes, seconds);
-
-//   secondsP.innerText = seconds < 10 ? "0" + seconds : seconds;
-//   minutesP.innerText = minutes < 10 ? "0" + minutes : minutes;
-//   hoursP.innerText = hours < 10 ? "0" + hours : hours;
-// }, 5);
-
-function getMealName() {
-  fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=Pasta")
+// this function uses the async function fetch to call the server with the url passed in the parameter
+function hitServer(url) {
+  fetch(url)
+    // this is a callback function called when the response from server comes back
     .then(function(response) {
       return response.json();
     })
+    // this is a callback function called when parsing the response with "response.json()" comes back
     .then(function(json) {
-      console.log(json);
-
-      console.log(json.meals[0].strMeal);
-
-      document.getElementById("meal-name").innerText = json.meals[0].strMeal;
+      // the json is a JS object that has one key "meals", inside "meals" is and array used for rendering the meals given by the server as a response the calling it with a specific parameter in url
+      renderMeals(json.meals);
     });
 }
 
-document
-  .getElementById("get-text-from-server")
-  .addEventListener("click", getMealName);
+// this function create from scratch DOM elements in order to render information passed in the parameter "meals"
+function renderMeals(meals) {
+  // before adding DOM elements to mealsContainer we want to use "innerHTML" attribute to overwrite the current content so that is empty before we start adding new meals
+  mealsContainer.innerHTML = "";
+  for (const meal of meals) {
+    // please check in the console the structure of the meal object so it will be easier to understand how the data is accessed and used to create the new DOM elements for the meal
+    console.log(meal);
+    const mealContainer = document.createElement("div");
+    mealContainer.style.marginBottom = "20px";
+
+    const mealTitle = document.createElement("h3");
+    mealTitle.innerText = meal.strMeal;
+    mealContainer.appendChild(mealTitle);
+
+    const mealContent = document.createElement("p");
+    mealContent.innerText = meal.strInstructions;
+    mealContainer.appendChild(mealContent);
+
+    mealsContainer.appendChild(mealContainer);
+  }
+}
