@@ -1,5 +1,16 @@
-.container {
+.timer,
+#text-container,
+.timer-container {
   display: flex;
+}
+
+.timer {
+  margin-top: 20px;
+}
+
+input,
+button {
+  margin-right: 10px;
 }
 
 p {

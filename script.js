@@ -1,98 +1,83 @@
 console.log("start");
 
-// let a = 1;
+// ----- example 1: rendering a text after a number o seconds set by user ------
 
-// function afterSomeTime() {
-//   a = a + 1;
-//   console.log(a);
-// }
+//this function is called inside the callback function of the timer
+function renderText(nrOfSeconds) {
+  const p = document.createElement("p");
 
-// console.log(a);
+  // text a string concatenation with the parameter of the function
+  // when this function is called the parameter passed is the value of the input
+  // we use ternary  operator "?" produce the correct text in case we have just 1 second delay
+  p.innerText = `This text is render after ${nrOfSeconds} ${
+    nrOfSeconds > 1 ? "seconds" : "second"
+  }`;
 
-// setTimeout(function() {
-//   console.log(a);
-//   setTimeout(afterSomeTime, 2000);
-// }, 2000);
+  document.getElementById("text-container").appendChild(p);
+}
 
-// console.log(a);
+// this function will start a timer
+function startTimer(value) {
+  // the value from input is a string an we need to transform in number
+  // because timeout function has as second parameter milliseconds
+  const delay = Number(value) * 1000;
+  console.log(delay);
 
-// function createParagraph(text) {
-//   console.log(text);
-//   const p = document.createElement("p");
-//   p.innerText = text;
+  // in case the value from the input is not convertible to a number t6he result of "Number(value)" will be "NaN";
+  // in the case of "NaN" we don't want to call setTimeout because the delay parameter is not valid
+  if (delay != NaN && delay > 0) {
+    setTimeout(function() {
+      renderText(Number(value));
+    }, delay);
+  }
+}
 
-//   document.getElementById("body").appendChild(p);
+// we react to enter key on input
+document.getElementById("text").addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    startTimer(event.currentTarget.value);
+  }
+});
 
-//   return p;
-// }
+// ----- example 2: Create a timer with "setInterval" builtin function ------
 
-// function updateParagraphText(text, p) {
-//   console.log(p);
-//   p.innerText = text;
-// }
+// we need to create a variable for every field in the timer
+// this is we we store the current value of the the timer fields
+let seconds = 0;
+let minutes = 0;
+let hours = 0;
 
-// // function handleInput(event) {
-// //   if (event.key === "Enter") {
-// //     const inputValue = event.target.value;
+// we need the DOM objects of the timer fields so we can update the inner text of them
+const secondsP = document.getElementById("seconds");
+const minutesP = document.getElementById("minutes");
+const hoursP = document.getElementById("hours");
 
-// //     setTimeout(function() {
-// //       createParagraph(inputValue);
-// //     }, 2000);
-// //   }
-// // }
+// setInterval is a function  that will take as a first argument a callback function and call it again and again a time interval set in the second parameter.
+setInterval(function() {
+  // every time this callback function is called we increment the seconds
+  seconds++;
 
-// document.getElementById("text").addEventListener("keydown", handleInput);
+  if (seconds > 59) {
+    // when we reach the maximum value of the seconds, we increment the minutes and reset the seconds
+    seconds = 0;
+    minutes++;
+  }
 
-// const p = createParagraph(0);
-// let a = 0;
-// function handleInput(event) {
-//   if (event.key === "Enter") {
-//     a = a + 1;
-//     console.log(a);
-//     updateParagraphText(a, p);
-//   }
-// }
+  if (minutes > 59) {
+    // when we reach the maximum value of the minutes, we increment the hours and reset the minutes
+    minutes = 0;
+    hours++;
+  }
 
-// let seconds = 0;
-// let minutes = 0;
-// let hours = 0;
+  if (hours > 24) {
+    // when we reach the maximum value of hours we reset them
+    hours = 0;
+  }
 
-// const secondsP = document.getElementById("seconds");
-// const minutesP = document.getElementById("minutes");
-// const hoursP = document.getElementById("hours");
+  // because the timer has 2 digits for every field we use "?" to check if we need to add a "0" at the final text of the field
+  secondsP.innerText = seconds < 10 ? "0" + seconds : seconds;
+  minutesP.innerText = minutes < 10 ? "0" + minutes : minutes;
+  hoursP.innerText = hours < 10 ? "0" + hours : hours;
 
-// setInterval(function() {
-//   seconds++;
-
-//   if (seconds > 59) {
-//     seconds = 0;
-//     minutes++;
-//   }
-
-//   if (minutes > 59) {
-//     minutes = 0;
-//     hours++;
-//   }
-
-//   if (hours > 24) {
-//     hours = 0;
-//   }
-
-//   // console.log(hours, minutes, seconds);
-
-//   secondsP.innerText = seconds < 10 ? "0" + seconds : seconds;
-//   minutesP.innerText = minutes < 10 ? "0" + minutes : minutes;
-//   hoursP.innerText = hours < 10 ? "0" + hours : hours;
-// }, 5);
-
-fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=Pasta")
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(json) {
-    console.log(json);
-
-    console.log(json.meals[0].strMeal);
-
-    document.getElementById("seconds").innerText = json.meals[0].strMeal;
-  });
+  //the timer tracks seconds, so in order for the callback function to be called every second we need to set "setInterval" to 1000 milliseconds
+}, 1000);
