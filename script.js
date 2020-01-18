@@ -85,14 +85,20 @@ console.log("start");
 //   hoursP.innerText = hours < 10 ? "0" + hours : hours;
 // }, 5);
 
-fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=Pasta")
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(json) {
-    console.log(json);
+function getMealName() {
+  fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=Pasta")
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(json) {
+      console.log(json);
 
-    console.log(json.meals[0].strMeal);
+      console.log(json.meals[0].strMeal);
 
-    document.getElementById("seconds").innerText = json.meals[0].strMeal;
-  });
+      document.getElementById("meal-name").innerText = json.meals[0].strMeal;
+    });
+}
+
+document
+  .getElementById("get-text-from-server")
+  .addEventListener("click", getMealName);
