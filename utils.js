@@ -12,6 +12,7 @@ function showReadSection() {
   document
     .getElementById("edit-section")
     .classList.remove("comments-selected-edit");
+    
 }
 
 function showEditSection() {
