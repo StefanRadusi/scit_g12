@@ -67,6 +67,26 @@ function renderMeals(meals) {
     mealContent.innerText = meal.strInstructions;
     mealContainer.appendChild(mealContent);
 
+    const categories = document.createElement("p");
+    categories.innerText = "Categories";
+    categories.classList.add("categories");
+
+    mealContainer.appendChild(categories);
+
     mealsContainer.appendChild(mealContainer);
   }
+}
+
+const alphabetList = document
+  .getElementById("alphabet")
+  .getElementsByTagName("p");
+
+for (const char of alphabetList) {
+  console.log(char);
+  char.addEventListener("click", function() {
+    clearMealContainer();
+    hitServer(
+      `https://www.themealdb.com/api/json/v1/1/search.php?f=${char.id}`
+    );
+  });
 }

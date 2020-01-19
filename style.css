@@ -11,3 +11,26 @@ body {
 p {
   margin: 0;
 }
+
+#alphabet {
+  margin-top: 20px;
+  display: flex;
+}
+
+#alphabet p {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.categories {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.categories span {
+  background: grey;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
