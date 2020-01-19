@@ -12,13 +12,16 @@ document.getElementById("submit").addEventListener("click", function() {
   if (userNameValue && commentAreaValue) {
     showReadSection();
     createComment(userNameValue, commentAreaValue);
+    newInput();
   }
 });
+
+
 
 function createComment(userNameValue, commentAreaValue) {
   const commentContainer = document.createElement("div");
   commentContainer.className = "comment";
-  document.getElementById("read-section").appendChild(commentContainer);
+  document.getElementById("read-section").prepend(commentContainer);
 
   const commentHeader = document.createElement("div");
   commentHeader.className = "comment-header";
@@ -61,4 +64,15 @@ function formatDate(date) {
   from 45 BC, making it over 2000 years old. Richard McClintock
 </p>
 </div> */
+}
+
+
+function newInput() {
+
+ let userNameInputValue = document.getElementById("user-name");
+ let commentAreaInputValue = document.getElementById("comment-area");
+  
+  userNameInputValue.value = "";
+  commentAreaInputValue.value = "";
+
 }
