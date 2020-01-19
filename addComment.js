@@ -1,5 +1,5 @@
 // we react to click on submit button
-document.getElementById("submit").addEventListener("click", function() {
+document.getElementById("submit").addEventListener("click", function () {
   const userNameInputDOM = document.getElementById("user-name");
   // the dom elements in which you can type text usually have a value key
   // we can use this key to get the current text present in the input
@@ -27,12 +27,18 @@ document.getElementById("submit").addEventListener("click", function() {
     // this function is responsible creating the new comment using the values from input and textArea
     createComment(userNameValue, commentAreaValue);
   }
+
+  document.getElementById("comment-area").value = "";
+  document.getElementById("user-name").value = "";
+
 });
 
 function createComment(userNameValue, commentAreaValue) {
   const commentContainer = document.createElement("div");
   commentContainer.className = "comment";
-  document.getElementById("read-section").appendChild(commentContainer);
+  document.getElementById("read-section").appendChild(commentContainer); // this code line may be deleted
+
+  document.getElementById("read-section").prepend(commentContainer); // this line has 2 scopes, to append the child and also set it as the first child
 
   const commentHeader = document.createElement("div");
   commentHeader.className = "comment-header";
