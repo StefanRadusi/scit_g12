@@ -26,13 +26,27 @@ document.getElementById("submit").addEventListener("click", function() {
 
     // this function is responsible creating the new comment using the values from input and textArea
     createComment(userNameValue, commentAreaValue);
+    clearEditArea();
   }
 });
 
+
+function clearEditArea() {
+  const userName = document.getElementById("user-name");
+  userName.value = "";
+  userName.style.borderColor = "lightgrey";
+
+  const commentArea = document.getElementById("comment-area");
+  commentArea.value = "";
+  commentArea.style.borderColor = "lightgrey";
+};
+
+
 function createComment(userNameValue, commentAreaValue) {
+  const readSection = document.getElementById("read-section");
   const commentContainer = document.createElement("div");
   commentContainer.className = "comment";
-  document.getElementById("read-section").appendChild(commentContainer);
+  readSection.insertBefore(commentContainer, readSection.firstChild);
 
   const commentHeader = document.createElement("div");
   commentHeader.className = "comment-header";
