@@ -57,8 +57,7 @@ body {
 }
 
 .article-short-description {
-  height: 100px;
-
+  height: 0;
   overflow: auto;
 }
 
@@ -140,4 +139,9 @@ body {
 }
 #comment-area{
   outline: none;
+}
+.show-desc {
+  font-size: 15px;
+  color:grey;
+  margin-left: 15px;
 }
