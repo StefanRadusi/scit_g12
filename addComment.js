@@ -5,7 +5,7 @@ document.getElementById("submit").addEventListener("click", function() {
   // we can use this key to get the current text present in the input
   const userNameValue = userNameInputDOM.value;
 
-  // in case the input is empty we want to alert the user that he must do something if he want to add a comment
+  // in case the input is empty we want to alert the user that he must do something if he want to add a  comment
   // we alert the user by coloring the input border red
   if (userNameValue === "") {
     userNameInputDOM.style.borderColor = "red";
