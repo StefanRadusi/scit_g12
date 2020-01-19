@@ -135,17 +135,3 @@ body {
   border-radius: 5px;
   margin-bottom: 10px;
 }
-
-#show_desc {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-
-.article-short-description {
-  display: none;
-}
-
-.displayDescription {
-  display: block;
-} 

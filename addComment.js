@@ -1,31 +1,38 @@
 // we react to click on submit button
 document.getElementById("submit").addEventListener("click", function() {
   const userNameInputDOM = document.getElementById("user-name");
+  // the dom elements in which you can type text usually have a value key
+  // we can use this key to get the current text present in the input
   const userNameValue = userNameInputDOM.value;
 
-
+  // in case the input is empty we want to alert the user that he must do something if he want to add a comment
+  // we alert the user by coloring the input border red
   if (userNameValue === "") {
     userNameInputDOM.style.borderColor = "red";
   }
 
+  //similar logic for the textArea component which contains the comment content
   const commentAreaDOM = document.getElementById("comment-area");
   const commentAreaValue = commentAreaDOM.value;
-
   if (commentAreaValue === "") {
     commentAreaDOM.style.borderColor = "red";
   }
 
+  // only create the comment in the comments section if both the input and textArea have text in it
   if (userNameValue && commentAreaValue) {
+    // "showReadSection" function is present in "utils.js" and have the functionality of hiding the add comment section showing read comment section
+    // we call the this function in order to see directly the new added comment after the submit button in clicked
     showReadSection();
+
+    // this function is responsible creating the new comment using the values from input and textArea
     createComment(userNameValue, commentAreaValue);
-    resetInput();
   }
 });
 
 function createComment(userNameValue, commentAreaValue) {
   const commentContainer = document.createElement("div");
   commentContainer.className = "comment";
-  document.getElementById("read-section").prepend(commentContainer);
+  document.getElementById("read-section").appendChild(commentContainer);
 
   const commentHeader = document.createElement("div");
   commentHeader.className = "comment-header";
@@ -57,13 +64,4 @@ function formatDate(date) {
   var year = date.getFullYear();
 
   return day + "." + (monthIndex + 1) + "." + year;
-}
-
-function resetInput () {
-  let userNameInputValue = document.getElementById("user-name");
-  let commentAreaValue = document.getElementById("comment-area");
-
-    userNameInputValue.value = "";
-    commentAreaValue.value = "";
-
 }
