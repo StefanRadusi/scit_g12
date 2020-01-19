@@ -26,13 +26,21 @@ document.getElementById("submit").addEventListener("click", function() {
 
     // this function is responsible creating the new comment using the values from input and textArea
     createComment(userNameValue, commentAreaValue);
+   
+  
   }
+  document.getElementById("user-name").value="";
+  document.getElementById("comment-area").value="";
 });
 
 function createComment(userNameValue, commentAreaValue) {
   const commentContainer = document.createElement("div");
   commentContainer.className = "comment";
-  document.getElementById("read-section").appendChild(commentContainer);
+  const readSection=document.getElementById("read-section");
+  const readSectionElements=readSection.getElementsByClassName("comment");
+  readSection.insertBefore(commentContainer,readSectionElements[0]);
+  
+  
 
   const commentHeader = document.createElement("div");
   commentHeader.className = "comment-header";

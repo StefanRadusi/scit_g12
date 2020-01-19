@@ -58,7 +58,6 @@ body {
 
 .article-short-description {
   height: 100px;
-
   overflow: auto;
 }
 
@@ -87,6 +86,10 @@ body {
 .selected {
   background: grey;
   color: white;
+}
+
+.hide {
+  display: none;
 }
 
 /* we need position relative so the if we position absolute the child it will take the position correctly */
@@ -134,4 +137,20 @@ body {
   height: 200px;
   border-radius: 5px;
   margin-bottom: 10px;
+}
+.span{color: lightgrey;
+      font-size: small;}
+.show-button{
+  margin-left:10px;
+  border-style: none;
+  background-color: white;
+  color: grey;
+  font-size: 15px;
+}
+.hide-button{
+  margin-left:10px;
+  border-style: none;
+  background-color: white;
+  color: grey;
+  font-size: 15px;
 }
