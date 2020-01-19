@@ -58,7 +58,7 @@ body {
 
 .article-short-description {
   height: 100px;
-
+  display: none;
   overflow: auto;
 }
 

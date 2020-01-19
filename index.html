@@ -11,13 +11,14 @@
       <input id="search" placeholder="search" />
     </div>
     <div class="articles-container">
+      <input id="butDesc1" type="button" name="descButton" value="SHOW DESC" onclick="showDesc1()" />
       <div id="Art1" class="article">
         <div class="article-header">
           <h1 class="article-title">Art 1</h1>
           <p class="article-date">25.12.2019</p>
         </div>
 
-        <p class="article-short-description">
+        <p id ="shortDesc1" class="article-short-description">
           Contrary to popular belief, Lorem Ipsum is not simply random text. It
           has roots in a piece of classical Latin literature from 45 BC, making
           it over 2000 years old. Richard McClintock, a Latin professor at
@@ -36,14 +37,14 @@
           versions from the 1914 translation by H. Rackham.
         </p>
       </div>
-
+      <input  id="butDesc2" type="button" name="descButton" value="SHOW DESC" onclick="showDesc2()" />
       <div id="Art2" class="article">
         <div class="article-header">
           <h1 class="article-title">Art 2</h1>
           <p class="article-date">12.12.2019</p>
         </div>
 
-        <p class="article-short-description">
+        <p  id ="shortDesc2" class="article-short-description">
           Contrary to popular belief, Lorem Ipsum is not simply random text. It
           has roots in a piece of classical Latin literature from 45 BC, making
           it over 2000 years old. Richard McClintock, a Latin professor at
@@ -62,14 +63,14 @@
           versions from the 1914 translation by H. Rackham.
         </p>
       </div>
-
+      <input  id="butDesc3" type="button" name="descButton" value="SHOW DESC" onclick="showDesc3()" />
       <div id="Art3" class="article">
         <div class="article-header">
           <h1 class="article-title">Art 3</h1>
           <p class="article-date">10.11.2019</p>
         </div>
 
-        <p class="article-short-description">
+        <p  id ="shortDesc3" class="article-short-description">
           Contrary to popular belief, Lorem Ipsum is not simply random text. It
           has roots in a piece of classical Latin literature from 45 BC, making
           it over 2000 years old. Richard McClintock, a Latin professor at
@@ -89,7 +90,7 @@
         </p>
       </div>
     </div>
-
+    <script src="./hideDiv.js"></script>
     <script src="./redirectToArticle.js"></script>
     <script src="./search.js"></script>
   </body>
