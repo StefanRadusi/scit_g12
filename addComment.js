@@ -64,4 +64,4 @@ function formatDate(date) {
   var year = date.getFullYear();
 
   return day + "." + (monthIndex + 1) + "." + year;
-}
+} 
