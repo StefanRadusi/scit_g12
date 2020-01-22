@@ -11,3 +11,9 @@ body {
 p {
   margin: 0;
 }
+
+.button{
+  background-color: white;
+  border:none;
+  font-size: large;
+}

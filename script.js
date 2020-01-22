@@ -70,3 +70,54 @@ function renderMeals(meals) {
     mealsContainer.appendChild(mealContainer);
   }
 }
+
+let html = '';
+let c;
+for (var i = 65; i<=90; i++) {// A-65, Z-90
+  c = String.fromCharCode(i);
+  let buttonId = "button-" + c;
+  let button = '<button class =button'  + '>' + c + '</button>';
+  
+  html +=button;
+
+}
+document.getElementById('alphabet-container').innerHTML = html;
+
+
+let setLetter = function(x) {
+  document.getElementById('name').innerHTML += x;
+};
+let allButtons = document.getElementsByClassName("button");
+for (let i=0; i<allButtons.length;i++){
+      allButtons[i].addEventListener("click", function() {
+      const innerTextButton = allButtons[i].innerText;
+      // before we can get data from server we need to generate the correct url using the value of input
+      const url2 = generateRateUrl2(innerTextButton);
+    
+      //incase the "generateRateUrl" return nothing we don't have a address so we can't hit the server
+      if (url2) {
+        // we need to clear the meal container so that new data is shown
+        clearMealContainer();
+        //call the server
+        hitServer2(url2);
+      }
+    });
+}
+
+  function generateRateUrl2(innerTextValue) {
+    if (innerTextValue) {
+      return `https://www.themealdb.com/api/json/v1/1/search.php?f=${innerTextValue}`;
+    }
+  }
+  function hitServer2(url2) {
+    fetch(url2)
+      // this is a callback function called when the response from server comes back
+      .then(function(response) {
+        return response.json();
+      })
+      // this is a callback function called when parsing the response with "response.json()" comes back
+      .then(function(json) {
+        // the json is a JS object that has one key "meals", inside "meals" is and array used for rendering the meals given by the server as a response the calling it with a specific parameter in url
+        renderMeals(json.meals);
+      });
+  }
