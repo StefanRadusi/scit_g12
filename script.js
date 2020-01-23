@@ -7,6 +7,7 @@ const mealsContainer = document.getElementById("meals-container");
 const input = document.getElementById("meal-name");
 
 // we react to event triggered by clicking on the "get-meal" button
+
 document.getElementById("get-meal").addEventListener("click", function() {
   // before we can get data from server we need to generate the correct url using the value of input
   const url = generateRateUrl(input.value);
@@ -70,3 +71,28 @@ function renderMeals(meals) {
     mealsContainer.appendChild(mealContainer);
   }
 }
+
+//homework
+
+const parentDiv = document.createElement("div");
+parentDiv.id = "parentDiv";
+
+for (let i=65; i<91; i++){
+  let c = String.fromCharCode(i);
+  const leter = document.createElement("div");
+  leter.innerText = c;
+  leter.id = c;
+  leter.style.padding = "3px";
+  parentDiv.appendChild(leter);
+}
+document.getElementsByClassName("interactions")[0].appendChild(parentDiv);
+
+document.getElementById("parentDiv").addEventListener("click", getLeter);
+function getLeter(event){
+  if (event.target != event.currentTarget){
+    console.log(event.target.id);
+    const urlLeter = `https://www.themealdb.com/api/json/v1/1/search.php?f=${event.target.id}`;
+    hitServer(urlLeter);
+  }
+}
+
