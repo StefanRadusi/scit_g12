@@ -70,3 +70,39 @@ function renderMeals(meals) {
     mealsContainer.appendChild(mealContainer);
   }
 }
+
+function generateRateUrl2(inputValue) {
+  if (inputValue) {
+    return `https://www.themealdb.com/api/json/v1/1/search.php?f=${inputValue}`;
+  }
+}
+
+function hitServerSpan(url) {
+  fetch(url)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(json) {
+      renderMeals(json.meals);
+    });
+}
+
+const alphabet = document
+  .getElementById("alphapet")
+  .getElementsByTagName("span");
+
+for (const el of alphabet) {
+  el.addEventListener("click", function() {
+    console.log(el);
+    const elVal = el.innerText;
+    console.log(elVal);
+
+    if (elVal) {
+      clearMealContainer();
+
+      hitServerSpan(
+        `https://www.themealdb.com/api/json/v1/1/search.php?f=${el.innerText}`
+      );
+    }
+  });
+}
