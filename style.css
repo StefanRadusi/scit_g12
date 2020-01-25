@@ -11,3 +11,12 @@ body {
 p {
   margin: 0;
 }
+
+#alphabet {
+  display: flex;
+}
+
+#letter {
+  margin: 8px;
+  font-weight: bold;
+}

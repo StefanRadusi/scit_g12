@@ -70,3 +70,55 @@ function renderMeals(meals) {
     mealsContainer.appendChild(mealContainer);
   }
 }
+
+
+const letter = document.getElementById("letter");
+const alphabet = document.getElementById("alphabet");
+
+alphabet.addEventListener("click", function(e) {
+  console.log(e.target.innerText + " was clicked");
+  let url = generateUrlByLetter(e.target.innerText);
+  if(url) {
+    clearMealContainer();
+    callServer(url);
+  }
+})
+
+const letterText = letter.innerText;
+
+function generateUrlByLetter(letterText) {
+  
+  console.log("generateUrlByLetter is working");
+
+  return `https://www.themealdb.com/api/json/v1/1/search.php?s=${letterText}`;
+}
+
+function callServer(url) {
+  fetch(url)
+      .then(function(response){
+          return response.json();
+      })
+      .then(function(json){
+          console.log("callServer is working");
+          renderMealsFromLetter(json.meals);
+      })
+}
+
+
+function renderMealsFromLetter() {
+  mealsContainer.innerHTML = "";
+  const mealContainer = document.createElement("div");
+  mealContainer.style.marginBottom = "20px";
+
+  const mealTitle = document.createElement("h3");
+  mealTitle.innerText = mealsContainer.strMeal;
+  mealContainer.appendChild(mealTitle);
+
+  const mealContent = document.createElement("p");
+  mealContent.innerText = mealsContainer.strInstructions;
+  mealContainer.appendChild(mealContent);
+
+  mealsContainer.appendChild(mealContainer);
+  console.log("renderMealsFromLetter is working");
+}
+
