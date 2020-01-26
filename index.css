@@ -1,0 +1,12 @@
+#menuletters {
+    margin: 2%;
+    border-radius: 20%;
+    background-color: pink;
+    display: flex;
+    align-items: center;
+}
+p {
+    width: 10%;
+    align-items: center;
+    padding: 10px;
+}
