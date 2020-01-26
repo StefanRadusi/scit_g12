@@ -1,0 +1,12 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+#alphabet{
+    display: flex;
+    margin:10px;
+
+}
+p{
+    margin:5px;
+    cursor: pointer;
+}
