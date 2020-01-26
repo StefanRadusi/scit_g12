@@ -11,3 +11,14 @@ body {
 p {
   margin: 0;
 }
+
+.alphabet {
+  margin-top: 10px;
+  display: flex;
+}
+
+.alphabet p {
+  margin: 5px;
+  font-size: large;
+  cursor: pointer;
+}
