@@ -70,3 +70,24 @@ function renderMeals(meals) {
     mealsContainer.appendChild(mealContainer);
   }
 }
+
+
+
+const lettersList = document.getElementsByTagName("span");
+
+for (let letter of lettersList) {
+  letter.addEventListener("click", function(){
+    const letters = letter.innerText;
+    const url = generateUrlWithFirstLetter(letters);
+
+if (url) {
+  clearMealContainer();
+  hitServer(url);
+}
+  });
+};
+
+function generateUrlWithFirstLetter(spanValue) {
+  return `https://www.themealdb.com/api/json/v1/1/search.php?f=${spanValue}`;
+}
+

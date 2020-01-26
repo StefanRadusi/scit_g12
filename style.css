@@ -11,3 +11,11 @@ body {
 p {
   margin: 0;
 }
+
+span {
+  font-weight: bold;
+}
+
+#list-of-letters{
+  margin-top: 20px;
+}
