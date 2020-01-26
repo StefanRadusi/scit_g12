@@ -16,7 +16,8 @@ p {
   display: flex;
 }
 
-#letter {
+#alphabet p {
   margin: 8px;
   font-weight: bold;
+  cursor: pointer;
 }

@@ -55,7 +55,7 @@ function renderMeals(meals) {
   mealsContainer.innerHTML = "";
   for (const meal of meals) {
     // please check in the console the structure of the meal object so it will be easier to understand how the data is accessed and used to create the new DOM elements for the meal
-    console.log(meal);
+    // console.log(meal);
     const mealContainer = document.createElement("div");
     mealContainer.style.marginBottom = "20px";
 
@@ -72,53 +72,20 @@ function renderMeals(meals) {
 }
 
 
-const letter = document.getElementById("letter");
-const alphabet = document.getElementById("alphabet");
+// my solution
 
-alphabet.addEventListener("click", function(e) {
-  console.log(e.target.innerText + " was clicked");
-  let url = generateUrlByLetter(e.target.innerText);
-  if(url) {
+const alphabet = document.getElementsByTagName("p");
+
+for (const letter of alphabet) {
+  letter.addEventListener("click", function(e) {
+    console.log(e.target.innerText + " was clicked");
+    let url = generateUrlWithLetter(e.target.innerText);
+    
     clearMealContainer();
-    callServer(url);
-  }
-})
+    hitServer(url); 
+  });
+};
 
-const letterText = letter.innerText;
-
-function generateUrlByLetter(letterText) {
-  
-  console.log("generateUrlByLetter is working");
-
-  return `https://www.themealdb.com/api/json/v1/1/search.php?s=${letterText}`;
-}
-
-function callServer(url) {
-  fetch(url)
-      .then(function(response){
-          return response.json();
-      })
-      .then(function(json){
-          console.log("callServer is working");
-          renderMealsFromLetter(json.meals);
-      })
-}
-
-
-function renderMealsFromLetter() {
-  mealsContainer.innerHTML = "";
-  const mealContainer = document.createElement("div");
-  mealContainer.style.marginBottom = "20px";
-
-  const mealTitle = document.createElement("h3");
-  mealTitle.innerText = mealsContainer.strMeal;
-  mealContainer.appendChild(mealTitle);
-
-  const mealContent = document.createElement("p");
-  mealContent.innerText = mealsContainer.strInstructions;
-  mealContainer.appendChild(mealContent);
-
-  mealsContainer.appendChild(mealContainer);
-  console.log("renderMealsFromLetter is working");
-}
-
+function generateUrlWithLetter(pContent) {
+  return `https://www.themealdb.com/api/json/v1/1/search.php?f=${pContent}`;
+};
