@@ -11,3 +11,10 @@ body {
 p {
   margin: 0;
 }
+#letters-container {
+  display: flex;
+  flex-direction: row;
+}
+.letters {
+  margin-left: 10px;
+}

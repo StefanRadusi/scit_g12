@@ -6,6 +6,7 @@ const mealsContainer = document.getElementById("meals-container");
 // the DOM element from which we get the value for the parameter of the url used to get data from server
 const input = document.getElementById("meal-name");
 
+
 // we react to event triggered by clicking on the "get-meal" button
 document.getElementById("get-meal").addEventListener("click", function() {
   // before we can get data from server we need to generate the correct url using the value of input
@@ -69,4 +70,23 @@ function renderMeals(meals) {
 
     mealsContainer.appendChild(mealContainer);
   }
+}
+
+
+const alphabet = document.getElementsByTagName("p");
+
+for (let letter of lettersList) {
+  letter.addEventListener("click", function(){
+    const letters = letter.innerText;
+    const url = generateRateUrlLetter(letters);
+
+if (url) {
+  clearMealContainer();
+  hitServer(url);
+}
+  });
+};
+
+function generateRateUrlLetter(letterValue) {
+  return `https://www.themealdb.com/api/json/v1/1/search.php?f=${letterValue}`;
 }
