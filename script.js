@@ -70,3 +70,16 @@ function renderMeals(meals) {
     mealsContainer.appendChild(mealContainer);
   }
 }
+const menuLettersList = document.getElementsByTagName("p");
+
+
+for (const char of menuLettersList) {
+    char.addEventListener("click", function(a) {
+        console.log(a.target.innerText + " clicked ");
+        let url = generateRateUrl(a.target.innerText);
+        hitServer(url)
+        });
+    }
+    function generateRateUrl(pContent){
+        return `https://www.themealdb.com/api/json/v1/1/search.php?f=${pContent}`
+    };
