@@ -117,11 +117,13 @@ body {
 /* when this class is added the read comments section is visible */
 .comments-selected-read {
   display: block;
+  justify-content: flex-end;
 }
 
 /* when this class is added the edit comments section is visible */
 .comments-selected-edit {
   display: flex;
+  
 }
 
 #user-name {

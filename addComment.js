@@ -17,8 +17,18 @@ document.getElementById("submit").addEventListener("click", function() {
   if (commentAreaValue === "") {
     commentAreaDOM.style.borderColor = "red";
   }
+  //this function clears the edit area from comment section
+  function clearEditArea() {
+    let userName = document.getElementById("user-name");
+    userName.value = "";
+    userName.style.borderColor = "lightgrey";
+  
+    let commentArea = document.getElementById("comment-area");
+    commentArea.value = "";
+    commentArea.style.borderColor = "lightgrey";
+  } 
 
-  // only create the comment in the comments section if both the input and textArea have text in it
+// only create the comment in the comments section if both the input and textArea have text in it
   if (userNameValue && commentAreaValue) {
     // "showReadSection" function is present in "utils.js" and have the functionality of hiding the add comment section showing read comment section
     // we call the this function in order to see directly the new added comment after the submit button in clicked
@@ -26,13 +36,15 @@ document.getElementById("submit").addEventListener("click", function() {
 
     // this function is responsible creating the new comment using the values from input and textArea
     createComment(userNameValue, commentAreaValue);
+    clearEditArea();
   }
 });
-
+  //insertBefore function makes the readSection the first element displayed in column
 function createComment(userNameValue, commentAreaValue) {
+  const readSection = document.getElementById("read-section");
   const commentContainer = document.createElement("div");
   commentContainer.className = "comment";
-  document.getElementById("read-section").appendChild(commentContainer);
+  readSection.insertBefore(commentContainer, readSection.firstChild);
 
   const commentHeader = document.createElement("div");
   commentHeader.className = "comment-header";
