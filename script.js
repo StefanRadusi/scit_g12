@@ -1,3 +1,3 @@
 console.log("start");
 
-let a = 1;
+console.log("start");
