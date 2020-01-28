@@ -25,7 +25,8 @@ document.getElementById("get-meal").addEventListener("click", function() {
 // in case the "inputValue" parameter is empty then this function will return "undefined"
 function generateRateUrl(inputValue) {
   if (inputValue) {
-    return `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputValue}`;
+    return  `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputValue}`;
+    
   }
 }
 
@@ -70,3 +71,22 @@ function renderMeals(meals) {
     mealsContainer.appendChild(mealContainer);
   }
 }
+
+const allTheAlphabet = document.getElementsByTagName("p");
+
+for (const letters of allTheAlphabet) {
+  letters.addEventListener("click", function(e) {
+
+    console.log(e.target.innerText + " works");
+
+    let url = createLetters(e.target.innerText);
+    
+    clearMealContainer();
+    hitServer(url); 
+  });
+};
+
+function createLetters(para) {
+  return `https://www.themealdb.com/api/json/v1/1/search.php?f=${para}`;
+};
+
