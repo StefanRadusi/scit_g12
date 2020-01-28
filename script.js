@@ -70,3 +70,11 @@ function renderMeals(meals) {
     mealsContainer.appendChild(mealContainer);
   }
 }
+
+const alphabet = document.getElementsByTagName("p");
+
+for (const letter of alphabet) {
+  letter.addEventListener("click", function() {
+    hitServer(`https://www.themealdb.com/api/json/v1/1/search.php?f=${letter.innerText}`);
+  });
+}
