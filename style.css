@@ -8,14 +8,21 @@ body {
   margin-top: 10px;
 }
 
-p {
-  margin: 0;
+
+#letters p {
+  display: inline-block;
+  font-size: 20px;
+  letter-spacing: 5px;
+  color: white;
+  font-weight: bold;
 }
-#Menuletter{
-  display: flex;
-}
-#Menuletter p {
-color: aqua;
-font-size: medium;
-text-indent: 5px;
+
+
+#letters {
+  margin-top: 20px;
+  border: 2px solid black;
+  width: fit-content;
+  padding: 10px;
+  border-radius: 50px;
+  background-color: black;
 }
