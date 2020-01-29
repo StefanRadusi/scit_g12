@@ -26,13 +26,19 @@ document.getElementById("submit").addEventListener("click", function() {
 
     // this function is responsible creating the new comment using the values from input and textArea
     createComment(userNameValue, commentAreaValue);
+    reset();
+
   }
 });
 
+
 function createComment(userNameValue, commentAreaValue) {
+
+
+
   const commentContainer = document.createElement("div");
   commentContainer.className = "comment";
-  document.getElementById("read-section").appendChild(commentContainer);
+  document.getElementById("read-section").prepend(commentContainer);
 
   const commentHeader = document.createElement("div");
   commentHeader.className = "comment-header";
@@ -45,6 +51,7 @@ function createComment(userNameValue, commentAreaValue) {
 
   const commentDate = document.createElement("p");
   commentDate.className = "comment-date";
+
 
   // the date field of the comment is created automatically using the native JavaScript object "Date"
   // when we created the object the current date and hour will be stored
@@ -65,3 +72,18 @@ function formatDate(date) {
 
   return day + "." + (monthIndex + 1) + "." + year;
 }
+
+function reset() {
+  document.getElementById("comment-area").value = "";
+  document.getElementById("user-name").value = "";
+}
+// const parents = document.getElementById("comments-read");
+
+
+// parents.insertAdjacentElement('afterbegin', childcreation)
+
+// function addToBeginning(parent, toInsert){
+
+//   const firstChild = parent.firstChild;
+//   parent.insertBefore(toInsert, firstChild);
+// }
