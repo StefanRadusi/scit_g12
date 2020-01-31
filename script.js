@@ -83,3 +83,18 @@ for (const char of menuLettersList) {
     function generateRateUrl(pContent){
         return `https://www.themealdb.com/api/json/v1/1/search.php?f=${pContent}`
     };
+
+//Kinda late, i didn't even noticed that the result right up here ^;
+//Colleagues explained how to do it and i only started doing it today... i do understand more or less hwo this is supposed to be done, i might have some questions regarding the "HitUrl" function.
+const TheAlphabet = document.getElementsByTagName("p");
+
+for (const letter of TheAlphabet){
+  letter.addEventListener("click", function(e) {
+    console.log(e.target.innerHTML + "was clicked");
+  let url = generateRateUrlWithLetter(e.target.innerHTML);
+  hitServer(url);
+  });
+};
+function generateRateUrlWithLetter(pContent) {
+  return `https://www.themealdb.com/api/json/v1/1/search.php?f=${pContent}`;
+}
