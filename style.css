@@ -11,3 +11,14 @@ body {
 p {
   margin: 0;
 }
+
+#letters{
+  display: flex;
+  /* cursor: pointer; */
+  margin-top: 10px;
+  justify-content: space-between;
+}
+
+#letters p{
+  cursor: pointer;
+}
