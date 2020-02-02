@@ -38,6 +38,7 @@ HangMan.prototype.checkForLetter = function(letter) {
     console.log("not includes");
     this.updateMistakes();
   }
+  
 };
 
 HangMan.prototype.matchLetter = function(letter) {
@@ -52,14 +53,25 @@ HangMan.prototype.matchLetter = function(letter) {
 HangMan.prototype.updateMistakes = function() {
   const currentMistake = this.mistakes;
   this.mistakes = this.mistakes + 1;
-
   const mistakes = document.getElementById("mistakes");
   const currentText = mistakes.innerText;
   const newText = currentText.replace(currentMistake, this.mistakes);
   mistakes.innerText = newText;
+  hangMan.loser();
 };
 
+
+HangMan.prototype.loser = function() {
+  if(this.mistakes === 3) {
+   const para = document.createElement("p");
+     para.innerText = "You died!!"
+     document.getElementById("body").appendChild(para);
+  }
+  for(const index of this.word.split("").entries()) {
+}
+}
 const hangMan = new HangMan();
 hangMan.renderUnderScores();
 hangMan.getInputFromUser();
+
 console.log(hangMan);
