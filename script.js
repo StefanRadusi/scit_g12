@@ -57,7 +57,7 @@ HangMan.prototype.updateMistakes = function() {
   const currentText = mistakes.innerText;
   const newText = currentText.replace(currentMistake, this.mistakes);
   mistakes.innerText = newText;
-  hangMan.loser();
+  this.loser();
 };
 
 
@@ -66,12 +66,25 @@ HangMan.prototype.loser = function() {
    const para = document.createElement("p");
      para.innerText = "You died!!"
      document.getElementById("body").appendChild(para);
+     for (const [index, wordLetter] of this.word.split("").entries()) {
+      const p = this.lettersDOM[index];
+      p.innerText = wordLetter;
+    }
   }
-  for(const index of this.word.split("").entries()) {
-}
+ 
 }
 const hangMan = new HangMan();
 hangMan.renderUnderScores();
 hangMan.getInputFromUser();
 
 console.log(hangMan);
+
+
+// while n > 0 do
+
+//   p = p + p/10
+//   n = n -2 
+
+//   p = p+ n 
+
+//   print p
