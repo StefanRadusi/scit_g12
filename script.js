@@ -1,18 +1,21 @@
 function HangMan() {
   const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
+  this.w = words;
   this.word = words[Math.floor(Math.random() * words.length)];
   this.lettersDOM = [];
   this.mistakes = 0;
 }
 
 HangMan.prototype.renderUnderScores = function() {
+  let p;
   for (let i = 0; i < this.word.length; i++) {
-    const p = document.createElement("p");
+    p = document.createElement("p");
     p.innerText = "_";
     p.classList.add("word");
     document.getElementById("letters").appendChild(p);
     this.lettersDOM.push(p);
   }
+  //p.innerText = "";
 };
 
 HangMan.prototype.getInputFromUser = function() {
@@ -51,15 +54,42 @@ HangMan.prototype.matchLetter = function(letter) {
 
 HangMan.prototype.updateMistakes = function() {
   const currentMistake = this.mistakes;
+  if (currentMistake < 3) {
   this.mistakes = this.mistakes + 1;
-
   const mistakes = document.getElementById("mistakes");
   const currentText = mistakes.innerText;
   const newText = currentText.replace(currentMistake, this.mistakes);
   mistakes.innerText = newText;
+  }else{
+    this.handleLoser(); 
+  }
 };
 
-const hangMan = new HangMan();
+HangMan.prototype.handleLoser = function(){
+  mistakes.innerText = "You lose";
+  for (const [index, wordLetter] of this.word.split("").entries()) {
+    const p = this.lettersDOM[index];
+    p.innerText = wordLetter;
+
+    console.log(p.innerText);
+  }
+};
+
+
+HangMan.prototype.resetButton = function(){
+  // document.getElementById("reset").addEventListener("click", resetButton);
+
+  document.getElementById("letters").innerHTML = "";
+  hangMan.word = hangMan.w[Math.floor(Math.random() * hangMan.w.length)];
+  hangMan.renderUnderScores();
+  hangMan.getInputFromUser();
+  console.log(hangMan);
+
+
+}
+
+let hangMan = new HangMan();
 hangMan.renderUnderScores();
 hangMan.getInputFromUser();
+hangMan.resetButton();
 console.log(hangMan);
