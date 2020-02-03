@@ -76,17 +76,27 @@ HangMan.prototype.handleLoser = function(){
 };
 
 
-HangMan.prototype.resetButton = function(){
-  // document.getElementById("reset").addEventListener("click", resetButton);
+HangMan.prototype.resetWord = function(){
+    const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
+    this.word = words[Math.floor(Math.random() * words.length)]; 
+  };
+    
+ 
+  document.getElementById("reset").addEventListener("click", function(){
+    hangMan.resetWord()
+    console.log(hangMan)
+  });
+ 
+  
 
-  document.getElementById("letters").innerHTML = "";
-  hangMan.word = hangMan.w[Math.floor(Math.random() * hangMan.w.length)];
-  hangMan.renderUnderScores();
-  hangMan.getInputFromUser();
-  console.log(hangMan);
+  // document.getElementById("letters").innerHTML = "";
+  // hangMan.word = hangMan.w[Math.floor(Math.random() * hangMan.w.length)];
+  // hangMan.renderUnderScores();
+  // hangMan.getInputFromUser();
+  // console.log(hangMan);
 
 
-}
+
 
 let hangMan = new HangMan();
 hangMan.renderUnderScores();
