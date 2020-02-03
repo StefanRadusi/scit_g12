@@ -11,11 +11,3 @@ body {
 p {
   margin: 0;
 }
-#Menuletter{
-  display: flex;
-}
-#Menuletter p {
-color: aqua;
-font-size: medium;
-text-indent: 5px;
-}
