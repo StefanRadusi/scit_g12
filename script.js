@@ -7,15 +7,13 @@ function HangMan() {
 }
 
 HangMan.prototype.renderUnderScores = function() {
-  let p;
   for (let i = 0; i < this.word.length; i++) {
-    p = document.createElement("p");
+    const p = document.createElement("p");
     p.innerText = "_";
     p.classList.add("word");
     document.getElementById("letters").appendChild(p);
     this.lettersDOM.push(p);
   }
-  //p.innerText = "";
 };
 
 HangMan.prototype.getInputFromUser = function() {
@@ -37,6 +35,15 @@ HangMan.prototype.getInputFromUser = function() {
 HangMan.prototype.checkForLetter = function(letter) {
   if (this.word.includes(letter)) {
     this.matchLetter(letter);
+    let c = 0;
+    for (let i=0; i< this.lettersDOM.length; i++){
+      if (this.lettersDOM[i].innerText === "_"){
+        c++; 
+      }
+    }
+    if(c === 0){
+      this.handleWinner();
+    }
   } else {
     console.log("not includes");
     this.updateMistakes();
@@ -75,31 +82,29 @@ HangMan.prototype.handleLoser = function(){
   }
 };
 
-
+// homework 1+2
 HangMan.prototype.resetWord = function(){
-    const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
-    this.word = words[Math.floor(Math.random() * words.length)]; 
-  };
-    
- 
-  document.getElementById("reset").addEventListener("click", function(){
-    hangMan.resetWord()
-    console.log(hangMan)
-  });
- 
-  
+  this.mistakes = 0;
+  document.getElementById("mistakes").innerText = "You have 0 mistakes";
+  document.getElementById("input").disabled = false;
+  this.lettersDOM = [];
+  const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
+  this.word = words[Math.floor(Math.random() * words.length)]; 
+  document.getElementById("letters").innerHTML = "";
+  this.renderUnderScores();
+};
 
-  // document.getElementById("letters").innerHTML = "";
-  // hangMan.word = hangMan.w[Math.floor(Math.random() * hangMan.w.length)];
-  // hangMan.renderUnderScores();
-  // hangMan.getInputFromUser();
-  // console.log(hangMan);
+document.getElementById("reset").addEventListener("click", function(){
+  hangMan.resetWord()
+  console.log(hangMan)
+});
 
-
-
+HangMan.prototype.handleWinner = function(){
+  document.getElementById("input").disabled = true;
+  mistakes.innerText = "You win";
+}
 
 let hangMan = new HangMan();
 hangMan.renderUnderScores();
 hangMan.getInputFromUser();
-hangMan.resetButton();
 console.log(hangMan);
