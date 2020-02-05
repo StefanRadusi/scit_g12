@@ -13,6 +13,7 @@ HangMan.prototype.renderUnderScores = function() {
     document.getElementById("letters").appendChild(p);
     this.lettersDOM.push(p);
   }
+ 
 };
 
 HangMan.prototype.getInputFromUser = function() {
@@ -20,6 +21,7 @@ HangMan.prototype.getInputFromUser = function() {
   document.getElementById("input").addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
       const text = event.target.value;
+      
 
       if (text.length === 1) {
         console.log(text);
@@ -58,6 +60,7 @@ HangMan.prototype.updateMistakes = function() {
   const newText = currentText.replace(currentMistake, this.mistakes);
   mistakes.innerText = newText;
   this.loser();
+
 };
 
 
@@ -69,10 +72,22 @@ HangMan.prototype.loser = function() {
      for (const [index, wordLetter] of this.word.split("").entries()) {
       const p = this.lettersDOM[index];
       p.innerText = wordLetter;
+     
     }
+    
   }
- 
+  
 }
+
+HangMan.prototype.resetAll = function() {
+   
+  const reset = document.getElementById("reset").addEventListener("click", function(e){
+    if(this.mistakes === 3 ) {
+       this.letter = 0
+ }
+})
+  }
+  
 const hangMan = new HangMan();
 hangMan.renderUnderScores();
 hangMan.getInputFromUser();
