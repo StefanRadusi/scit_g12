@@ -22,16 +22,25 @@ class Carousel {
   }
 
   generateImgDom() {
+    this.containerImgs.innerHTML = null;
+    this.imgDomList = [];
+
     for (let i = 0; i < 3; i++) {
+     
       const url = this.urls[i];
-      console.log(url);
+      console.log(url)
+      if(url) {
+        const img = document.createElement("img");
+        img.setAttribute("src", url);
+        img.classList.add("img-carousel");
+        this.containerImgs.appendChild(img);
+  
+        this.imgDomList.push(img);
+      }
 
-      const img = document.createElement("img");
-      img.setAttribute("src", url);
-      img.classList.add("img-carousel");
-      this.containerImgs.appendChild(img);
+      // console.log(url);
 
-      this.imgDomList.push(img);
+     
     }
   }
 }

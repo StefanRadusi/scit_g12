@@ -13,12 +13,15 @@ class FetchData {
 
   setOnEnter() {
     this.inputRef.addEventListener("keydown", this.handleEnter.bind(this));
-  }
 
+  }
+  
   handleEnter(event) {
     if (event.key === "Enter") {
+
       this.fetchRecipes();
     }
+    
   }
 
   fetchRecipes() {
