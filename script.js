@@ -57,9 +57,20 @@ HangMan.prototype.updateMistakes = function() {
   const currentText = mistakes.innerText;
   const newText = currentText.replace(currentMistake, this.mistakes);
   mistakes.innerText = newText;
+this.LostMessage(mistakes);
 };
+
+HangMan.prototype.LostMessage = function(mistakes) {
+if ( this.mistakes === 3 ) { 
+  mistakes.innerText = "You lose!";
+  }
+
+
+}
+
 
 const hangMan = new HangMan();
 hangMan.renderUnderScores();
 hangMan.getInputFromUser();
 console.log(hangMan);
+
