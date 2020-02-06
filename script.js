@@ -38,7 +38,6 @@ HangMan.prototype.checkForLetter = function(letter) {
     console.log("not includes");
     this.updateMistakes();
   }
-  
 };
 
 HangMan.prototype.matchLetter = function(letter) {
@@ -47,8 +46,8 @@ HangMan.prototype.matchLetter = function(letter) {
       const p = this.lettersDOM[index];
       p.innerText = letter;
     }
-  
   }
+  this.winner();
 };
 
 HangMan.prototype.updateMistakes = function() {
@@ -60,17 +59,15 @@ HangMan.prototype.updateMistakes = function() {
   mistakes.innerText = newText;
   
   this.loser();
-
-  
-
 };
 
 HangMan.prototype.winner = function() {
-        
-        const wins = document.getElementById("wins")
-        par.innerText = "You win!"
-        document.getElementById("body").appendChild(wins);   
-      } 
+      if(this.wordLetter === this.p) {
+      const par = document.createElement("par")
+      par.innerText = "You win!"
+      document.getElementById("body").appendChild(par);  
+      }
+    } 
   
 
 HangMan.prototype.loser = function() {
