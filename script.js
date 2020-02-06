@@ -12,8 +12,8 @@ HangMan.prototype.renderUnderScores = function() {
     p.classList.add("word");
     document.getElementById("letters").appendChild(p);
     this.lettersDOM.push(p);
-  }
- 
+   
+  } 
 };
 
 HangMan.prototype.getInputFromUser = function() {
@@ -36,6 +36,7 @@ HangMan.prototype.getInputFromUser = function() {
 HangMan.prototype.checkForLetter = function(letter) {
   if (this.word.includes(letter)) {
     this.matchLetter(letter);
+    
   } else {
     console.log("not includes");
     this.updateMistakes();
@@ -50,6 +51,7 @@ HangMan.prototype.matchLetter = function(letter) {
       p.innerText = letter;
     }
   }
+  
 };
 
 HangMan.prototype.updateMistakes = function() {
@@ -60,8 +62,18 @@ HangMan.prototype.updateMistakes = function() {
   const newText = currentText.replace(currentMistake, this.mistakes);
   mistakes.innerText = newText;
   this.loser();
-
+  
+  
 };
+
+// HangMan.prototype.winner = function() {
+//     if(this.text === this.lettersDOM) {
+//       const par = document.createElement("p")
+//     par.innerText = "You win!"
+//     document.getElementById("body").appendChild(par);  
+// }
+//   }
+ 
 
 
 HangMan.prototype.loser = function() {
@@ -72,13 +84,15 @@ HangMan.prototype.loser = function() {
      for (const [index, wordLetter] of this.word.split("").entries()) {
       const p = this.lettersDOM[index];
       p.innerText = wordLetter;
-     
-    }
-    
+    } 
+  } else {
+    para.innerText = "You win!"
   }
-  
 }
 
+// HangMan.prototype.winner = function {
+
+// }
 HangMan.prototype.resetAll = function() {
    
   const reset = document.getElementById("reset").addEventListener("click", function(e){
@@ -91,6 +105,9 @@ HangMan.prototype.resetAll = function() {
 const hangMan = new HangMan();
 hangMan.renderUnderScores();
 hangMan.getInputFromUser();
+
+
+
 
 console.log(hangMan);
 
