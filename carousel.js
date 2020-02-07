@@ -5,7 +5,7 @@ class Carousel {
   }
 
   generateContainer() {
-    this.container = document.createElement("div");
+    this.container = document.createElement("div"); // //this.container este un atribut creat in metoda obiectului.
     this.container.classList.add("carousel-container");
 
     this.containerImgs = document.createElement("div");
@@ -22,10 +22,10 @@ class Carousel {
   }
 
   generateImgDom() {
-    this.containerImgs.innerHTML = null;
+    this.containerImgs.innerHTML = null; //task 1
     this.imgDomList = [];
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) { // task 2
      
       const url = this.urls[i];
       console.log(url)
