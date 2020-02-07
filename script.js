@@ -3,9 +3,14 @@ function HangMan() {
   this.word = words[Math.floor(Math.random() * words.length)];
   this.lettersDOM = [];
   this.mistakes = 0;
+  this.number = 0;
 }
 
 HangMan.prototype.renderUnderScores = function() {
+  let lettersHolder = document.getElementById("letters");
+  while (lettersHolder.firstChild) {
+      lettersHolder.removeChild(lettersHolder.firstChild);
+  }
   for (let i = 0; i < this.word.length; i++) {
     const p = document.createElement("p");
     p.innerText = "_";
@@ -27,7 +32,9 @@ HangMan.prototype.getInputFromUser = function() {
       }
       event.target.value = "";
     }
+    
   });
+  
 };
 
 HangMan.prototype.checkForLetter = function(letter) {
@@ -37,7 +44,9 @@ HangMan.prototype.checkForLetter = function(letter) {
   } else {
     console.log("not includes");
     this.updateMistakes();
+    
   }
+  
 };
 
 HangMan.prototype.matchLetter = function(letter) {
@@ -45,9 +54,14 @@ HangMan.prototype.matchLetter = function(letter) {
     if (wordLetter === letter) {
       const p = this.lettersDOM[index];
       p.innerText = letter;
+      this.number ++;
     }
   }
-  this.winner();
+  if(this.number === this.lettersDOM.length) {
+
+    let mistakes = document.getElementById("mistakes")
+    mistakes.innerHTML ="You win!!"
+  }
 };
 
 HangMan.prototype.updateMistakes = function() {
@@ -57,24 +71,13 @@ HangMan.prototype.updateMistakes = function() {
   const currentText = mistakes.innerText;
   const newText = currentText.replace(currentMistake, this.mistakes);
   mistakes.innerText = newText;
-  
   this.loser();
 };
 
-HangMan.prototype.winner = function() {
-      if(this.wordLetter === this.p) {
-      const par = document.createElement("par")
-      par.innerText = "You win!"
-      document.getElementById("body").appendChild(par);  
-      }
-    } 
-  
-
 HangMan.prototype.loser = function() {
   if(this.mistakes === 3) {
-      const para = document.createElement("p");
-     para.innerText = "You died!!"
-     document.getElementById("body").appendChild(para);
+      let mistakes = document.getElementById("mistakes")
+     mistakes.innerHTML ="You died!!"
    
   for (const [index, wordLetter] of this.word.split("").entries()) {
       const p = this.lettersDOM[index];
@@ -84,15 +87,25 @@ HangMan.prototype.loser = function() {
   }
 
 HangMan.prototype.resetAll = function() {
-   
-  const reset = document.getElementById("reset").addEventListener("click", function(event){
+  const obj = this;
+    document.getElementById("reset").addEventListener("click", function() {
 
+  const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
+    obj.word = words[Math.floor(Math.random() * words.length)];
+    obj.lettersDOM = [];
+    obj.mistakes = 0;
+    obj.number = 0;
+    obj.renderUnderScores();
+    document.getElementById("mistakes").innerHTML = "You have 0 mistakes";
+  
 })
-  }
+}
+  
 const hangMan = new HangMan();
 hangMan.renderUnderScores();
 hangMan.getInputFromUser();
-// hangMan.winner()
+hangMan.resetAll();
+
 
 console.log(hangMan);
 
