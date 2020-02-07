@@ -106,3 +106,4 @@ for (const el of alphabet) {
     }
   });
 }
+console.log("end");
