@@ -17,8 +17,8 @@ HangMan.prototype.renderUnderScores = function() {
     p.classList.add("word");
     document.getElementById( "letters").appendChild(p);
     this.lettersDOM.push(p);
-   
-  } 
+  }
+  
 };
 
 HangMan.prototype.getInputFromUser = function() {
@@ -32,9 +32,7 @@ HangMan.prototype.getInputFromUser = function() {
       }
       event.target.value = "";
     }
-    
   });
-  
 };
 
 HangMan.prototype.checkForLetter = function(letter) {
@@ -44,9 +42,7 @@ HangMan.prototype.checkForLetter = function(letter) {
   } else {
     console.log("not includes");
     this.updateMistakes();
-    
   }
-  
 };
 
 HangMan.prototype.matchLetter = function(letter) {
@@ -56,12 +52,13 @@ HangMan.prototype.matchLetter = function(letter) {
       p.innerText = letter;
       this.number ++;
     }
+    if(this.number === this.lettersDOM.length) {
+      let mistakes = document.getElementById("mistakes");
+      mistakes.innerHTML = "You win!"
+      document.getElementById("input").disabled = true;
+    }
   }
-  if(this.number === this.lettersDOM.length) {
-
-    let mistakes = document.getElementById("mistakes")
-    mistakes.innerHTML ="You win!!"
-  }
+ 
 };
 
 HangMan.prototype.updateMistakes = function() {
@@ -71,13 +68,14 @@ HangMan.prototype.updateMistakes = function() {
   const currentText = mistakes.innerText;
   const newText = currentText.replace(currentMistake, this.mistakes);
   mistakes.innerText = newText;
+  
   this.loser();
 };
 
 HangMan.prototype.loser = function() {
   if(this.mistakes === 3) {
-      let mistakes = document.getElementById("mistakes")
-     mistakes.innerHTML ="You died!!"
+    document.getElementById("mistakes").innerHTML = "You died!"
+    document.getElementById("input").disabled = true;
    
   for (const [index, wordLetter] of this.word.split("").entries()) {
       const p = this.lettersDOM[index];
@@ -87,25 +85,23 @@ HangMan.prototype.loser = function() {
   }
 
 HangMan.prototype.resetAll = function() {
-  const obj = this;
-    document.getElementById("reset").addEventListener("click", function() {
-
-  const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
+   let obj = this;
+    const reset = document.getElementById("reset").addEventListener("click", function(event){
+    const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
     obj.word = words[Math.floor(Math.random() * words.length)];
     obj.lettersDOM = [];
     obj.mistakes = 0;
     obj.number = 0;
     obj.renderUnderScores();
     document.getElementById("mistakes").innerHTML = "You have 0 mistakes";
-  
+    document.getElementById("input").disabled = false;
+    
 })
-}
-  
+  }
 const hangMan = new HangMan();
 hangMan.renderUnderScores();
 hangMan.getInputFromUser();
 hangMan.resetAll();
-
 
 console.log(hangMan);
 
