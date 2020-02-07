@@ -5,6 +5,7 @@ function HangMan() {
   // this is a attribute which all instantiated object with this class will have
   // keep in mind even thou all the object will have this attribute, the value of the attribute will be different because of the "Random" implementation
   this.word = words[Math.floor(Math.random() * words.length)];
+  this.mistakesDOM = document.getElementById("mistakes");
 
   this.lettersDOM = [];
   this.mistakes = 0;
@@ -13,6 +14,7 @@ function HangMan() {
 // "renderUnderScores" is a method off the HangMan class
 // a method is a functionality of an object, and is a function
 HangMan.prototype.renderUnderScores = function() {
+  document.getElementById("letters").innerHTML = null;
   // "this" key word represents the current object
   // we need "this" so we can define general function which can apply on all different instances of the class
   // the "for" loop is used to create paragraphs to render for every letter in the computer chosen word
@@ -65,8 +67,10 @@ HangMan.prototype.matchLetter = function(letter) {
       p.innerText = letter;
     }
   }
-  
-  this.checkIfWin();
+
+  if (this.checkIfWin()) {
+    this.youWinBlockInput();
+  }
 };
 
 // this method updates the text regarding how many mistakes the user has done
@@ -78,7 +82,7 @@ HangMan.prototype.updateMistakes = function() {
 
   // it not enough to keep track of the mistakes internally,
   // we need to render to the browser by changing the "innerText" of the paragraph with the info about the mistakes
-  this.mistakesDOM = document.getElementById("mistakes");
+
   const currentText = this.mistakesDOM.innerText;
   const newText = currentText.replace(currentMistake, this.mistakes);
   this.mistakesDOM.innerText = newText;
@@ -100,20 +104,20 @@ HangMan.prototype.blockInputIfLose = function() {
 };
 
 HangMan.prototype.checkIfWin = function() {
- 
   for (const p of this.lettersDOM) {
-    if ( p.innerText === "_" ) return false;
-     
-    
+    if (p.innerText === "_") return false;
   }
-  
-  return true;
-}
 
+  return true;
+};
 
 HangMan.prototype.youWinBlockInput = function() {
   document.getElementById("input").disabled = true;
   this.mistakesDOM.innerHTML = "You Win!";
+  for (const [index, wordLetter] of this.word.split("").entries()) {
+    const p = this.lettersDOM[index];
+    p.innerText = wordLetter;
+  }
 };
 
 HangMan.prototype.showDeathText = function() {
@@ -131,6 +135,7 @@ HangMan.prototype.resetGame = function() {
     obj.word = words[Math.floor(Math.random() * words.length)];
     obj.lettersDOM = [];
     obj.mistakes = 0;
+    obj.renderUnderScores();
   });
 };
 
