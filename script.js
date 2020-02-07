@@ -7,6 +7,7 @@ function HangMan() {
   this.word = words[Math.floor(Math.random() * words.length)];
   this.lettersDOM = [];
   this.mistakes = 0;
+  this.corectAnswer = 0;
 }
 
 // "renderUnderScores" is a method off the HangMan class
@@ -16,7 +17,7 @@ HangMan.prototype.renderUnderScores = function() {
   // we need "this" so we can define general function which can apply on all different instances of the class
   // the "for" loop is used to create paragraphs to render for every letter in the computer chosen word  
   for (let i = 0; i < this.word.length; i++) {
-    const p = document.createElement("p");
+    let p = document.createElement("p");
     p.innerText = "_";
     p.classList.add("word");
     document.getElementById("letters").appendChild(p);
@@ -45,6 +46,13 @@ HangMan.prototype.getInputFromUser = function() {
   });
 };
 
+
+HangMan.prototype.setOnEnter = function() {
+    document.getElementById ("reset").addEventListener("click", this.resetGame.bind(this));
+}
+
+
+
 // this method contains the logic for deciding if the user has chose a correct letter or not
 HangMan.prototype.checkForLetter = function(letter) {
   if (this.word.includes(letter)) {
@@ -55,6 +63,7 @@ HangMan.prototype.checkForLetter = function(letter) {
   }
 };
 
+
 // this method is responsible for rendering the user choice of letter in the correct paragraph which normally has a underscore
 HangMan.prototype.matchLetter = function(letter) {
   // the for loop will iterate through all the letters of the computer chosen word 
@@ -62,7 +71,9 @@ HangMan.prototype.matchLetter = function(letter) {
   for (const [index, wordLetter] of this.word.split("").entries()) {
     if (wordLetter === letter) {
       const p = this.lettersDOM[index];
-      p.innerText = letter;
+      p.innerText = letter
+      this.updateWinner();
+    
     }
   }
 };
@@ -80,13 +91,61 @@ HangMan.prototype.updateMistakes = function() {
   const currentText = mistakes.innerText;
   const newText = currentText.replace(currentMistake, this.mistakes);
   mistakes.innerText = newText;
+  this.handleMistakes();
 };
+
+
+
+HangMan.prototype.handleMistakes = function() {
+
+    if (this.mistakes === 3) {
+    mistakes.innerText = "Ouf. You lose!";   
+    document.getElementById("input").disabled = true;
+
+    for (const [index, wordLetter] of this.word.split("").entries()) {
+        const p = this.lettersDOM[index];
+        p.innerText = wordLetter;
+
+  }
+    
+    }
+}
+
+HangMan.prototype.updateWinner = function() {
+
+    this.corectAnswer = this.corectAnswer+1;
+
+    if (this.corectAnswer === this.lettersDOM.length) {
+        mistakes.innerText = "Yey. You win!"
+        document.getElementById("input").disabled = true;
+    } 
+  }
+
+
+HangMan.prototype.resetGame = function() {
+
+    document.getElementById("input").disabled = false;
+    
+    this.mistakes = 0;
+    document.getElementById("mistakes").innerText = "You have 0 mistakes"
+    this.corectAnswer = 0;
+    this.lettersDOM = []; 
+    const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
+    this.word = words[Math.floor(Math.random() * words.length)]; 
+    
+    document.getElementById("letters").innerText = "";
+    this.renderUnderScores()
+};
+
 
 // this is called the instantiation of object from "HangMan" class
 // a class is a blue print it will be useless with we do not create on abject from it
 const hangMan = new HangMan();
 
 // this is a method call check the above what functionality it has
+
 hangMan.renderUnderScores();
 hangMan.getInputFromUser();
+hangMan.setOnEnter();
+
 console.log(hangMan);
