@@ -11,3 +11,9 @@ body {
 p {
   margin: 0;
 }
+
+#allTheLettersDiv {
+  display: flex;
+  letter-spacing: 10px;
+  margin-top: 20px;
+}

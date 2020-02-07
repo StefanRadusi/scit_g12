@@ -70,3 +70,29 @@ function renderMeals(meals) {
     mealsContainer.appendChild(mealContainer);
   }
 }
+
+const getDataMenuByLetter = document
+  .getElementById("allTheLettersDiv")
+  .getElementsByTagName("P");
+
+function hitServerParagraph(url) {
+  fetch(url)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(json) {
+      renderMeals(json.meals);
+    });
+}
+
+for (const dataLetter of getDataMenuByLetter) {
+  dataLetter.addEventListener("click", function() {
+    const element = dataLetter.value;
+    if (element) {
+      clearMealContainer();
+    }
+    hitServerParagraph(
+      `https://www.themealdb.com/api/json/v1/1/search.php?f=${element}`
+    );
+  });
+}
