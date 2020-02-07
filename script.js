@@ -24,6 +24,10 @@ HangMan.prototype.renderUnderScores = function() {
 
     // we store the new created dom object in in the objects attribute for latter use
     this.lettersDOM.push(p);
+
+    if (!p.innerText === "_") {
+      this.youWinBlockInput();
+    }
   }
 };
 
@@ -38,9 +42,6 @@ HangMan.prototype.getInputFromUser = function() {
         console.log(text);
         // "obj" contains "this" and this is HangMan class, so we can call "checkForLetter" method
         obj.checkForLetter(text);
-        if (!text.innerText === "_") {
-          this.youWinBlockInput();
-        }
       }
 
       event.target.value = "";
