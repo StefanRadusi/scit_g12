@@ -55,6 +55,7 @@ HangMan.prototype.matchLetter = function(letter) {
     if(this.number === this.lettersDOM.length) {
       let mistakes = document.getElementById("mistakes");
       mistakes.innerHTML = "You win!"
+      document.getElementById("input").disabled = true;
     }
   }
  
@@ -73,9 +74,8 @@ HangMan.prototype.updateMistakes = function() {
 
 HangMan.prototype.loser = function() {
   if(this.mistakes === 3) {
-      const para = document.createElement("p");
-     para.innerText = "You died!!"
-     document.getElementById("body").appendChild(para);
+    document.getElementById("mistakes").innerHTML = "You died!"
+    document.getElementById("input").disabled = true;
    
   for (const [index, wordLetter] of this.word.split("").entries()) {
       const p = this.lettersDOM[index];
@@ -94,8 +94,8 @@ HangMan.prototype.resetAll = function() {
     obj.number = 0;
     obj.renderUnderScores();
     document.getElementById("mistakes").innerHTML = "You have 0 mistakes";
-
-
+    document.getElementById("input").disabled = false;
+    
 })
   }
 const hangMan = new HangMan();
