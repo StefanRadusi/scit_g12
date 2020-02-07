@@ -24,10 +24,6 @@ HangMan.prototype.renderUnderScores = function() {
 
     // we store the new created dom object in in the objects attribute for latter use
     this.lettersDOM.push(p);
-
-    if (!p.innerText === "_") {
-      this.youWinBlockInput();
-    }
   }
 };
 
@@ -69,6 +65,8 @@ HangMan.prototype.matchLetter = function(letter) {
       p.innerText = letter;
     }
   }
+  
+  this.checkIfWin();
 };
 
 // this method updates the text regarding how many mistakes the user has done
@@ -80,10 +78,10 @@ HangMan.prototype.updateMistakes = function() {
 
   // it not enough to keep track of the mistakes internally,
   // we need to render to the browser by changing the "innerText" of the paragraph with the info about the mistakes
-  const mistakes = document.getElementById("mistakes");
-  const currentText = mistakes.innerText;
+  this.mistakesDOM = document.getElementById("mistakes");
+  const currentText = this.mistakesDOM.innerText;
   const newText = currentText.replace(currentMistake, this.mistakes);
-  mistakes.innerText = newText;
+  this.mistakesDOM.innerText = newText;
 
   this.showDeathText();
 };
@@ -97,13 +95,25 @@ HangMan.prototype.blockInputIfLose = function() {
     const p = this.lettersDOM[index];
     p.innerText = wordLetter;
     document.getElementById("input").disabled = true;
-    mistakes.innerHTML = "You lose!";
+    this.mistakesDOM.innerHTML = "You lose!";
   }
 };
 
+HangMan.prototype.checkIfWin = function() {
+ 
+  for (const p of this.lettersDOM) {
+    if ( p.innerText === "_" ) return false;
+     
+    
+  }
+  
+  return true;
+}
+
+
 HangMan.prototype.youWinBlockInput = function() {
   document.getElementById("input").disabled = true;
-  mistakes.innerHTML = "You Win!";
+  this.mistakesDOM.innerHTML = "You Win!";
 };
 
 HangMan.prototype.showDeathText = function() {
@@ -113,8 +123,9 @@ HangMan.prototype.showDeathText = function() {
 };
 
 HangMan.prototype.resetGame = function() {
+  const obj = this;
   document.getElementById("reset").addEventListener("click", function() {
-    document.getElementById("mistakes").innerHTML = "You have 0 mistakes";
+    obj.mistakesDOM.innerHTML = "You have 0 mistakes";
     document.getElementById("input").disabled = false;
     const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
     this.word = words[Math.floor(Math.random() * words.length)];
