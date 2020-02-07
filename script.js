@@ -116,6 +116,10 @@ HangMan.prototype.resetGame = function() {
   document.getElementById("reset").addEventListener("click", function() {
     document.getElementById("mistakes").innerHTML = "You have 0 mistakes";
     document.getElementById("input").disabled = false;
+    const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
+    this.word = words[Math.floor(Math.random() * words.length)];
+    this.lettersDOM = [];
+    this.mistakes = 0;
   });
 };
 
