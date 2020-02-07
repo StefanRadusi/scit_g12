@@ -128,9 +128,9 @@ HangMan.prototype.resetGame = function() {
     obj.mistakesDOM.innerHTML = "You have 0 mistakes";
     document.getElementById("input").disabled = false;
     const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
-    this.word = words[Math.floor(Math.random() * words.length)];
-    this.lettersDOM = [];
-    this.mistakes = 0;
+    obj.word = words[Math.floor(Math.random() * words.length)];
+    obj.lettersDOM = [];
+    obj.mistakes = 0;
   });
 };
 
