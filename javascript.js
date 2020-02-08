@@ -3,18 +3,18 @@ const fieldName = document.getElementById("fieldName");
 function addNewField () {
     const fieldNameValue = fieldName.value;
     fieldName.value = "";
-    fieldName.value.style.borderColor = "lightgray";
+    fieldName.style.borderColor = "lightgray";
 
-    if(fieldName) {
+    if(fieldNameValue) {
 
-        const div = document.getElementById("div")
-        div.classList.add("field")
+        const div = document.createElement("div");
+        div.classList.add("field");
 
-        const p = document.getElementById("p")
+        const p = document.createElement("p")
         p.innerText = fieldNameValue;
         div.appendChild(p);
 
-        const input = document.getElementById("input");
+        const input = document.createElement("input");
         input.id = fieldNameValue;
         input.classList.add("field-input");
         div.appendChild(input);
@@ -23,7 +23,7 @@ function addNewField () {
 
     } else { 
 
-        fieldName.style.borderColor = "red"
+        fieldName.style.borderColor = "red";
 
     }
 }
@@ -38,19 +38,18 @@ function onClickSendButton() {
 let validInput = true;
 let sendText = "Sended info";
 
-for (const elements of document.getElementsByClassName("field-input")) {
-    if(!element .value) {
-        style.borderColor = "red";
+for (const element of document.getElementsByClassName("field-input")) {
+    if(!element.value) {
+       element.style.borderColor = "red";
         validInput = false;
     } else {
-        sendText = sendText + element.id "- " + elements.value + ", " ;
+        sendText = sendText + element.id + " _ " + element.value + " , " ;
     }
 }
-
 if(validInput) {
-    document.getElementById("form-container"). innerHTML = sendText;
+    document.getElementById("form-container").innerHTML = sendText; 
+    }
 }
 
 sendButton.addEventListener("click", onClickSendButton);
 
-console.log("this is my solution at last...")
