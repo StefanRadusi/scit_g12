@@ -51,14 +51,9 @@ HangMan.prototype.matchLetter = function(letter) {
       const p = this.lettersDOM[index];
       p.innerText = letter;
       this.number ++;
-    }
-    if(this.number === this.lettersDOM.length) {
-      let mistakes = document.getElementById("mistakes");
-      mistakes.innerHTML = "You win!"
-      document.getElementById("input").disabled = true;
+      this.winner();
     }
   }
- 
 };
 
 HangMan.prototype.updateMistakes = function() {
@@ -71,6 +66,15 @@ HangMan.prototype.updateMistakes = function() {
   
   this.loser();
 };
+
+HangMan.prototype.winner = function() {
+  let number = 0; 
+  if(this.number === this.lettersDOM.length) {
+    let mistakes = document.getElementById("mistakes");
+    mistakes.innerHTML = "You win!"
+    document.getElementById("input").disabled = true;
+  }
+}
 
 HangMan.prototype.loser = function() {
   if(this.mistakes === 3) {
