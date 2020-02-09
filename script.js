@@ -1,17 +1,22 @@
 // class constructor
 // this function is called when you instantiate a object with key word "new"
 function HangMan() {
-  const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
+  //const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
   // this is a attribute which all instantiated object with this class will have
   // keep in mind even thou all the object will have this attribute, the value of the attribute will be different because of the "Random" implementation
-  this.word = words[Math.floor(Math.random() * words.length)];
+  //this.word = words[Math.floor(Math.random() * words.length)];
   this.lettersDOM = [];
   this.mistakes = 0;
+  this.lettersFound = 0;
 }
-
+HangMan.prototype.chooseWord = function() {
+  const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
+  this.word = words[Math.floor(Math.random() * words.length)];
+}
 // "renderUnderScores" is a method off the HangMan class
 // a method is a functionality of an object, and is a function
 HangMan.prototype.renderUnderScores = function() {
+  document.getElementById("letters").innerHTML = "";
   // "this" key word represents the current object
   // we need "this" so we can define general function which can apply on all different instances of the class
   // the "for" loop is used to create paragraphs to render for every letter in the computer chosen word  
@@ -63,7 +68,12 @@ HangMan.prototype.matchLetter = function(letter) {
     if (wordLetter === letter) {
       const p = this.lettersDOM[index];
       p.innerText = letter;
+      this.lettersFound++
     }
+  }
+
+  if (this.lettersFound === this.word.length){
+    this.handleWinning();
   }
 };
 
@@ -73,6 +83,9 @@ HangMan.prototype.updateMistakes = function() {
   // every time the "updateMistakes" is called "this.mistakes" is incremented
   const currentMistake = this.mistakes;
   this.mistakes = this.mistakes + 1;
+  if (this.mistakes > 2) {
+    this.handleLoosing();
+ } else {
 
   // it not enough to keep track of the mistakes internally, 
   // we need to render to the browser by changing the "innerText" of the paragraph with the info about the mistakes 
@@ -80,13 +93,53 @@ HangMan.prototype.updateMistakes = function() {
   const currentText = mistakes.innerText;
   const newText = currentText.replace(currentMistake, this.mistakes);
   mistakes.innerText = newText;
+ }
 };
+
+HangMan.prototype.handleLoosing = function() {
+  const mistakes = document.getElementById("mistakes");
+  mistakes.innerText = "You lost";
+  for (const [index, wordLetter] of this.word.split("").entries()) {
+    const p = this.lettersDOM[index];
+    p.innerText = wordLetter;
+  }
+  document.getElementById("input").disabled = true;
+};
+
+HangMan.prototype.handleWinning = function() {
+  const mistakes = document.getElementById("mistakes");
+  mistakes.innerText="You win"
+  document.getElementById("input").disabled = true;
+}
+
+
+HangMan.prototype.handleReset = function() {
+  
+  const obj = this;
+
+  document.getElementById("reset").addEventListener("click", function() {
+    obj.chooseWord();
+    obj.mistakes = 0;
+    obj.lettersFound = 0;
+    obj.lettersDOM = [];
+    const mistakes = document.getElementById("mistakes");
+    mistakes.innerText = "You have 0 mistakes";
+    document.getElementById("input").disabled = false;
+    obj.renderUnderScores();
+  })
+  
+};
+
 
 // this is called the instantiation of object from "HangMan" class
 // a class is a blue print it will be useless with we do not create on abject from it
 const hangMan = new HangMan();
+hangMan.chooseWord();//
 
 // this is a method call check the above what functionality it has
 hangMan.renderUnderScores();
 hangMan.getInputFromUser();
+hangMan.handleReset();
 console.log(hangMan);
+
+console.log
