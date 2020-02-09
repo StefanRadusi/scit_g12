@@ -3,6 +3,7 @@ function HangMan() {
   this.word = words[Math.floor(Math.random() * words.length)];
   this.lettersDOM = [];
   this.mistakes = 0;
+  this.winner = 0;
 }
 
 HangMan.prototype.renderUnderScores = function() {
@@ -34,6 +35,8 @@ HangMan.prototype.getInputFromUser = function() {
 HangMan.prototype.checkForLetter = function(letter) {
   if (this.word.includes(letter)) {
     this.matchLetter(letter);
+    this.winner++;
+    this.winSituation();
   } else {
     console.log("not includes");
     this.updateMistakes();
@@ -57,9 +60,53 @@ HangMan.prototype.updateMistakes = function() {
   const currentText = mistakes.innerText;
   const newText = currentText.replace(currentMistake, this.mistakes);
   mistakes.innerText = newText;
+  this.maxMistakes();
+};
+
+//mistakes task
+HangMan.prototype.maxMistakes = function() {
+  if (this.mistakes === 3) {
+    for (const [index, wordMistake] of this.word.split("").entries()) {
+      const p = this.lettersDOM[index];
+      p.innerText = wordMistake;
+      document.getElementById("mistakes").innerHTML = "You lost!";
+      document.getElementById("input").disabled = true;
+    }
+  }
+};
+
+//winner task
+let winner = 0;
+HangMan.prototype.winSituation = function() {
+  if (this.winner === this.lettersDOM.length) {
+    document.getElementById("mistakes").innerHTML = "You won!";
+    document.getElementById("input").disabled = true;
+  }
+};
+
+//reset task. i have an error, it is NOT DONE YET
+/*document.getElementById("reset").addEventListener("click", function() {
+  hangMan.resetTheGame();
+}); */
+
+HangMan.prototype.resetTheGame = function() {
+  let obj = this;
+  obj.mistakes = 0;
+  document.getElementById("reset").addEventListener("click", function() {
+    document.getElementById("mistakes").innerHTML = "You have 0 mistakes.";
+    document.getElementById("input").disabled = false;
+    document.getElementById("letters").innerHTML = "";
+    const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
+    obj.word = words[Math.floor(Math.random() * words.length)];
+    obj.letterDOM = [];
+    obj.winner = 0;
+    obj.renderUnderScores();
+    obj.matchLetter();
+  });
 };
 
 const hangMan = new HangMan();
 hangMan.renderUnderScores();
 hangMan.getInputFromUser();
+hangMan.resetTheGame();
 console.log(hangMan);
