@@ -1,20 +1,18 @@
-// class constructor
-// this function is called when you instantiate a object with key word "new"
 function HangMan() {
   const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
-  // this is a attribute which all instantiated object with this class will have
   // keep in mind even thou all the object will have this attribute, the value of the attribute will be different because of the "Random" implementation
   this.word = words[Math.floor(Math.random() * words.length)];
   this.lettersDOM = [];
   this.mistakes = 0;
+  this.matching = 0;
 }
 
-// "renderUnderScores" is a method off the HangMan class
-// a method is a functionality of an object, and is a function
+HangMan.prototype.randomWord = function() {
+  const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
+  this.word = words[Math.floor(Math.random() * words.length)];
+};
+
 HangMan.prototype.renderUnderScores = function() {
-  // "this" key word represents the current object
-  // we need "this" so we can define general function which can apply on all different instances of the class
-  // the "for" loop is used to create paragraphs to render for every letter in the computer chosen word  
   for (let i = 0; i < this.word.length; i++) {
     const p = document.createElement("p");
     p.innerText = "_";
@@ -28,7 +26,6 @@ HangMan.prototype.renderUnderScores = function() {
 
 
 HangMan.prototype.getInputFromUser = function() {
-  // we use this technic because "this" inside off all callback is NOT the current object; 
   const obj = this;
   document.getElementById("input").addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
@@ -36,7 +33,6 @@ HangMan.prototype.getInputFromUser = function() {
 
       if (text.length === 1) {
         console.log(text);
-        // "obj" contains "this" and this is HangMan class, so we can call "checkForLetter" method
         obj.checkForLetter(text);
       }
 
@@ -57,36 +53,71 @@ HangMan.prototype.checkForLetter = function(letter) {
 
 // this method is responsible for rendering the user choice of letter in the correct paragraph which normally has a underscore
 HangMan.prototype.matchLetter = function(letter) {
-  // the for loop will iterate through all the letters of the computer chosen word 
-  // when the user letter match the letter in the computer word we use previously stored array of paragraphs to render the found letter correctly
   for (const [index, wordLetter] of this.word.split("").entries()) {
     if (wordLetter === letter) {
       const p = this.lettersDOM[index];
       p.innerText = letter;
+      this.matching = this.matching + 1;
     }
   }
+  this.winGame();
 };
+
+HangMan.prototype.winGame = function(matchLetter) {
+  if (this.word.length === this.matching) {
+    mistakes.innerText = "CONGRATS! You won!"
+    document.getElementById("input").disabled = true;
+  }
+}
 
 // this method updates the text regarding how many mistakes the user has done
 HangMan.prototype.updateMistakes = function() {
-  // "this.mistakes" is like a counter
-  // every time the "updateMistakes" is called "this.mistakes" is incremented
   const currentMistake = this.mistakes;
   this.mistakes = this.mistakes + 1;
 
-  // it not enough to keep track of the mistakes internally, 
-  // we need to render to the browser by changing the "innerText" of the paragraph with the info about the mistakes 
   const mistakes = document.getElementById("mistakes");
   const currentText = mistakes.innerText;
   const newText = currentText.replace(currentMistake, this.mistakes);
   mistakes.innerText = newText;
+  this.lostGame();
 };
 
-// this is called the instantiation of object from "HangMan" class
-// a class is a blue print it will be useless with we do not create on abject from it
+HangMan.prototype.lostGame = function() {
+  if (this.mistakes === 3) {
+    mistakes.innerText = "You lost."
+    document.getElementById("input").disabled = true;
+
+    for (const [index, wordLetter] of this.word.split("").entries()) {
+      const p = this.lettersDOM[index];
+      p.innerText = wordLetter;
+    }
+  }
+}
+
+HangMan.prototype.onClickResetButton = function() {
+  const obj = this;
+  document.getElementById("reset").addEventListener("click", function() {
+  
+    const mistakes = document.getElementById("mistakes");
+    mistakes.innerText = "You have 0 mistakes";
+    
+    let removeElement = document.getElementById("letters");
+    while (removeElement.firstChild) {
+    removeElement.removeChild(removeElement.firstChild);
+    }
+
+    obj.randomWord();
+    obj.renderUnderScores();
+    obj.getInputFromUser();
+
+    console.log(hangMan);
+  })
+  
+};
+
 const hangMan = new HangMan();
 
-// this is a method call check the above what functionality it has
+hangMan.onClickResetButton();
 hangMan.renderUnderScores();
 hangMan.getInputFromUser();
 console.log(hangMan);
