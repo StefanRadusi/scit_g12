@@ -19,6 +19,7 @@ class FetchData {
     if (event.key === "Enter") {
       this.fetchRecipes();
     }
+    
   }
 
   fetchRecipes() {
