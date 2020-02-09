@@ -58,21 +58,32 @@ HangMan.prototype.matchLetter = function(letter) {
       this.goodChoices++;
     }
   }
+
+  if (this.goodChoices === this.word.length) {
+    this.winState();
+  }
 };
 
 HangMan.prototype.winState = function() {
-  
-
+  document.getElementById("mistakes").innerText = "You won!";
+  document.getElementById("input").disabled = true;
 };
 
 
 HangMan.prototype.resetGame = function() {
   const obj = this;
-  document.getElementById("input").addEventListener("click", function() {
+  const resetBtn = document.getElementById("reset");
+  resetBtn.addEventListener("click", function() {
+    document.getElementById("letters").innerHTML = "";
+
     obj.randomWord();
     obj.lettersDOM = [];
     obj.mistakes = 0;
     obj.goodChoices = 0;
+    obj.renderUnderScores();
+
+    document.getElementById("mistakes").innerHTML = "You have 0 mistakes";
+    document.getElementById("input").disabled = false;
   })
 };
 
@@ -91,19 +102,13 @@ HangMan.prototype.updateMistakes = function() {
 
 HangMan.prototype.handleMistakes = function() {
   if (this.mistakes === 3) {
-    mistakes.innerText = "You lose";
+    mistakes.innerText = "You lost.";
     for (const [index, wordLetter] of this.word.split("").entries()) {
       const p = this.lettersDOM[index];
       p.innerText = wordLetter;
     }
-    this.disableInput();
+    document.getElementById("input").disabled = true;
   }
-};
-
-
-HangMan.prototype.disableInput = function() {
-  const input = document.getElementById("input"); 
-  input.disabled = true;
 };
 
 
@@ -112,4 +117,5 @@ const hangMan = new HangMan();
 hangMan.randomWord();
 hangMan.renderUnderScores();
 hangMan.getInputFromUser();
+hangMan.resetGame();
 console.log(hangMan);
