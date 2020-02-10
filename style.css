@@ -1,4 +1,67 @@
-.img-carousel {
-  height: 100px;
-  margin: 20px;
+body, html{
+  width: 100%;
+  height: 100%;
+}
+body{
+  margin: 0;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+#game {
+  position: relative;
+  background-color: orange;
+  height: 300px;
+  width: 600px;
+ 
+  
+}
+
+
+/* .obstacle {
+  position: absolute;
+  
+  height: 200px;
+  top: 0;
+  left: 50px;
+  width: 20px;
+  
+} */
+
+#o1 {
+  position: absolute;
+  top: 0;
+  left: 50px;
+  height: 200px;
+  width: 20;
+  background-color: cyan;
+}
+
+#o2 {
+  position: absolute;
+  bottom: 0;
+  left: 400px;
+  height: 200px;
+  width: 20;
+  background-color: cyan;
+  
+}
+
+#o3 {
+  position: absolute;
+  top: 0;
+  left: 300px;
+  height: 200px;
+  width: 20;
+  background-color: cyan;
+}
+
+#o4 {
+  position: absolute;
+  top: 0;
+  left: 200px;
+  height: 200px;
+  width: 20;
+  background-color: cyan;
 }
