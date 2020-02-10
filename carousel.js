@@ -30,7 +30,6 @@ class Carousel {
         img.setAttribute("src", url);
         img.classList.add("img-carousel");
         this.containerImgs.appendChild(img);
-
         this.imgDomList.push(img);
       }
     }

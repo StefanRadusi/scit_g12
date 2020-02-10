@@ -3,6 +3,7 @@ class FetchData {
     this.createInput();
     this.setOnEnter();
     this.carousel = carousel;
+    this.url = "";
   }
 
   createInput() {
@@ -22,6 +23,10 @@ class FetchData {
   };
 
   fetchRecipes() {
+    // at first this.url will be empty and the fetch will take place
+    // but after first fetch we store the url for later comparison
+    // on a second fetch if the newUrl will be the same as this.url which is the old url the fetch will NOT take place
+    // this is an optimization in order for us no to make unnecessary calls
     if (this.url !== this.generateUrl()) {
       this.url = this.generateUrl();
       fetch(this.url)
@@ -30,13 +35,16 @@ class FetchData {
     }
   }
 
+  // this method is called only after the fetch is done
   generateImgUrl = json => {
     if (json.meals) {
-      this.imgUrls = json.meals.map(element => element.strMealThumb);
+      this.imgUrls = json.meals.map(function(element) {
+        return element.strMealThumb;
+      });
 
+      // this.carousel is the object responsible for drawing the images, and it has a method for setting the urls
+      // check the class Carousel for how is it implemented;
       this.carousel.setImgUrls(this.imgUrls);
-    } else {
-      this.carousel.cleanImgsContainer();
     }
   };
 
