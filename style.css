@@ -9,41 +9,36 @@ body{
   display: flex;
 }
 
+p {
+  font-weight: 900;
+  font-size: large;
+  font-stretch: normal;
+}
+
 #game {
   position: relative;
   background-color: orange;
-  height: 300px;
-  width: 600px;
+  height: 350px;
+  width: 700px;
  
   
 }
 
-
-/* .obstacle {
-  position: absolute;
-  
-  height: 200px;
-  top: 0;
-  left: 50px;
-  width: 20px;
-  
-} */
-
 #o1 {
   position: absolute;
   top: 0;
-  left: 50px;
-  height: 200px;
-  width: 20;
+  left: 150px;
+  height: 130px;
+  width: 25px;
   background-color: cyan;
 }
 
 #o2 {
   position: absolute;
   bottom: 0;
-  left: 400px;
-  height: 200px;
-  width: 20;
+  left: 200px;
+  height: 180px;
+  width: 25px;
   background-color: cyan;
   
 }
@@ -51,17 +46,53 @@ body{
 #o3 {
   position: absolute;
   top: 0;
-  left: 300px;
+  left: 270px;
   height: 200px;
-  width: 20;
+  width: 25px;
   background-color: cyan;
 }
 
 #o4 {
   position: absolute;
+  bottom: 0;
+  left: 350px;
+  height: 240px;
+  width: 25px;
+  background-color: cyan;
+}
+
+#o5 {
+  position: absolute;
   top: 0;
-  left: 200px;
+  right: 250px;
   height: 200px;
-  width: 20;
+  width: 25px;
+  background-color: cyan;
+}
+
+#o6 {
+  position: absolute;
+  bottom: 0;
+  right: 185px;
+  height: 230px;
+  width: 25px;
+  background-color: cyan;
+}
+
+#o7 {
+  position: absolute;
+  top: 0;
+  right: 100px;
+  height: 150px;
+  width: 25px;
+  background-color: cyan;
+}
+
+#o8 {
+  position: absolute;
+  bottom: 0;
+  right: 40px;
+  height: 160px;
+  width: 25px;
   background-color: cyan;
 }
