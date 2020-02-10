@@ -1,7 +1,41 @@
-#letters {
-  display: flex;
+html, body {
+  width: 100%;
+  height: 100%;
 }
 
-#letters p {
-  margin-right: 20px;
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: content;
+
 }
+
+#game-container {
+  margin: 80px;
+  position: relative;
+  background-color: orange;
+  width: 800px;
+  height: 500px;
+}
+
+.obstacol {
+  width: 50px;
+  height: 100px;
+  background-color:blue;
+  display:inline-block;
+  
+
+
+
+}
+
+#nine {
+  display:flex;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+
+}
+
