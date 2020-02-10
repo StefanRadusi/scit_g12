@@ -17,21 +17,27 @@ class Carousel {
 
   setImgUrls(urls) {
     this.urls = urls;
-    // console.log(this.urls);
     this.generateImgDom();
   }
 
   generateImgDom() {
+    this.cleanImgsContainer();
     for (let i = 0; i < 3; i++) {
       const url = this.urls[i];
-      console.log(url);
 
-      const img = document.createElement("img");
-      img.setAttribute("src", url);
-      img.classList.add("img-carousel");
-      this.containerImgs.appendChild(img);
+      if (url) {
+        const img = document.createElement("img");
+        img.setAttribute("src", url);
+        img.classList.add("img-carousel");
+        this.containerImgs.appendChild(img);
 
-      this.imgDomList.push(img);
+        this.imgDomList.push(img);
+      }
     }
+  }
+
+  cleanImgsContainer() {
+    this.imgDomList = [];
+    this.containerImgs.innerHTML = null;
   }
 }

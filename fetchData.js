@@ -12,34 +12,34 @@ class FetchData {
   }
 
   setOnEnter() {
-    this.inputRef.addEventListener("keydown", this.handleEnter.bind(this));
+    this.inputRef.addEventListener("keydown", this.handleEnter);
   }
 
-  handleEnter(event) {
+  handleEnter = event => {
     if (event.key === "Enter") {
       this.fetchRecipes();
     }
-  }
+  };
 
   fetchRecipes() {
-    const url = this.generateUrl();
-    fetch(url)
-      .then(function(response) {
-        return response.json();
-      })
-      .then(this.generateImgUrl.bind(this));
+    if (this.url !== this.generateUrl()) {
+      this.url = this.generateUrl();
+      fetch(this.url)
+        .then(response => response.json())
+        .then(this.generateImgUrl);
+    }
   }
 
-  generateImgUrl(json) {
-    this.imgUrls = json.meals.map(function(element) {
-      return element.strMealThumb;
-    });
+  generateImgUrl = json => {
+    if (json.meals) {
+      this.imgUrls = json.meals.map(element => element.strMealThumb);
 
-    this.carousel.setImgUrls(this.imgUrls);
-  }
+      this.carousel.setImgUrls(this.imgUrls);
+    } else {
+      this.carousel.cleanImgsContainer();
+    }
+  };
 
-  generateUrl() {
-    const value = this.inputRef.value;
-    return `https://www.themealdb.com/api/json/v1/1/search.php?s=${value}`;
-  }
+  generateUrl = () =>
+    `https://www.themealdb.com/api/json/v1/1/search.php?s=${this.inputRef.value}`;
 }
