@@ -80,7 +80,19 @@ HangMan.prototype.updateMistakes = function() {
   const currentText = mistakes.innerText;
   const newText = currentText.replace(currentMistake, this.mistakes);
   mistakes.innerText = newText;
+  if (this.mistakes === 3) {
+    mistakes.innerText = "You lost!"
+    document.getElementById("input").disabled = true;
+  }
 };
+
+HangMan.prototype.resetBtn = function() {
+  const resetBtn = document.getElementById("reset");
+  resetBtn.addEventListener("click", function() {
+    console.log("works");
+    
+  })
+}
 
 // this is called the instantiation of object from "HangMan" class
 // a class is a blue print it will be useless with we do not create on abject from it
@@ -89,4 +101,5 @@ const hangMan = new HangMan();
 // this is a method call check the above what functionality it has
 hangMan.renderUnderScores();
 hangMan.getInputFromUser();
+hangMan.resetBtn();
 console.log(hangMan);
