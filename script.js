@@ -98,7 +98,7 @@ HangMan.prototype.resetTheGame = function() {
     document.getElementById("letters").innerHTML = "";
     const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
     obj.word = words[Math.floor(Math.random() * words.length)];
-    obj.letterDOM = [];
+    obj.lettersDOM = [];
     obj.winner = 0;
     obj.renderUnderScores();
     obj.matchLetter();
