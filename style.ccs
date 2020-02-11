@@ -11,13 +11,69 @@ body {
   margin: 0;
   background-color: orange;
   height: 400px;
-  width: 600px;
+  width: 700px;
 }
 
-#game,
 .obs {
   position: absolute;
   background-color: lightblue;
   width: 20px;
   height: 180px;
+}
+
+p {
+  margin-top: -30px;
+}
+
+#whiteDot {
+  height: 20px;
+  width: 20px;
+  background-color: white;
+}
+#obstacle1 {
+  margin-left: 120px;
+  margin-top: -24px;
+  height: 270px;
+}
+
+#obstacle2 {
+  margin-left: 190px;
+  margin-top: 106px;
+  height: 270px;
+}
+
+#obstacle3 {
+  margin-left: 260px;
+  margin-top: -24px;
+  height: 250px;
+}
+
+#obstacle4 {
+  margin-left: 330px;
+  margin-top: 136px;
+  height: 240px;
+}
+
+#obstacle5 {
+  margin-left: 400px;
+  margin-top: -24px;
+  height: 290px;
+}
+
+#obstacle6 {
+  margin-left: 480px;
+  margin-top: 175px;
+  height: 200px;
+}
+
+#obstacle7 {
+  margin-left: 550px;
+  margin-top: -24px;
+  height: 290px;
+}
+
+#obstacle8 {
+  margin-left: 620px;
+  margin-top: 126px;
+  height: 250px;
 }
