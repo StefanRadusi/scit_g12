@@ -106,3 +106,8 @@ hangMan.resetAll();
 console.log(hangMan);
 
 
+// alt + sageata muta codul sus sau jos
+
+// arrow function e mereu anonima
+
+// resursele se cache-uiesc de catre browser
