@@ -9,6 +9,7 @@ body{
   display: flex;
 }
 
+
 /* @media only screen and (max-width:700px) {
   #game {
     display: flexbox;
@@ -29,6 +30,14 @@ p {
   width: 700px;
 }
 
+#mover {
+  position: absolute;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: black;
+}
+
 #o1 {
   position: absolute;
   top: 0;
@@ -41,7 +50,7 @@ p {
 #o2 {
   position: absolute;
   bottom: 0;
-  left: 200px;
+  left: 220px;
   height: 170px;
   width: 25px;
   background-color: cyan;
@@ -51,7 +60,7 @@ p {
 #o3 {
   position: absolute;
   top: 0;
-  left: 270px;
+  left: 290px;
   height: 200px;
   width: 25px;
   background-color: cyan;
@@ -60,7 +69,7 @@ p {
 #o4 {
   position: absolute;
   bottom: 0;
-  left: 350px;
+  left: 360px;
   height: 240px;
   width: 25px;
   background-color: cyan;
@@ -69,7 +78,7 @@ p {
 #o5 {
   position: absolute;
   top: 0;
-  right: 250px;
+  left: 430px;
   height: 200px;
   width: 25px;
   background-color: cyan;
@@ -78,7 +87,7 @@ p {
 #o6 {
   position: absolute;
   bottom: 0;
-  right: 185px;
+  left: 500px;
   height: 230px;
   width: 25px;
   background-color: cyan;
@@ -87,7 +96,7 @@ p {
 #o7 {
   position: absolute;
   top: 0;
-  right: 100px;
+  left: 570px;
   height: 150px;
   width: 25px;
   background-color: cyan;
