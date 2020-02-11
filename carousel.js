@@ -1,5 +1,6 @@
 class Carousel {
   constructor() {
+    
     this.generateContainer();
     this.imgDomList = [];
   }
