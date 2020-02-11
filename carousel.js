@@ -1,8 +1,10 @@
 class Carousel {
   constructor() {
-    
     this.generateContainer();
     this.imgDomList = [];
+    this.buttonRight;
+    this.buttonLeft;
+    this.startPoint = 0;
   }
 
   generateContainer() {
@@ -19,14 +21,28 @@ class Carousel {
   setImgUrls(urls) {
     this.urls = urls;
     this.generateImgDom();
+    this.generateButtons();
+    this.startPoint ++;
   }
+  generateButtons() {
+    this.buttonRight = document.getElementById("b2")
+    .addEventListener("click", function() {
+      if("click" === this.url.slice(img) ) {
+        console.log("right")
+      }
+    })
+    document.getElementById("b1").disabled = true;
+    this.buttonLeft = document.getElementById("b1")
+    .addEventListener("click", function() {
+    })
+  };
 
   generateImgDom() {
     this.cleanImgsContainer();
     for (let i = 0; i < 3; i++) {
       const url = this.urls[i];
 
-      if (url) {
+      if(url) {
         const img = document.createElement("img");
         img.setAttribute("src", url);
         img.classList.add("img-carousel");
@@ -41,3 +57,5 @@ class Carousel {
     this.containerImgs.innerHTML = null;
   }
 }
+
+

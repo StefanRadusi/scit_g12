@@ -4,6 +4,8 @@ class FetchData {
     this.setOnEnter();
     this.carousel = carousel;
     this.url = "";
+   
+    
   }
 
   createInput() {
@@ -40,14 +42,22 @@ class FetchData {
     if (json.meals) {
       this.imgUrls = json.meals.map(function(element) {
         return element.strMealThumb;
+    
       });
+      
 
       // this.carousel is the object responsible for drawing the images, and it has a method for setting the urls
       // check the class Carousel for how is it implemented;
       this.carousel.setImgUrls(this.imgUrls);
+      
     }
   };
 
   generateUrl = () =>
     `https://www.themealdb.com/api/json/v1/1/search.php?s=${this.inputRef.value}`;
 }
+
+
+  
+
+  

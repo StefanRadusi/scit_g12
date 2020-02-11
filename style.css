@@ -1,4 +1,18 @@
 .img-carousel {
   height: 100px;
-  margin: 20px;
+  margin: 25px;
+  
+}
+
+
+#b2 {
+  position: absolute;
+  top: 90px;
+  left: 440px;
+}
+
+#b1 {
+  position: absolute;
+  top: 90px;
+  left: 0;
 }
