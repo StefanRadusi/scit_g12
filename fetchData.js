@@ -36,6 +36,7 @@ class FetchData {
     });
 
     this.carousel.setImgUrls(this.imgUrls);
+    
   }
 
   generateUrl() {
