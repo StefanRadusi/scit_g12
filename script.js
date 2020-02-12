@@ -42,7 +42,7 @@ class TheMover {
     document.addEventListener("keydown", this.rightArrow);
   }
 
-  rightArrow = (event, pixel) => {
+  rightArrow = event => {
     if (event.keyCode === 39) {
       this.positionX += 1;
       this.wDot.style.left = `${this.positionX}px`;
@@ -53,7 +53,7 @@ class TheMover {
     document.addEventListener("keydown", this.downArrow);
   }
 
-  downArrow = (event, pixel) => {
+  downArrow = event => {
     if (event.keyCode === 40) {
       this.positionY += 1;
       this.wDot.style.top = `${this.positionY}px`;
