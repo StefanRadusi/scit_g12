@@ -10,40 +10,18 @@ html,body{
     
 }
 #big-container{
-    background-color: orange;
+    background-color: rgb(233, 149, 54);
     position: relative;
     width: 50%;
     height: 50%;
     
 }
+#title{
+    position: relative;
+    width: 50%;
+}
 .obstacol{
-    background-color: blue;
+    background-color: rgb(58, 175, 221);
     width: 10px;
     position: absolute;
-    
-}
-#obstacolId1{
-    bottom: 0px;
-    left: 100px;
-    height: px;
-}
-#obstacolId2{
-    top: 0px;
-    left: 120px;
-    height: 150px;
-}
-#obstacolId3{
-    top: 0px;
-    left: 170px;
-    height: 150px;
-}
-#obstacolId4{
-    bottom: 0px;
-    left: 200px;
-    height: 150px;
-}
-#obstacolId5{
-    top: 0px;
-    left: 250px;
-    height: 150px;
 }
