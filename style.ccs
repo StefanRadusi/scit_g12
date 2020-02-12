@@ -8,6 +8,7 @@ body {
 }
 
 #orangeContainer {
+  position: relative;
   margin: 0;
   background-color: orange;
   height: 400px;
@@ -26,54 +27,57 @@ p {
 }
 
 #whiteDot {
+  position: absolute;
   height: 20px;
   width: 20px;
   background-color: white;
+  left: 0;
+  top: 0;
 }
 #obstacle1 {
-  margin-left: 120px;
-  margin-top: -24px;
-  height: 270px;
+  left: 100px;
+  bottom: 0;
+  height: 200px;
 }
 
 #obstacle2 {
-  margin-left: 190px;
-  margin-top: 106px;
+  left: 170px;
+  top: 0;
   height: 270px;
 }
 
 #obstacle3 {
-  margin-left: 260px;
-  margin-top: -24px;
-  height: 250px;
+  left: 250px;
+  bottom: 0;
+  height: 320px;
 }
 
 #obstacle4 {
-  margin-left: 330px;
-  margin-top: 136px;
-  height: 240px;
+  left: 330px;
+  top: 0px;
+  height: 260px;
 }
 
 #obstacle5 {
-  margin-left: 400px;
-  margin-top: -24px;
-  height: 290px;
+  left: 400px;
+  bottom: 0;
+  height: 190px;
 }
 
 #obstacle6 {
-  margin-left: 480px;
-  margin-top: 175px;
+  left: 470px;
+  top: 0px;
   height: 200px;
 }
 
 #obstacle7 {
-  margin-left: 550px;
-  margin-top: -24px;
+  left: 570px;
+  bottom: 0;
   height: 290px;
 }
 
 #obstacle8 {
-  margin-left: 620px;
-  margin-top: 126px;
-  height: 250px;
+  left: 640px;
+  top: 0px;
+  height: 210px;
 }
