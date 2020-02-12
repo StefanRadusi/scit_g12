@@ -16,20 +16,15 @@ class TheMover {
     }
     
     pressArrowleft() {
-        
         document.addEventListener("keydown", this.arrowLeft);
     }
-
-
     arrowLeft = (event) => {
         if(event.keyCode === 37) {
-
-            this.positionX -=5;
-            this.moverDom.style.left = `${this.positionX}px`;
-            if(this.positionX === -5) {
-                this.positionX = 0;
+            if(this.positionX <= 0) {
+                this.positionX +=5;
             }
-          
+            this.positionX -=5.;
+            this.moverDom.style.left = `${this.positionX}px`;
         }
     }
 
@@ -42,9 +37,10 @@ class TheMover {
         if(event.keyCode === 39) {
             this.positionX +=5;
             this.moverDom.style.left = `${this.positionX}px`;
+            if(this.positionX >=680) {
+                this.positionX -=5;
+            }
         }
-      
-
     }
 
     pressArrowDown() {
@@ -55,6 +51,9 @@ class TheMover {
         if(event.keyCode === 40) {
             this.positionY +=5;
             this.moverDom.style.top = `${this.positionY}px`;
+            if(this.positionY >=330) {
+                this.positionY-=5;
+            }
     }
 }
 
@@ -65,12 +64,13 @@ class TheMover {
     
     arrowUp = () => {
         if(event.keyCode === 38) {
+            if(this.positionY <=0) {
+                this.positionY +=5;
+            }
             this.positionY -=5;
             this.moverDom.style.top = `${this.positionY}px`;
             
-            if(this.positionY === -5) {
-                this.positionY = 0;
-            }
+            
         }
 
     }
