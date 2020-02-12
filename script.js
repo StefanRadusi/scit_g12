@@ -4,9 +4,10 @@ class TheMover {
         this.height = height;
         this.a = a;
         this.b = b;
-    
-
     }
 
-    mover()
+    speed() {
+        this.a += this.speedA;
+        this.b += this.speedB;
+    }
 }
