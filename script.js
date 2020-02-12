@@ -1,12 +1,13 @@
 // class constructor
 // this function is called when you instantiate a object with key word "new"
 function HangMan() {
-  const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
+  this.words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
   // this is a attribute which all instantiated object with this class will have
   // keep in mind even thou all the object will have this attribute, the value of the attribute will be different because of the "Random" implementation
-  this.word = words[Math.floor(Math.random() * words.length)];
+  this.word = this.words[Math.floor(Math.random() * this.words.length)];
   this.lettersDOM = [];
   this.mistakes = 0;
+  this.checkedLetter = 0;
 }
 
 // "renderUnderScores" is a method off the HangMan class
@@ -49,6 +50,10 @@ HangMan.prototype.getInputFromUser = function() {
 HangMan.prototype.checkForLetter = function(letter) {
   if (this.word.includes(letter)) {
     this.matchLetter(letter);
+    this.checkedLetter ++;
+    if (this.checkedLetter === this.word.length) {
+      this.winningSituation();
+    }
   } else {
     console.log("not includes");
     this.updateMistakes();
@@ -65,7 +70,7 @@ HangMan.prototype.matchLetter = function(letter) {
       p.innerText = letter;
     }
   }
-};
+}
 
 // this method updates the text regarding how many mistakes the user has done
 HangMan.prototype.updateMistakes = function() {
@@ -81,16 +86,31 @@ HangMan.prototype.updateMistakes = function() {
   const newText = currentText.replace(currentMistake, this.mistakes);
   mistakes.innerText = newText;
   if (this.mistakes === 3) {
-    mistakes.innerText = "You lost!"
-    document.getElementById("input").disabled = true;
-  }
+    this.losingSituation();
+  };
 };
+
+HangMan.prototype.losingSituation = function() {
+  mistakes.innerText = "You lost!"
+  document.getElementById("input").disabled = true;
+  this.word.split("").forEach(letter => {
+  this.matchLetter(letter);
+  });
+}
+
+HangMan.prototype.winningSituation = () => {
+  this.mistakes.innerText = "You Win!";
+  document.getElementById("input").disabled = true;
+}
 
 HangMan.prototype.resetBtn = function() {
   const resetBtn = document.getElementById("reset");
+  const input = document.getElementById("input");
+
+  console.log(this);
+
   resetBtn.addEventListener("click", function() {
-    console.log("works");
-    
+    input.disabled = false;
   })
 }
 
