@@ -84,7 +84,8 @@ getObstacles = () => {
 obstacleOne = () => {
     document.addEventListener("keydown", this.o1);
 }
-o1 = (event) => {
+o1 = () => {
+   
    
  }
 

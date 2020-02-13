@@ -27,8 +27,12 @@ p {
 
 }
 
-#inline {
-  display: flex;
+#inline p {
+  display: inline-block;
+  
+}
+p {
+  width: 20%;
 }
 
 #mover {
