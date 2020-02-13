@@ -106,11 +106,21 @@ HangMan.prototype.winningSituation = () => {
 HangMan.prototype.resetBtn = function() {
   const resetBtn = document.getElementById("reset");
   const input = document.getElementById("input");
-
-  console.log(this);
+  const mistake = document.getElementById("mistakes");
+  
+  let object = this;
 
   resetBtn.addEventListener("click", function() {
     input.disabled = false;
+    const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
+    object.word = words[Math.floor(Math.random() * words.length)];
+    object.lettersDOM = [];
+    object.mistakes = 0;
+    mistake.innerText = "You have 0 mistakes";
+    object.checkedLetter = 0;
+    document.getElementById("letters").innerHTML = "";
+    object.renderUnderScores();
+    console.log(object);
   })
 }
 
