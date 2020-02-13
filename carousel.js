@@ -21,23 +21,24 @@ class Carousel {
   setImgUrls(urls) {
     this.urls = urls;
     this.generateImgDom();
-    this.generateButtons();
+    
     this.startPoint ++;
   }
   generateButtons() {
     this.buttonRight = document.getElementById("b2")
-    .addEventListener("click", function() {
-      if("click" === this.url.slice(img) ) {
-        console.log("right")
-      }
+    .addEventListener("click", function(event) {
+   
+      
     })
-    document.getElementById("b1").disabled = true;
+    
     this.buttonLeft = document.getElementById("b1")
     .addEventListener("click", function() {
+      this.buttonLeft.disabled = true;
     })
   };
 
   generateImgDom() {
+  
     this.cleanImgsContainer();
     for (let i = 0; i < 3; i++) {
       const url = this.urls[i];
