@@ -20,25 +20,30 @@ class Carousel {
 
   setImgUrls(urls) {
     this.urls = urls;
+    // this.startPoint ++;
     this.generateImgDom();
+    this.generateButtons();
     
-    this.startPoint ++;
   }
   generateButtons() {
     this.buttonRight = document.getElementById("b2")
     .addEventListener("click", function(event) {
-   
-      
     })
-    
+    document.getElementById("b1").disabled = true;
     this.buttonLeft = document.getElementById("b1")
     .addEventListener("click", function() {
-      this.buttonLeft.disabled = true;
     })
   };
 
+  onRight(event) {
+    
+    if(event === this.urls.slice(this.startPoint, 3)) {
+      this.imgDomList.push(this.urls)
+      this.generateImgDom();
+    }
+  }
+
   generateImgDom() {
-  
     this.cleanImgsContainer();
     for (let i = 0; i < 3; i++) {
       const url = this.urls[i];
