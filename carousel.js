@@ -8,26 +8,30 @@ class Carousel {
     this.container = document.createElement("div");
     this.container.classList.add("carousel-container");
 
+    this.containerImgs = document.createElement("div");
+    this.containerImgs.classList.add("carousel-img-container");
+
+    document.body.appendChild(this.container);
+    this.container.appendChild(this.containerImgs);
+  }
+
+  generateButtons() {
     this.leftButton = document.createElement("button");
     this.leftButton.id = "leftButton";
     this.leftButton.innerHTML = "<";
-
-    this.containerImgs = document.createElement("div");
-    this.containerImgs.classList.add("carousel-img-container");
 
     this.rightButton = document.createElement("button");
     this.rightButton.id = "rightButton";
     this.rightButton.innerHTML = ">";
 
-    document.body.appendChild(this.container);
-    this.container.appendChild(this.leftButton);
-    this.container.appendChild(this.containerImgs);
+    this.container.prepend(this.leftButton);
     this.container.appendChild(this.rightButton);
   }
 
   setImgUrls(urls) {
     this.urls = urls;
     this.generateImgDom();
+    this.generateButtons();
   }
 
   generateImgDom() {
