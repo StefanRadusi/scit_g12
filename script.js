@@ -23,7 +23,6 @@ class TheMover {
     if (event.keyCode === 37) {
       this.positionX -= 1;
       this.wDot.style.left = `${this.positionX}px`;
-      console.log(this.positionX);
     }
   };
 
@@ -35,6 +34,10 @@ class TheMover {
     if (event.keyCode === 38) {
       this.positionY -= 1;
       this.wDot.style.top = `${this.positionY}px`;
+      if (this.positionY === -1) {
+        this.positionY = 0;
+        this.wDot.style.top = 0;
+      }
     }
   };
 
