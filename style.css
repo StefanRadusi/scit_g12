@@ -5,13 +5,13 @@
 }
 
 
-#b2 {
+#buttonRight {
   position: absolute;
   top: 90px;
   left: 440px;
 }
 
-#b1 {
+#buttonLeft {
   position: absolute;
   top: 90px;
   left: 0;

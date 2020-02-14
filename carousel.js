@@ -15,31 +15,45 @@ class Carousel {
     this.containerImgs.classList.add("carousel-img-container");
 
     document.body.appendChild(this.container);
+  
     this.container.appendChild(this.containerImgs);
+   
+    
   }
 
   setImgUrls(urls) {
     this.urls = urls;
-    // this.startPoint ++;
     this.generateImgDom();
     this.generateButtons();
     
   }
   generateButtons() {
-    this.buttonRight = document.getElementById("b2")
+
+    this.buttonRight = document.createElement("button")
+    this.buttonRight.id = "buttonRight"
+    this.buttonRight.innerHTML = ">"
+    this.container.appendChild(this.buttonRight)
+
+    this.buttonRight = document.getElementById("buttonRight")
     .addEventListener("click", function(event) {
     })
-    document.getElementById("b1").disabled = true;
-    this.buttonLeft = document.getElementById("b1")
+
+    
+
+    this.buttonLeft = document.createElement("button")
+    this.buttonLeft.id = "buttonLeft"
+    this.buttonLeft.innerHTML = "<"
+    this.container.appendChild(this.buttonLeft)
+
+    this.buttonLeft = document.getElementById("buttonLeft")
     .addEventListener("click", function() {
     })
   };
 
   onRight(event) {
     
-    if(event === this.urls.slice(this.startPoint, 3)) {
-      this.imgDomList.push(this.urls)
-      this.generateImgDom();
+    if(this.buttonRight.event === this.url.slice(this.startPoint, 3)) {
+      
     }
   }
 
