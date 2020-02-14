@@ -50,13 +50,7 @@ class Carousel {
     })
   };
 
-  onRight(event) {
-    
-    if(this.buttonRight.event === this.url.slice(this.startPoint, 3)) {
-      
-    }
-  }
-
+ 
   generateImgDom() {
     this.cleanImgsContainer();
     for (let i = 0; i < 3; i++) {
@@ -71,6 +65,17 @@ class Carousel {
       }
     }
   }
+  onRight() { 
+    if(this.buttonRight.event === this.url.slice(this.startPoint, 4)) {
+    for(const img of this.imgDomList) {
+      console.log(img)
+      if(this.urls === "src") {
+        console.log(img)
+      }
+    }
+    }
+  }
+
 
   cleanImgsContainer() {
     this.imgDomList = [];
