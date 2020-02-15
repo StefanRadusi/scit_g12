@@ -12,8 +12,8 @@ html,body{
 #big-container{
     background-color: rgb(233, 149, 54);
     position: relative;
-    width: 50%;
-    height: 50%;
+    width: 500px;
+    height: 400px;
     
 }
 #title{
@@ -24,4 +24,12 @@ html,body{
     background-color: rgb(58, 175, 221);
     width: 10px;
     position: absolute;
+}
+#player{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: white;
+    width: 20px;
+    height: 20px;
 }
