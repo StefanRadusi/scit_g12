@@ -86,18 +86,16 @@ onLeft = event => {
     
   }
 }
-  // retrieveSrc () {
-  //   document.getElementById(this.img)
-  //   document.querySelectorAll(this.img).src = this.urls;
-  // }
+ 
 
 images = event => {
   this.generateImgDom();
-  // this.retrieveSrc()
-  
    for(const elements of this.urls) {
+     this.imgDomList.push(this.img)
+     this.imgDomList.slice(this.startPoint, 3);
+     this.startPoint +=1;
     
-     console.log(elements)
+     console.log()
    }
   }
 
