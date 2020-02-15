@@ -7,7 +7,8 @@ class TheMover {
         this.pressArrowDown()
         this.pressArrowUp();
         this.obstaclesDom = this.getObstacles();
-        this.ifHit()
+        this.obstacleOne();
+        this.obstacleTwo();
         this.positionY = 0;
         this.positionX = 0;
         
@@ -64,7 +65,6 @@ class TheMover {
 
     pressArrowDown() {
         document.addEventListener("keydown", this.arrowDown);
-    
     }
 
     arrowDown = (event) => {
@@ -79,12 +79,31 @@ class TheMover {
 
 getObstacles = () => {
    return document.getElementsByClassName("obstacle");
- 
 }
 
-    ifHit() {
+obstacleOne = () => {
+    document.addEventListener("keydown", this.o1);
+}
+o1 = () => {
    
+   
+ }
 
+ obstacleTwo = () => {
+    document.addEventListener("keydown", this.o2);
+}
+o2 = (event) => {
+   
+    // if(event.keyCode === 39 ) {
+    //     this.positionX-=5;
+        
+    //     }
+ }
+
+
+
+
+ 
 }
 
     
