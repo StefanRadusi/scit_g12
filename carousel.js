@@ -3,7 +3,7 @@ class Carousel {
     this.generateContainer();
     this.getButtonsLocation();
     this.handleLeftButton();
-    // this.handleRightButton();
+    this.handleRightButton();
     this.imgDomList = [];
     this.startPoint = 0;
   }
@@ -70,9 +70,28 @@ class Carousel {
   }
 
   previousImg = event => {
-    if (event.target) {
+    if (event.target.id === "leftButton") {
       event.preventDefault();
       console.log(event.target);
     }
   };
+
+  handleRightButton() {
+    document.addEventListener("click", this.nextImg);
+  }
+
+  nextImg = event => {
+    if (event.target.id === "rightButton") {
+      event.preventDefault();
+      console.log(event.target);
+      this.changeImage();
+    }
+  };
+
+  changeImage() {
+    this.generateImgDom();
+    for (const el of this.urls) {
+      console.log(el);
+    }
+  }
 }
