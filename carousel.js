@@ -2,6 +2,8 @@ class Carousel {
   constructor() {
     this.generateContainer();
     this.imgDomList = [];
+    this.handleRightButton()
+    this.handleLeftButton()
     this.buttonRight;
     this.buttonLeft;
     this.startPoint = 0;
@@ -18,7 +20,6 @@ class Carousel {
   
     this.container.appendChild(this.containerImgs);
    
-    
   }
 
   setImgUrls(urls) {
@@ -27,30 +28,7 @@ class Carousel {
     this.generateButtons();
     
   }
-  generateButtons() {
-
-    this.buttonRight = document.createElement("button")
-    this.buttonRight.id = "buttonRight"
-    this.buttonRight.innerHTML = ">"
-    this.container.appendChild(this.buttonRight)
-
-    this.buttonRight = document.getElementById("buttonRight")
-    .addEventListener("click", function(event) {
-    })
-
-    
-
-    this.buttonLeft = document.createElement("button")
-    this.buttonLeft.id = "buttonLeft"
-    this.buttonLeft.innerHTML = "<"
-    this.container.appendChild(this.buttonLeft)
-
-    this.buttonLeft = document.getElementById("buttonLeft")
-    .addEventListener("click", function() {
-    })
-  };
-
- 
+  
   generateImgDom() {
     this.cleanImgsContainer();
     for (let i = 0; i < 3; i++) {
@@ -65,15 +43,56 @@ class Carousel {
       }
     }
   }
-  onRight() { 
-    if(this.buttonRight.event === this.url.slice(this.startPoint, 4)) {
-    for(const img of this.imgDomList) {
-      console.log(img)
-      if(this.urls === "src") {
-        console.log(img)
+generateButtons() {
+
+    this.buttonRight = document.createElement("button")
+    this.buttonRight.id = "buttonRight"
+    this.buttonRight.innerHTML = ">"
+    this.container.appendChild(this.buttonRight)
+
+    this.buttonRight = document.getElementById("buttonRight")
+    .addEventListener("click", function(event) {
+    })
+
+    this.buttonLeft = document.createElement("button")
+    this.buttonLeft.id = "buttonLeft"
+    this.buttonLeft.innerHTML = "<"
+    this.container.prepend(this.buttonLeft);
+    this.buttonRight = document.getElementById("buttonRight")
+  }
+  
+  handleRightButton() {
+    document.addEventListener("click", this.onRight) 
+}
+  
+
+  onRight = event => {
+      if(event.target.id === "buttonRight") {
+        console.log(event.target);
+        this.images();
       }
-    }
-    }
+  }
+
+  handleLeftButton() {
+    document.addEventListener("click", this.onLeft) 
+    
+}
+
+onLeft = event => {
+  if(event.target.id === "buttonLeft") {
+    console.log(event.target);
+    this.images()
+    
+  }
+}
+
+
+images = event => {
+  this.generateImgDom();
+  
+   for(const elements of this.urls) {
+     console.log(elements)
+   }
   }
 
 
