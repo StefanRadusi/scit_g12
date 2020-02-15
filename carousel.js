@@ -69,6 +69,7 @@ generateButtons() {
   onRight = event => {
       if(event.target.id === "buttonRight") {
         console.log(event.target);
+        this.startPoint +=1;
         this.images();
       }
   }
@@ -85,12 +86,17 @@ onLeft = event => {
     
   }
 }
-
+  // retrieveSrc () {
+  //   document.getElementById(this.img)
+  //   document.querySelectorAll(this.img).src = this.urls;
+  // }
 
 images = event => {
   this.generateImgDom();
+  // this.retrieveSrc()
   
    for(const elements of this.urls) {
+    
      console.log(elements)
    }
   }
