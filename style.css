@@ -1,4 +1,98 @@
-.img-carousel {
+body {
+  background: lightgrey;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.title {
+  margin: 0;
+}
+
+.game {
+  width: 500px;
+  height: 300px;
+  position: relative;
+  background: lightsalmon;
+}
+
+.obstacle {
+  position: absolute;
+  background: lightskyblue;
+  width: 15px;
+}
+
+#o1 {
+  top: 0;
+  left: 100px;
   height: 100px;
-  margin: 20px;
+}
+
+#o2 {
+  bottom: 0;
+  left: 150px;
+  height: 200px;
+}
+
+#o3 {
+  top: 0;
+  left: 200px;
+  height: 220px;
+}
+
+#o4 {
+  bottom: 0;
+  left: 280px;
+  height: 80px;
+}
+
+#o5 {
+  top: 0;
+  left: 350px;
+  height: 260px;
+}
+
+#o6 {
+  bottom: 0;
+  left: 410px;
+  height: 100px;
+}
+
+#o7 {
+  top: 0;
+  left: 430px;
+  height: 150px;
+}
+
+#o8 {
+  bottom: 0;
+  left: 485px;
+  height: 200px;
+}
+
+#player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  background: white;
+}
+
+.title {
+  display: flex;
+  align-items: flex-end;
+}
+
+.title p {
+  margin: 0;
+  margin-left: auto;
+}
+
+#lives {
+  font-weight: bold;
 }
