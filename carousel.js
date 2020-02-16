@@ -73,6 +73,7 @@ class Carousel {
     if (event.target.id === "leftButton") {
       event.preventDefault();
       console.log(event.target);
+      this.previousImage();
     }
   };
 
@@ -84,14 +85,31 @@ class Carousel {
     if (event.target.id === "rightButton") {
       event.preventDefault();
       console.log(event.target);
-      this.changeImage();
+      this.nextImage();
     }
   };
 
-  changeImage() {
-    this.generateImgDom();
-    for (const el of this.urls) {
-      console.log(el);
+  nextImage() {
+    for (this.startPoint of this.urls) {
+      this.imgDomList.push(this.startPoint);
+      this.imgDomList.slice(this.startPoint, 4);
+      console.log(this.startPoint);
+      if (this.startPoint < this.urls.length) {
+        this.startPoint++;
+      }
+      this.generateImgDom();
+    }
+  }
+
+  previousImage() {
+    for (this.startPoint of this.urls) {
+      this.imgDomList.push(this.startPoint);
+      this.imgDomList.slice(this.startPoint, 4);
+      console.log(this.startPoint);
+      if (this.startPoint < this.urls.length) {
+        this.startPoint--;
+      }
+      this.generateImgDom();
     }
   }
 }
