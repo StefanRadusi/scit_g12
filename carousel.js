@@ -3,7 +3,6 @@ class Carousel {
     this.generateContainer();
     this.handleLeftButton();
     this.handleRightButton();
-    this.clearButtons();
     this.imgDomList = [];
     this.startPoint = 0;
   }
