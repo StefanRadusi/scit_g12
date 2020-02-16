@@ -106,7 +106,7 @@ class Carousel {
       this.imgDomList.push(this.startPoint);
       this.imgDomList.slice(this.startPoint, 4);
       console.log(this.startPoint);
-      if (this.startPoint < this.urls.length) {
+      if (this.startPoint > this.urls.length) {
         this.startPoint--;
       }
       this.generateImgDom();
