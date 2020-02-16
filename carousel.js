@@ -31,24 +31,26 @@ class Carousel {
   
   generateImgDom() {
     this.cleanImgsContainer();
-    for (let i = 0; i < 3; i++) {
-      const url = this.urls[i];
-
-      if(url) {
+     for(let element of this.urls.slice(this.startPoint, this.startPoint + 3))
+      if(element) {
+        let url = element;
+        console.log(url)
         const img = document.createElement("img");
         img.setAttribute("src", url);
         img.classList.add("img-carousel");
         this.containerImgs.appendChild(img);
         this.imgDomList.push(img);
+        
       }
     }
-  }
+  
 generateButtons() {
 
     this.buttonRight = document.createElement("button")
     this.buttonRight.id = "buttonRight"
     this.buttonRight.innerHTML = ">"
     this.container.appendChild(this.buttonRight)
+    
 
     this.buttonRight = document.getElementById("buttonRight")
     .addEventListener("click", function(event) {
@@ -57,6 +59,7 @@ generateButtons() {
     this.buttonLeft = document.createElement("button")
     this.buttonLeft.id = "buttonLeft"
     this.buttonLeft.innerHTML = "<"
+    this.buttonLeft.disabled = true;
     this.container.prepend(this.buttonLeft);
     this.buttonRight = document.getElementById("buttonRight")
   }
@@ -65,40 +68,54 @@ generateButtons() {
     document.addEventListener("click", this.onRight) 
 }
   
+  onRight = () => {
+    if(event.target.id === "buttonRight") {
+      this.nextImg();
+    }
 
-  onRight = event => {
-      if(event.target.id === "buttonRight") {
-        console.log(event.target);
-        this.startPoint +=1;
-        this.images();
-      }
+  }
+
+  nextImg() {
+
+     if(this.startPoint < this.urls.length - 3) {
+       this.startPoint ++
+       this.generateImgDom()
+     }
+
+     if(this.startPoint > 0) {
+       document.getElementById("buttonLeft").disabled = false;
+       
+     }
+
+     if(this.startPoint === this.urls.length - 3) {
+      document.getElementById("buttonRight").disabled = true;
+     }
+     console.log(this.imgDomList)
   }
 
   handleLeftButton() {
     document.addEventListener("click", this.onLeft) 
     
 }
-
-onLeft = event => {
+onLeft =() => {
   if(event.target.id === "buttonLeft") {
-    console.log(event.target);
-    this.images()
-    
+    this.previousImg();
   }
 }
- 
-
-images = event => {
+previousImg() {
+  
+  this.startPoint --;
   this.generateImgDom();
-   for(const elements of this.urls) {
-     this.imgDomList.push(this.img)
-     this.imgDomList.slice(this.startPoint, 3);
-     this.startPoint +=1;
+ 
+    if(this.startPoint === 0) {
+      document.getElementById("buttonLeft").disabled = true;
+  
+    }
+    if(this.startPoint < this.urls.length -3 ) {
+      document.getElementById("buttonRight").disabled = false;
+    }
     
-     console.log()
-   }
   }
-
 
   cleanImgsContainer() {
     this.imgDomList = [];
