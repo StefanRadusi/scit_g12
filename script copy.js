@@ -1,0 +1,1 @@
+const Mover = new Mover();

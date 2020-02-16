@@ -20,3 +20,76 @@ body {
   font-weight: bolder;
   font-size: x-large;
 }
+#header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#lives{
+  font-weight: bolder;
+  font-size: x-large;
+}
+#ob1{
+  position:absolute;
+  height: 70%;
+  background-color: cyan;
+  width: 20px;
+  left: 100px;
+}
+#ob2{
+  position:absolute;
+  height: 50%;
+  background-color: cyan;
+  width: 20px;
+  left: 220px;
+}
+#ob3{
+  position:absolute;
+  height: 30%;
+  background-color: cyan;
+  width: 20px;
+  left: 350px;
+  top: 350px;
+}
+#ob4{
+  position:absolute;
+  height: 70%;
+  background-color: cyan;
+  width: 20px;
+  left: 450px;
+}
+#ob5{
+  position:absolute;
+  height: 80%;
+  background-color: cyan;
+  width: 20px;
+  left: 550px;
+  top: 100px;
+}
+#ob6{
+  position:absolute;
+  height: 30%;
+  background-color: cyan;
+  width: 20px;
+  left: 670px;
+}
+#ob7{
+  position:absolute;
+  height: 60%;
+  background-color: cyan;
+  width: 20px;
+  left: 750px;
+  top: 200px;
+}
+#ob8{
+  position:absolute;
+  height: 50%;
+  background-color: cyan;
+  width: 20px;
+  left: 860px;
+}
+#player{
+  background-color: white;
+  width: 20px;
+  height: 20px;
+}
