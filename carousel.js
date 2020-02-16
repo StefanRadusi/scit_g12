@@ -1,8 +1,10 @@
 class Carousel {
   constructor() {
-    
     this.generateContainer();
+    //this.buttonLeftFct();
+    // this.buttonRightFct();
     this.imgDomList = [];
+    this.StartPoint = 0;
   }
 
   generateContainer() {
@@ -19,6 +21,7 @@ class Carousel {
   setImgUrls(urls) {
     this.urls = urls;
     this.generateImgDom();
+    this.generateButtons();
   }
 
   generateImgDom() {
@@ -40,4 +43,49 @@ class Carousel {
     this.imgDomList = [];
     this.containerImgs.innerHTML = null;
   }
+
+  generateButtons() {
+    this.buttonLeft = document.createElement("BUTTON");
+    this.buttonRight = document.createElement("BUTTON");
+
+    let textLeft = document.createTextNode("LEFT");
+    let textRight = document.createTextNode("RIGHT");
+
+    this.buttonLeft.appendChild(textLeft);
+    this.buttonRight.appendChild(textRight);
+
+    this.containerImgs.prepend(this.buttonLeft);
+    this.containerImgs.appendChild(this.buttonRight);
+  }
+
+  /* NOT DONE
+  buttonLeftFct() {
+    this.buttonLeft.addEventListener("click", function() {
+      if (this.StartPoint > this.urls.length - 3) {
+        if (this.StartPoint === 0) {
+          this.buttonLeft.disabled = true;
+        }
+        if (this.StartPoint > this.urls.length) {
+          this.buttonLeft.disabled = false;
+        }
+        this.StartPoint--;
+        this.urls.slice(this.StartPoint, 4);
+      }
+    });
+  }
+
+  buttonRightFct() {
+    this.buttonRight.addEventListener("click", function() {
+      if (this.StartPoint < this.urls.length - 3) {
+        if (this.StartPoint > 0) {
+          this.buttonLeft.disabled = true;
+        }
+        if (this.StartPoint === this.urls.length) {
+          this.buttonLeft.disabled = false;
+        }
+        this.StartPoint++;
+        this.urls.slice(this.StartPoint, 4);
+      }
+    });
+  } */
 }
