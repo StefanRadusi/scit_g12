@@ -1,4 +1,18 @@
 .img-carousel {
   height: 100px;
   margin: 20px;
+  
+}
+
+.carousel-container{
+  display: flex;
+}
+.carousel-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-btn p{
+  cursor: pointer;
 }
