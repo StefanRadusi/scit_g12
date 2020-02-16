@@ -1,7 +1,6 @@
 class Carousel {
   constructor() {
     this.generateContainer();
-    this.getButtonsLocation();
     this.handleLeftButton();
     this.handleRightButton();
     this.clearButtons();
@@ -83,13 +82,6 @@ class Carousel {
   cleanImgsContainer() {
     this.imgDomList = [];
     this.containerImgs.innerHTML = null;
-  }
-
-  getButtonsLocation() {
-    const previousImaLoc = document.getElementById("leftButton");
-    this.previous = previousImaLoc;
-    const nextImgLoc = document.getElementById("rightButton");
-    this.next = nextImgLoc;
   }
 
   handleLeftButton() {
