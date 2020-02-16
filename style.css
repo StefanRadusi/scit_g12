@@ -2,3 +2,12 @@
   height: 100px;
   margin: 20px;
 }
+.disable{
+  color: red;
+}
+.carousel-container {
+  display: flex;
+  align-items: center;
+  
+}
+

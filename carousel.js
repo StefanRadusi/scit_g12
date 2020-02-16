@@ -1,8 +1,12 @@
 class Carousel {
   constructor() {
-    this.generateContainer();
     this.imgDomList = [];
     this.startPoint = 0;
+    this.generateContainer();
+    this.generateButtons();
+    this.moveRight();
+    this.moveLeft()
+    
   }
 
   generateContainer() {
@@ -20,15 +24,18 @@ class Carousel {
   setImgUrls(urls) {
     this.urls = urls;
     // console.log(this.urls);
-    this.generateImgDom();
-    this.generateButtons();
+    
+    this.generateImgDom(urls);
+    
+    
+    
   }
 
-  generateImgDom() {
+  generateImgDom(urls) {
     this.containerImgs.innerHTML= null;
     this.imgDomList = [];
-    for (let i = 0; i < this.urls.length; i++) {
-      const url = this.urls[i];
+    for (let i = 0; i < 3; i++) {
+      const url = urls[i];
       if (url){
       console.log(url);
       const img = document.createElement("img");
@@ -37,6 +44,8 @@ class Carousel {
       this.containerImgs.appendChild(img);
       
       this.imgDomList.push(img);
+      this.disableButtons();
+      
       }
     }
   }
@@ -44,28 +53,56 @@ class Carousel {
   // const startPoint = 0;
 
   generateButtons(){
-    this.buttonRight = document.createElement("button");
-    this.buttonRight.classList.add("carousel-buttons");
 
     this.buttonLeft = document.createElement("button");
     this.buttonLeft.classList.add("carousel-buttons");
+    
+    this.buttonLeft.innerHTML = "<";
 
-    this.containerImgs.appendChild(this.buttonRight);
-    this.containerImgs.appendChild(this.buttonLeft);
+    this.buttonRight = document.createElement("button");
+    this.buttonRight.classList.add("carousel-buttons");  
+    this.buttonRight.innerHTML = ">";
+
+    this.container.prepend(this.buttonLeft);
+    this.container.appendChild(this.buttonRight);
   }
   moveRight(){
-    this.buttonRight.addEventListener("click", handleButtonRight.bind(this));
+    this.buttonRight.addEventListener("click", this.handleButtonRight.bind(this));
   }
   moveLeft(){
-    this.buttonLeft.addEventListener("click", handleButtonLeft.bind(this));
+    this.buttonLeft.addEventListener("click", this.handleButtonLeft.bind(this));
   }
   handleButtonRight(){
+    this.startPoint++;
+    const urls = this.urls.slice(this.startPoint);
+    this.generateImgDom(urls);
     
-    const startPoint = this.startPoint;
-    startPoint = this.setImgUrls(urls)
   }
-  // handleButtonLeft(){
-
-  // }
+   handleButtonLeft(){
+    this.startPoint--;
+    const urls = this.urls.slice(this.startPoint);
+    this.generateImgDom(urls);
+    
+   }
+   disableButtons(){
+     if (this.startPoint === 0) {
+        this.buttonLeft.disabled = true;
+        this.buttonLeft.classList.add("disable");
+     } 
+     else {
+      this.buttonLeft.disabled = false;
+      this.buttonLeft.classList.remove("disable");
+     }
+     
+     if (this.startPoint === this.urls.length -3 ){
+        this.buttonRight.disabled = true;
+        this.buttonRight.classList.add("disable");
+     }
+     else {
+      this.buttonRight.disabled = false;
+      this.buttonRight.classList.remove("disable");
+     }
+     
+   }
 }
 
