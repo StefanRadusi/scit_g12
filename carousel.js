@@ -52,16 +52,14 @@ generateButtons() {
     this.container.appendChild(this.buttonRight)
     
 
-    this.buttonRight = document.getElementById("buttonRight")
-    .addEventListener("click", function(event) {
-    })
-
+  
     this.buttonLeft = document.createElement("button")
     this.buttonLeft.id = "buttonLeft"
     this.buttonLeft.innerHTML = "<"
     this.buttonLeft.disabled = true;
+
     this.container.prepend(this.buttonLeft);
-    this.buttonRight = document.getElementById("buttonRight")
+  
   }
   
   handleRightButton() {
@@ -97,6 +95,7 @@ generateButtons() {
     document.addEventListener("click", this.onLeft) 
     
 }
+
 onLeft =() => {
   if(event.target.id === "buttonLeft") {
     this.previousImg();
