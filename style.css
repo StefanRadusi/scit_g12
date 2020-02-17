@@ -2,3 +2,28 @@
   height: 100px;
   margin: 20px;
 }
+
+.carousel-container {
+  display: flex;
+}
+
+.carousel-img-container {
+  margin-left: 10px;
+}
+
+#button-left,
+#button-right {
+  display: flex;
+  position: absolute;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+#button-right {
+  margin-left: 420px;
+}

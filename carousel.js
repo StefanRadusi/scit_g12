@@ -3,6 +3,7 @@ class Carousel {
     
     this.generateContainer();
     this.imgDomList = [];
+    this.startPoint = 0;
   }
 
   generateContainer() {
@@ -18,12 +19,13 @@ class Carousel {
 
   setImgUrls(urls) {
     this.urls = urls;
-    this.generateImgDom();
+    this.generateImgDom(this.startPoint);
+    this.generateButtons();
   }
 
-  generateImgDom() {
+  generateImgDom(start) {
     this.cleanImgsContainer();
-    for (let i = 0; i < 3; i++) {
+    for (let i = start; i < start+3; i++) {
       const url = this.urls[i];
 
       if (url) {
@@ -39,5 +41,39 @@ class Carousel {
   cleanImgsContainer() {
     this.imgDomList = [];
     this.containerImgs.innerHTML = null;
+  }
+
+  generateButtons() {
+    this.buttonLeft = document.createElement("p");
+    this.buttonLeft.setAttribute("id", "button-left");
+    this.container.appendChild(this.buttonLeft);
+    this.buttonLeft.innerHTML = "<";
+    this.buttonLeft.addEventListener("click", () => {
+      this.pressLeftBtn();
+    });
+
+    this.buttonRight = document.createElement("p");
+    this.buttonRight.setAttribute("id", "button-right");
+    this.container.appendChild(this.buttonRight);
+    this.buttonRight.innerHTML = ">";
+    this.buttonRight.addEventListener("click", () => {
+      this.pressRightBtn();
+    });
+  }
+
+  pressRightBtn() {
+    if(this.startPoint+3 < this.urls.length) {
+      this.startPoint ++;
+      this.cleanImgsContainer();
+      this.generateImgDom(this.startPoint);
+    }
+  }
+
+  pressLeftBtn() {
+    if(this.startPoint > 0) {
+      this.startPoint --;
+      this.cleanImgsContainer();
+      this.generateImgDom(this.startPoint);
+    }
   }
 }
