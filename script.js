@@ -19,9 +19,6 @@ class Player {
     }
 
     
-    
-    
-
     movePlayer = event => {
 
       switch(event.key) {
@@ -60,7 +57,7 @@ class Player {
             
         case "ArrowRight":
 
-          this.game.style.offsetWidth = this.game.offsetWidth ;
+          this.game.style.offsetWidth = this.game.offsetWidth;
             
             if(this.left >= this.game.offsetWidth -13) {
               
@@ -71,14 +68,11 @@ class Player {
             this.left = this.left + DEFAULT_MOVE_INCREMENT;
         
             break;
-         
-
-         
-
+        
             default: 
               break;
 
-      }
+        }
       
       }
       
