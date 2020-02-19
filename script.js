@@ -11,7 +11,7 @@ class Player {
     this.left = 0;
     this.setMovement();
     
-  
+    
   }
   
     setMovement() {
@@ -66,6 +66,14 @@ class Player {
             } 
             this.domElement.style.left = this.left + "px"; 
             this.left = this.left + DEFAULT_MOVE_INCREMENT;
+
+            if(this.playerHitObstacle()) {
+              return true
+            } else {
+              return false
+            }
+
+          
         
             break;
         
@@ -76,7 +84,24 @@ class Player {
       
       }
       
-    }
+      playerHitObstacle() {
+        for(const obstacle of document.getElementsByClassName('obstacle')) {
+          if(this.top > obstacle.offsetTop  && this.top < obstacle.offsetTop + obstacle.offsetHeight) {
+           this.top = this.top - DEFAULT_MOVE_INCREMENT;
+          } else {
+            return false;
+          }
+
+        }
+
+        }
+      
+       
+       
+        }
+        
+      
+    
 
    let player = new Player()
 
