@@ -62,9 +62,9 @@ class Player {
           this.game.style = this.game.offsetWidth;
           this.obstacle.style = this.obstacle.offsetLeft;
           
-          if(this.left >= this.obstacle.offsetLeft) {
+          if( !this.playerHitObstacle()) {
             
-            this.playerHitObstacle()
+           
            
           
 
@@ -90,10 +90,9 @@ class Player {
       
       playerHitObstacle =() => {
       
-        
-        this.obstacle.style = this.obstacle.offsetLeft;
+
         for(const obstacle of document.getElementsByClassName('obstacle')) {
-          if(this.top > obstacle.offsetTop  && this.top < obstacle.offsetTop + obstacle.offsetHeight) {
+          if(this.left > obstacle.offsetLeft  && this.left < obstacle.offsetLeft + obstacle.offsetWidth) {
          
            return true
 
