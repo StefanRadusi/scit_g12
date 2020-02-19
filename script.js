@@ -7,9 +7,11 @@ class Player {
   constructor(){
     this.domElement = document.getElementById("player");
     this.game = document.getElementById("game")
+    this.obstacle = document.getElementsByClassName("obstacle")
     this.top = 0;
     this.left = 0;
     this.setMovement();
+    
     
     
   }
@@ -56,25 +58,27 @@ class Player {
             break;
             
         case "ArrowRight":
-
-          this.game.style.offsetWidth = this.game.offsetWidth;
+          
+          this.game.style = this.game.offsetWidth;
+          this.obstacle.style = this.obstacle.offsetLeft;
+          
+          if(this.left >= this.obstacle.offsetLeft) {
             
+            this.playerHitObstacle()
+           
+          
+
             if(this.left >= this.game.offsetWidth -13) {
+             
               
               this.left = this.left - DEFAULT_MOVE_INCREMENT;
-              
+             
             } 
-            this.domElement.style.left = this.left + "px"; 
-            this.left = this.left + DEFAULT_MOVE_INCREMENT;
-
-            if(this.playerHitObstacle()) {
-              return true
-            } else {
-              return false
-            }
-
           
-        
+          this.domElement.style.left = this.left + "px"; 
+            this.left = this.left + DEFAULT_MOVE_INCREMENT;
+          }
+          
             break;
         
             default: 
@@ -84,26 +88,31 @@ class Player {
       
       }
       
-      playerHitObstacle() {
+      playerHitObstacle =() => {
+      
+        
+        this.obstacle.style = this.obstacle.offsetLeft;
         for(const obstacle of document.getElementsByClassName('obstacle')) {
           if(this.top > obstacle.offsetTop  && this.top < obstacle.offsetTop + obstacle.offsetHeight) {
-           this.top = this.top - DEFAULT_MOVE_INCREMENT;
+         
+           return true
+
           } else {
+
             return false;
+            
           }
 
-        }
-
-        }
-      
+      }
+    }     
        
-       
-        }
+  }
         
       
     
 
    let player = new Player()
+   
 
 
 
