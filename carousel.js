@@ -1,10 +1,10 @@
 class Carousel {
-  constructor() {
+  constructor(nextButton, previousButton) {
     this.generateContainer();
     this.imgDomList = [];
     this.startPoint = 0;
-    this.nextButton;
-    this.previousButton;
+    this.nextButton = nextButton;
+    this.previousButton = previousButton;
   }
 
   generateContainer() {
@@ -41,10 +41,11 @@ class Carousel {
   cleanImgsContainer() {
     this.imgDomList = [];
     this.containerImgs.innerHTML = null;
-    // this.removeButtons();
   }
 
   generateButtons() {
+    this.removeButtons();
+
     this.previousButton = document.createElement("button");
     this.previousButton.innerText = "<";
     this.previousButton.id = "previousButton";
@@ -53,7 +54,7 @@ class Carousel {
     this.nextButton = document.createElement("button");
     this.nextButton.innerText = ">";
     this.nextButton.id = "nextButton";
-    
+    if (this.urls.length <= 3) this.nextButton.disabled = true;
 
     this.container.prepend(this.previousButton);
     this.container.appendChild(this.nextButton);
@@ -63,32 +64,30 @@ class Carousel {
   }
 
   handleNextButton() {
-    document.getElementById("nextButton").addEventListener("click", () => {
-      console.log("next")
-      if (this.urls.length > 3) {
-        this.previousButton.disabled = false;
-      }
-      if (this.imgDomList[this.imgDomList.length + 1]) this.nextButton.disabled = true; 
-      if (this.urls.length <= 3) {
-        this.nextButton.disabled = true;
-      }
-
+    this.nextButton.addEventListener("click", () => {
       this.startPoint++;
+      
+      if (this.urls.length > 3) this.previousButton.disabled = false;
+      if (this.startPoint === this.urls.length - 3) this.nextButton.disabled = true; 
+      
       this.generateImgDom(this.startPoint);
     })
   }
 
   handlePreviousButton() {
-    document.getElementById("previousButton").addEventListener("click", () => {
-      console.log("previous");
-      
+    this.previousButton.addEventListener("click", () => {
       this.startPoint--;
+      
+      if (this.startPoint <= 3) this.previousButton.disabled = true;
+      
       this.generateImgDom(this.startPoint);
     })
   }
 
   removeButtons() {
-    this.previousButton.remove();
-    this.nextButton.remove();
+    if (this.previousButton || this.nextButton) {
+      this.previousButton.remove();
+      this.nextButton.remove();
+    }
   }
 }
