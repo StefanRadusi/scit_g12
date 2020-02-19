@@ -27,9 +27,22 @@ function setNavigationFunctionality(
 ) {
   let currentIndexMeal = 0;
 
-  leftButton.addEventListener("click", () => {});
+  leftButton.addEventListener("click", () => {
+    
+   if(currentIndexMeal > 0) {
+     currentIndexMeal--;
+    renderMealsElements(meals[currentIndexMeal], letter, container);
+    if(currentIndexMeal === 0) {
+      document.leftButton.style.opacity = "0.5px"
+    }
+
+     
+   }
+    
+  });
 
   rightButton.addEventListener("click", () => {
+    if(currentIndexMeal < meals.length-1)
     currentIndexMeal++;
     renderMealsElements(meals[currentIndexMeal], letter, container);
   });
