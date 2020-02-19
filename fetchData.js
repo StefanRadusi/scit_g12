@@ -18,7 +18,6 @@ class FetchData {
   handleEnter(event) {
     if (event.key === "Enter") {
       this.fetchRecipes();
-      // event.target.value = "";
     }
   }
 

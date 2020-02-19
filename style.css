@@ -1,4 +1,15 @@
+.carousel-container {
+  display: flex;
+  align-items: center;
+}
+
 .img-carousel {
   height: 100px;
   margin: 20px;
+}
+
+#previousButton,
+#nextButton {
+  cursor: pointer;
+  font-size: 15px;
 }
