@@ -10,6 +10,7 @@ class Player {
     this.obstacle = document.getElementsByClassName("obstacle")
     this.top = 0;
     this.left = 0;
+    this.lives = 3;
     this.setMovement();
     
     
@@ -25,8 +26,10 @@ class Player {
 
       switch(event.key) {
         case "ArrowDown" :
+          
+          if(!this.playerHitObstacle()) {
 
-            this.game.style.offsetHeight = this.game.offsetHeight;
+          
          
             if(this.top >= this.game.offsetHeight -13) {
            
@@ -36,30 +39,39 @@ class Player {
             this.domElement.style.top = this.top + "px";
            
           this.top = this.top + DEFAULT_MOVE_INCREMENT;
-        
+          }
             break;
           
         case "ArrowUp":
+          if(!this.playerHitObstacle()) {
+
           if(this.top === 0){
             this.top = this.top + DEFAULT_MOVE_INCREMENT;
           }
 
           this.top = this.top - DEFAULT_MOVE_INCREMENT;
           this.domElement.style.top = this.top + "px";
-          
+        }
             break;
         
         case "ArrowLeft":
+         
           if(this.left === 0) {
+
             this.left = this.left + DEFAULT_MOVE_INCREMENT;
           }
+        
+             
             this.left = this.left - DEFAULT_MOVE_INCREMENT;
           this.domElement.style.left = this.left + "px";     
+        
             break;
             
         case "ArrowRight":
           
-          if( !this.playerHitObstacle()) {
+          if(!this.playerHitObstacle()) {
+
+            
                     
             if(this.left >= this.game.offsetWidth -13) {
              
@@ -68,7 +80,7 @@ class Player {
              
             } 
           
-          this.domElement.style.left = this.left + "px"; 
+            this.domElement.style.left = this.left + "px"; 
             this.left = this.left + DEFAULT_MOVE_INCREMENT;
           }
           
@@ -84,19 +96,26 @@ class Player {
       playerHitObstacle =() => {
       
         for(const obstacle of document.getElementsByClassName('obstacle')) {
-          if(this.left > obstacle.offsetLeft - obstacle.offsetWidth && this.left < obstacle.offsetLeft + game.offsetWidth ) {
+          console.log(this.left, obstacle.offsetLeft, obstacle.offsetWidth);
+          if(
+            this.left + this.domElement.offsetWidth >= obstacle.offsetLeft &&
+             this.left <= obstacle.offsetLeft + obstacle.offsetWidth &&
+             this.top >= obstacle.offsetTop && 
+             this.top <= obstacle.offsetTop + obstacle.offsetHeight
+             ) {
            
-            return true
-           
-
-          } else {
-
-            return false;
-            
+            return true;
+          
           }
 
       }
+      return false;
     }     
+
+
+    liveDecrease() {
+      
+    }
        
   }
         
