@@ -33,17 +33,21 @@ class Player {
         this.domElement.style.top = this.top + "px";
         break;
       case "ArrowUp":
-        this.top = this.top - DEFAULT_MOVE_INCREMENT;
-        this.domElement.style.top = this.top + "px";
         if (this.top === 0) {
           this.top = this.top + DEFAULT_MOVE_INCREMENT;
         }
+        if (this.top) {
+          this.top = this.top - DEFAULT_MOVE_INCREMENT;
+          this.domElement.style.top = this.top + "px";
+        }
         break;
       case "ArrowLeft":
-        this.left = this.left - DEFAULT_MOVE_INCREMENT;
-        this.domElement.style.left = this.left + "px";
-        if (this.top === 0) {
+        if (this.left === 0) {
           this.left = this.left + DEFAULT_MOVE_INCREMENT;
+        }
+        if (this.left) {
+          this.left = this.left - DEFAULT_MOVE_INCREMENT;
+          this.domElement.style.left = this.left + "px";
         }
         break;
       case "ArrowRight":
