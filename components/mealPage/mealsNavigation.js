@@ -26,11 +26,30 @@ function setNavigationFunctionality(
   container
 ) {
   let currentIndexMeal = 0;
+  leftButton.style.opacity = 0.3;
+  leftButton.addEventListener("click", () => {
+    
+    if (currentIndexMeal > 0){
+    currentIndexMeal--;
+    renderMealsElements(meals[currentIndexMeal], letter, container);
+    leftButton.style.opacity = 1;
+    
+    }else {
+      
+      leftButton.style.opacity = 0.3;
+    }
 
-  leftButton.addEventListener("click", () => {});
+  });
 
   rightButton.addEventListener("click", () => {
-    currentIndexMeal++;
-    renderMealsElements(meals[currentIndexMeal], letter, container);
+    
+    if (currentIndexMeal + 1 < meals.length){
+      currentIndexMeal++;
+      renderMealsElements(meals[currentIndexMeal], letter, container);
+    } else {
+      rightButton.disable = true;
+      rightButton.style.opacity = 0.3;
+    }
   });
+  
 }
