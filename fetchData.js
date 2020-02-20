@@ -4,6 +4,7 @@ class FetchData {
     this.setOnEnter();
     this.carousel = carousel;
     this.url = "";
+    
   }
 
   createInput() {
@@ -20,6 +21,7 @@ class FetchData {
     if (event.key === "Enter") {
       this.fetchRecipes();
     }
+    
   };
 
   fetchRecipes() {
@@ -27,6 +29,7 @@ class FetchData {
     // but after first fetch we store the url for later comparison
     // on a second fetch if the newUrl will be the same as this.url which is the old url the fetch will NOT take place
     // this is an optimization in order for us no to make unnecessary calls
+  
     if (this.url !== this.generateUrl()) {
       this.url = this.generateUrl();
       fetch(this.url)
