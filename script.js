@@ -1,10 +1,11 @@
 console.log("start");
 
-const DEFAULT_MOVE_INCREMENT = 2;
+const DEFAULT_MOVE_INCREMENT = 5;
 
 class Player {
   constructor() {
     this.domElement = document.getElementById("player");
+    this.game = document.getElementById("game");
     // here we store the initial position of the player
     this.top = 0;
     this.left = 0;
@@ -25,6 +26,9 @@ class Player {
     // in this case the event is of type "keydown" but we need to react only to some type "keydown" event
     switch (event.key) {
       case "ArrowDown":
+        if (this.top >= this.game.offsetHeight - 15) {
+          this.top = this.top - DEFAULT_MOVE_INCREMENT;
+        }
         this.top = this.top + DEFAULT_MOVE_INCREMENT;
 
         // we move the white div which is out player by changing it position
@@ -36,21 +40,22 @@ class Player {
         if (this.top === 0) {
           this.top = this.top + DEFAULT_MOVE_INCREMENT;
         }
-        if (this.top) {
-          this.top = this.top - DEFAULT_MOVE_INCREMENT;
-          this.domElement.style.top = this.top + "px";
-        }
+        this.top = this.top - DEFAULT_MOVE_INCREMENT;
+        this.domElement.style.top = this.top + "px";
         break;
+
       case "ArrowLeft":
         if (this.left === 0) {
           this.left = this.left + DEFAULT_MOVE_INCREMENT;
         }
-        if (this.left) {
-          this.left = this.left - DEFAULT_MOVE_INCREMENT;
-          this.domElement.style.left = this.left + "px";
-        }
+        this.left = this.left - DEFAULT_MOVE_INCREMENT;
+        this.domElement.style.left = this.left + "px";
         break;
+
       case "ArrowRight":
+        if (this.left >= this.game.offsetWidth - 15) {
+          this.left = this.left - DEFAULT_MOVE_INCREMENT;
+        }
         this.left = this.left + DEFAULT_MOVE_INCREMENT;
         this.domElement.style.left = this.left + "px";
         break;
