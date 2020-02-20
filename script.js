@@ -59,15 +59,8 @@ class Player {
             
         case "ArrowRight":
           
-          this.game.style = this.game.offsetWidth;
-          this.obstacle.style = this.obstacle.offsetLeft;
-          
           if( !this.playerHitObstacle()) {
-            
-           
-           
-          
-
+                    
             if(this.left >= this.game.offsetWidth -13) {
              
               
@@ -90,11 +83,11 @@ class Player {
       
       playerHitObstacle =() => {
       
-
         for(const obstacle of document.getElementsByClassName('obstacle')) {
-          if(this.left > obstacle.offsetLeft  && this.left < obstacle.offsetLeft + obstacle.offsetWidth) {
-         
-           return true
+          if(this.left > obstacle.offsetLeft - obstacle.offsetWidth && this.left < obstacle.offsetLeft + game.offsetWidth ) {
+           
+            return true
+           
 
           } else {
 
