@@ -70,24 +70,26 @@ class Player {
         case "ArrowRight":
           
           if(!this.playerHitObstacle()) {
-
             
-                    
+    
             if(this.left >= this.game.offsetWidth -13) {
              
               
               this.left = this.left - DEFAULT_MOVE_INCREMENT;
              
             } 
-          
+                this.liveDecrease()
+                // this.die()
             this.domElement.style.left = this.left + "px"; 
             this.left = this.left + DEFAULT_MOVE_INCREMENT;
+      
           }
           
             break;
         
             default: 
               break;
+              
 
         }
       
@@ -96,7 +98,7 @@ class Player {
       playerHitObstacle =() => {
       
         for(const obstacle of document.getElementsByClassName('obstacle')) {
-          console.log(this.left, obstacle.offsetLeft, obstacle.offsetWidth);
+          // console.log(this.left, obstacle.offsetLeft, obstacle.offsetWidth);
           if(
             this.left + this.domElement.offsetWidth >= obstacle.offsetLeft &&
              this.left <= obstacle.offsetLeft + obstacle.offsetWidth &&
@@ -105,19 +107,47 @@ class Player {
              ) {
            
             return true;
-          
+            
           }
-
+         
       }
       return false;
+     
     }     
 
 
     liveDecrease() {
-      
+
+       for(const obstacle of document.getElementsByClassName('obstacle')) {
+
+      this.lives = this.lives -1;
+      const lives = this.lives;
+     
+
+      const getLives = document.getElementById("lives")
+      const currentLives = getLives.innerText;
+
+      const lessLives = currentLives.replace(lives, this.lives)
+      getLives.innerText = lessLives;
+
+          if(this.domElement > this.obstacle.offsetLeft) {
+              this.lives -1;
+           
+           
     }
+         }
+      
+
+    
+
+  //   die() {
+     
+
+    
        
-  }
+  // }
+}
+}
         
       
     
