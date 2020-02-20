@@ -35,10 +35,16 @@ class Player {
       case "ArrowUp":
         this.top = this.top - DEFAULT_MOVE_INCREMENT;
         this.domElement.style.top = this.top + "px";
+        if (this.top === 0) {
+          this.top = this.top + DEFAULT_MOVE_INCREMENT;
+        }
         break;
       case "ArrowLeft":
         this.left = this.left - DEFAULT_MOVE_INCREMENT;
         this.domElement.style.left = this.left + "px";
+        if (this.top === 0) {
+          this.left = this.left + DEFAULT_MOVE_INCREMENT;
+        }
         break;
       case "ArrowRight":
         this.left = this.left + DEFAULT_MOVE_INCREMENT;
