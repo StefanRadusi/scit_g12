@@ -8,6 +8,7 @@ class Player {
     // here we store the initial position of the player
     this.top = 0;
     this.left = 0;
+    this.container = document.getElementById("game")
 
     // here we call the function that sets the behaviour of our player
     this.setMovement();
@@ -25,6 +26,9 @@ class Player {
     // in this case the event is of type "keydown" but we need to react only to some type "keydown" event
     switch (event.key) {
       case "ArrowDown":
+       if (this.top >= this.container.offsetHeight-15) {
+        this.top.disabled = true;
+       }
         this.top = this.top + DEFAULT_MOVE_INCREMENT;
 
         // we move the white div which is out player by changing it position
@@ -33,14 +37,23 @@ class Player {
         this.domElement.style.top = this.top + "px";
         break;
       case "ArrowUp":
+        if (this.top === 0) {
+          this.top.disabled = true;
+        }
         this.top = this.top - DEFAULT_MOVE_INCREMENT;
         this.domElement.style.top = this.top + "px";
         break;
       case "ArrowLeft":
+        if (this.left === 0) {
+          this.left.disabled = true;
+        }
         this.left = this.left - DEFAULT_MOVE_INCREMENT;
         this.domElement.style.left = this.left + "px";
         break;
       case "ArrowRight":
+        if (this.left >= this.container.offsetWidth-15) {
+          this.left.disabled = true;
+         }
         this.left = this.left + DEFAULT_MOVE_INCREMENT;
         this.domElement.style.left = this.left + "px";
         break;
