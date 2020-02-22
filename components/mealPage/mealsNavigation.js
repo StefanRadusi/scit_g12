@@ -31,12 +31,13 @@ function setNavigationFunctionality(
     
    if(currentIndexMeal > 0) {
      currentIndexMeal--;
-    renderMealsElements(meals[currentIndexMeal], letter, container);
-    if(currentIndexMeal === 0) {
-      document.leftButton.style.opacity = "0.5px"
-    }
 
-     
+    renderMealsElements(meals[currentIndexMeal], letter, container);
+
+    if(currentIndexMeal >= -1) {
+      leftButton.style.opacity = "0.5";
+  
+    }
    }
     
   });
@@ -45,5 +46,12 @@ function setNavigationFunctionality(
     if(currentIndexMeal < meals.length-1)
     currentIndexMeal++;
     renderMealsElements(meals[currentIndexMeal], letter, container);
+
+    if(currentIndexMeal >= 0) {
+      
+
+    }
+
   });
+
 }
