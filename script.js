@@ -52,6 +52,8 @@ class Player {
         
         case "ArrowLeft":
          
+          this.playerHitObstacle()
+         
           if(this.left === 0) {
 
             this.left = this.left + DEFAULT_MOVE_INCREMENT;
@@ -68,7 +70,6 @@ class Player {
           if(!this.playerHitObstacle()) {
           
           
-         
 
             if(this.left >= this.game.offsetWidth -13) {
               this.left = this.left - DEFAULT_MOVE_INCREMENT;
@@ -99,14 +100,16 @@ class Player {
             this.left + this.domElement.offsetWidth >= obstacle.offsetLeft &&
              this.left <= obstacle.offsetLeft + obstacle.offsetWidth &&
              this.top >= obstacle.offsetTop && 
-             this.top <= obstacle.offsetTop + obstacle.offsetHeight) {
+             this.top <= obstacle.offsetTop + obstacle.offsetHeight 
+             ) {
+             
 
               const getLives = document.getElementById("lives")
               const currentLives = getLives.innerText;
         
     
               const lives = this.lives;
-              this.lives --;
+              this.lives = this.lives -1;
                 
               const lessLives = currentLives.replace(lives, this.lives)
               getLives.innerText = lessLives;
@@ -125,7 +128,7 @@ class Player {
     die = () => {
       
         if(this.lives === 0) {
-      
+          this.lives = 0
           this.left = 0 ;
           this.top = 0;
 
