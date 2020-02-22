@@ -66,7 +66,8 @@ class Player {
           
           
           if(!this.playerHitObstacle()) {
-            this.liveDecrease()
+          
+          
          
 
             if(this.left >= this.game.offsetWidth -13) {
@@ -77,13 +78,15 @@ class Player {
               
             this.domElement.style.left = this.left + "px"; 
             this.left = this.left + DEFAULT_MOVE_INCREMENT;
+            
           }
+          this.die()
           
             break;
         
             default: 
               break;
-
+            
         }
       
       }
@@ -91,13 +94,22 @@ class Player {
       playerHitObstacle =() => {
       
         for(const obstacle of document.getElementsByClassName('obstacle')) {
-          // console.log(this.left, obstacle.offsetLeft, obstacle.offsetWidth);
+          
           if(
             this.left + this.domElement.offsetWidth >= obstacle.offsetLeft &&
              this.left <= obstacle.offsetLeft + obstacle.offsetWidth &&
              this.top >= obstacle.offsetTop && 
-             this.top <= obstacle.offsetTop + obstacle.offsetHeight
-             ) {
+             this.top <= obstacle.offsetTop + obstacle.offsetHeight) {
+
+              const getLives = document.getElementById("lives")
+              const currentLives = getLives.innerText;
+        
+    
+              const lives = this.lives;
+              this.lives --;
+                
+              const lessLives = currentLives.replace(lives, this.lives)
+              getLives.innerText = lessLives;
            
              
             return true;
@@ -109,37 +121,31 @@ class Player {
     
     }     
 
-    liveDecrease() {
-
-      const getLives = document.getElementById("lives")
-      const currentLives = getLives.innerText;
-
-
-      if( this.left + this.domElement.offsetWidth >= this.obstacle.offsetLeft &&
-        this.left <= this.obstacle.offsetLeft + this.obstacle.offsetWidth &&
-        this.top >= this.obstacle.offsetTop && 
-        this.top <= this.obstacle.offsetTop + this.obstacle.offsetHeight) {
-
-     
-      const lives = this.lives;
-      this.lives = this.lives-1;
-     
-      const lessLives = currentLives.replace(lives, this.lives)
-      getLives.innerText = lessLives;
-
-        
-      
-     
-   } 
-  }
-
-
-    die() {
+   
+    die = () => {
       
         if(this.lives === 0) {
-        
+      
+          this.left = 0 ;
+          this.top = 0;
 
-      }
+          this.domElement.style.left = this.left + "px"; 
+          this.domElement.style.top = this.top + "px";
+
+           
+          const lives = this.lives;
+  
+          this.lives = this.lives +3;
+
+          
+          const getLives = document.getElementById("lives")
+          const currentLives = getLives.innerText;
+         
+
+          const lessLives = currentLives.replace(lives, this.lives)
+          getLives.innerText = lessLives;
+         
+    }
   }
 
 }
@@ -147,7 +153,8 @@ class Player {
       
     
 
-   let player = new Player()
+   let player = new Player();
+   player.die();
    
 
 
