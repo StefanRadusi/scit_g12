@@ -19,7 +19,7 @@
   opacity: 1;
 }
 
-.home-page {
+.letters-container {
   display: flex;
   justify-content: space-around;
 }
@@ -40,4 +40,9 @@
 .meal-navigation > div {
   user-select: none;
   cursor: pointer;
+}
+
+.explanation {
+  margin-bottom: 0px;
+  margin-left: 12px;
 }
