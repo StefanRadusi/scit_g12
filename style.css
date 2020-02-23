@@ -2,3 +2,16 @@
   height: 100px;
   margin: 20px;
 }
+
+.carousel-container {
+display:flex;
+align-items: center;
+margin-top: 30px;
+
+}
+
+.buttons {
+  font-size: 20px;
+  font-weight: bold;
+  border-color: 1px black;
+}

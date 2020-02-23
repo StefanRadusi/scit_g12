@@ -31,7 +31,7 @@ class FetchData {
       this.url = this.generateUrl();
       fetch(this.url)
         .then(response => response.json())
-        .then(this.generateImgUrl);
+        .then(this.generateImgUrl.bind(this));
     }
   }
 
