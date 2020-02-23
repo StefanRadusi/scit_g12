@@ -8,13 +8,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
 
 #game-container{
+  
   position: relative;
   width: 900px;
   height: 500px;
   background-color: orange;
+  
 }
 #game-title{
   font-weight: bolder;
