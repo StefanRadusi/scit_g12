@@ -3,7 +3,6 @@ import { generateMealPage } from "../mealPage/meal";
 function generateAlphabetLetters(homePage) {
   for (let i = 65; i < 91; i++) {
     const letter = String.fromCharCode(i);
-    console.log(letter);
     const letterDOM = document.createElement("p");
     letterDOM.innerText = letter;
     homePage.appendChild(letterDOM);

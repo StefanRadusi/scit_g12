@@ -23,8 +23,6 @@ function generateUrl(letter) {
 }
 
 function generateMeal(json, letter) {
-  console.log(json);
-
   const meals = json.meals;
   let mealIndex = 0;
 
