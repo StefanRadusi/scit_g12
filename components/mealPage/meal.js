@@ -1,9 +1,10 @@
 import { hideHomePage } from "../homePage/home";
 import { addMealsNavigation } from "./mealsNavigation";
+import { highlightMealButton } from "../header/mealButton";
 
 export function generateMealPage(event) {
-  console.log("generating meal page stef");
-  console.log(event);
+  console.log("generating meal page");
+  highlightMealButton();
   hideHomePage(event.target.parentNode);
   getMealsFromServer(event.target.innerText);
 }
