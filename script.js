@@ -25,30 +25,41 @@ class Player {
     // in this case the event is of type "keydown" but we need to react only to some type "keydown" event
     switch (event.key) {
       case "ArrowDown":
-        this.top = this.top + DEFAULT_MOVE_INCREMENT;
-
-        // we move the white div which is out player by changing it position
-        // the payer is initial positions at top = 0 and left = 0
-        // if we change this style attributes on the dom elements then we change the position in the window thus making the affect of moving a element
-        this.domElement.style.top = this.top + "px";
+        if (this.top < 286) {
+          this.top = this.top + DEFAULT_MOVE_INCREMENT;
+          // we move the white div which is out player by changing it position
+          // the payer is initial positions at top = 0 and left = 0
+          // if we change this style attributes on the dom elements then we change the position in the window thus making the affect of moving a element
+          this.domElement.style.top = this.top + "px";
+        }
         break;
       case "ArrowUp":
-        this.top = this.top - DEFAULT_MOVE_INCREMENT;
-        this.domElement.style.top = this.top + "px";
+        if (this.top > 0) {
+          this.top = this.top - DEFAULT_MOVE_INCREMENT;
+          this.domElement.style.top = this.top + "px";
+        }
         break;
       case "ArrowLeft":
-        this.left = this.left - DEFAULT_MOVE_INCREMENT;
-        this.domElement.style.left = this.left + "px";
+        if (this.left > 0) {
+          this.left = this.left - DEFAULT_MOVE_INCREMENT;
+          this.domElement.style.left = this.left + "px";
+        }
         break;
       case "ArrowRight":
-        this.left = this.left + DEFAULT_MOVE_INCREMENT;
-        this.domElement.style.left = this.left + "px";
+        if (this.left < 486) {
+          this.left = this.left + DEFAULT_MOVE_INCREMENT;
+          this.domElement.style.left = this.left + "px";
+        }
         break;
 
       default:
         break;
     }
   };
+
+  playerHitObstacle() {
+    
+  }
 }
 
 new Player();
