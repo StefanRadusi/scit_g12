@@ -51,7 +51,20 @@ export function renderMealsElements(mealData, letter, container) {
   mealImg.classList.add("meal-img");
   container.appendChild(mealImg);
 
+  const wiki = document.createElement("button");
+  wiki.classList.add("wikiBtn");
+  wiki.id = "wiki";
+  wiki.innerText = "wiki";
+  container.appendChild(wiki);
+
   const mealDesc = document.createElement("p");
   mealDesc.innerText = mealData.strInstructions;
   container.appendChild(mealDesc);
+
+  document.getElementById("wiki").addEventListener("click", function () {
+
+    window.open("https://en.wikipedia.org/wiki/" + mealData.strMeal);
+    console.log(mealName.innerText);
+  })
 }
+
