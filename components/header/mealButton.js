@@ -6,6 +6,7 @@ export function generateMealButton() {
   return button;
 }
 
+
 export function highlightMealButton() {
   document.getElementById("meal-button").classList.add("selected");
   document.getElementById("home-button").classList.remove("selected");

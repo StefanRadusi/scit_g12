@@ -1,6 +1,7 @@
 import { hideHomePage } from "../homePage/home";
 import { addMealsNavigation } from "./mealsNavigation";
 import { highlightMealButton } from "../header/mealButton";
+import { generateWikiButton } from "./wikiButton";
 
 export function generateMealPage(event) {
   console.log("generating meal page");
@@ -46,6 +47,8 @@ export function renderMealsElements(mealData, letter, container) {
   mealName.innerText = `Name: ${mealData.strMeal}`;
   container.appendChild(mealName);
 
+  generateWikiButton(mealName, mealData.strMeal);
+
   const mealImg = document.createElement("img");
   mealImg.setAttribute("src", mealData.strMealThumb);
   mealImg.classList.add("meal-img");
@@ -54,4 +57,8 @@ export function renderMealsElements(mealData, letter, container) {
   const mealDesc = document.createElement("p");
   mealDesc.innerText = mealData.strInstructions;
   container.appendChild(mealDesc);
+
+  const wiki = document.createElement("p")
+  wiki.innerText = "Wiki"
+  container.appendChild(wiki)
 }
