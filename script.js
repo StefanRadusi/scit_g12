@@ -1,171 +1,132 @@
-console.log("start")
-
-const DEFAULT_MOVE_INCREMENT = 2 ;
-
+const DEFAULT_MOVE_INCREMENT = 2;
 
 class Player {
-  constructor(){
+  constructor() {
+    this.game = document.getElementById("game");
     this.domElement = document.getElementById("player");
-    this.game = document.getElementById("game")
-    this.obstacle = document.getElementsByClassName("obstacle")
+    this.livesElement = document.getElementById("lives");
+    this.obstacle = document.querySelectorAll(".obstacle");
+    
+    this.lives = 3;
     this.top = 0;
     this.left = 0;
-    this.lives = 3;
+
+    this.livesElement.innerText = this.lives;
+  
     this.setMovement();
-    
   }
-  
-    setMovement() {
-      document.addEventListener("keydown", this.movePlayer);
-    }
 
-    movePlayer = event => {
-
-      switch(event.key) {
-        case "ArrowDown" :
-          
-          if(!this.playerHitObstacle()) {
-
-            if(this.top >= this.game.offsetHeight -13) {
-           
-            this.top = this.top - DEFAULT_MOVE_INCREMENT;
-         
-          }
-            this.domElement.style.top = this.top + "px";
-           
-          this.top = this.top + DEFAULT_MOVE_INCREMENT;
-          }
-            break;
-          
-        case "ArrowUp":
-          if(!this.playerHitObstacle()) {
-            
-
-          if(this.top === 0){
-            this.top = this.top + DEFAULT_MOVE_INCREMENT;
-          }
-
-          this.top = this.top - DEFAULT_MOVE_INCREMENT;
-          this.domElement.style.top = this.top + "px";
-        }
-            break;
-        
-        case "ArrowLeft":
-         
-          this.playerHitObstacle()
-         
-          if(this.left === 0) {
-
-            this.left = this.left + DEFAULT_MOVE_INCREMENT;
-          }
-            
-            this.left = this.left - DEFAULT_MOVE_INCREMENT;
-          this.domElement.style.left = this.left + "px";     
-        
-            break;
-            
-        case "ArrowRight":
-          
-          
-          if(!this.playerHitObstacle()) {
-          
-          
-
-            if(this.left >= this.game.offsetWidth -13) {
-              this.left = this.left - DEFAULT_MOVE_INCREMENT;
-              
-             
-            }   
-              
-            this.domElement.style.left = this.left + "px"; 
-            this.left = this.left + DEFAULT_MOVE_INCREMENT;
-            
-          }
-          this.die()
-          
-            break;
-        
-            default: 
-              break;
-            
-        }
-      
-      }
- 
-      playerHitObstacle =() => {
-      
-        for(const obstacle of document.getElementsByClassName('obstacle')) {
-          
-          if(
-            this.left + this.domElement.offsetWidth >= obstacle.offsetLeft &&
-             this.left <= obstacle.offsetLeft + obstacle.offsetWidth &&
-             this.top >= obstacle.offsetTop && 
-             this.top <= obstacle.offsetTop + obstacle.offsetHeight 
-             ) {
-             
-
-              const getLives = document.getElementById("lives")
-              const currentLives = getLives.innerText;
-        
-    
-              const lives = this.lives;
-              this.lives = this.lives -1;
-                
-              const lessLives = currentLives.replace(lives, this.lives)
-              getLives.innerText = lessLives;
-           
-             
-            return true;
-      
-          }
-    
-      }
-      return false;
-    
-    }     
-
+  setMovement() {
    
-    die = () => {
-      
-        if(this.lives === 0) {
-          this.lives = 0
-          this.left = 0 ;
-          this.top = 0;
-
-          this.domElement.style.left = this.left + "px"; 
-          this.domElement.style.top = this.top + "px";
-
-           
-          const lives = this.lives;
-  
-          this.lives = this.lives +3;
-
-          
-          const getLives = document.getElementById("lives")
-          const currentLives = getLives.innerText;
-         
-
-          const lessLives = currentLives.replace(lives, this.lives)
-          getLives.innerText = lessLives;
-         
-    }
+    document.addEventListener("keydown", this.movePlayer);
   }
 
+  playerHitObstacle(rightOffset, leftOffset, bottomOffset, topOffset) {
+
+    let container1 = this.domElement.getBoundingClientRect();
+
+    for (let obstacle of this.obstacle) {
+      let container2 = obstacle.getBoundingClientRect();
+
+      let hitObstacle = !(
+        container1.bottom + bottomOffset < container2.top ||
+        container1.top - topOffset > container2.bottom ||
+        container1.left - leftOffset > container2.right ||
+        container1.right + rightOffset < container2.left
+      );
+
+      if (hitObstacle)
+        return true;
+    }
+    return false;
+  }
+
+  resetGame() {
+    this.top = 0;
+    this.left = 0;
+    this.domElement.style.top = "0";
+    this.domElement.style.left = "0";
+
+    if (this.lives === 1) {
+      alert("You lost. Back to start!!");
+
+      this.lives = 3;
+
+    } else {
+
+      this.lives -= 1;
+    }
+    this.livesElement.innerText = this.lives;
+  }
+
+  movePlayer = event => {
+    
+    switch (event.key) {
+
+      case "ArrowDown":
+        if (this.top > this.game.offsetHeight - this.domElement.offsetHeight) {
+          break;
+
+        }
+
+        if (this.playerHitObstacle(DEFAULT_MOVE_INCREMENT, 0, 0, 0)) {
+          this.resetGame();
+          break;
+        }
+        this.top = this.top + DEFAULT_MOVE_INCREMENT;
+        this.domElement.style.top = this.top + "px";
+        break;
+
+      case "ArrowUp":
+        if (this.top === 0) {
+          break;
+
+        }
+
+        if (this.playerHitObstacle(0, DEFAULT_MOVE_INCREMENT, 0, 0)) {
+          this.resetGame();
+          break;
+          
+        }
+
+        this.top = this.top - DEFAULT_MOVE_INCREMENT;
+        this.domElement.style.top = this.top + "px";
+        break;
+
+      case "ArrowLeft":
+        if (this.left === 0) {
+          break;
+
+        }
+
+        if (this.playerHitObstacle(0, 0, DEFAULT_MOVE_INCREMENT, 0)) {
+          this.resetGame();
+          break;
+        }
+
+        this.left = this.left - DEFAULT_MOVE_INCREMENT;
+        this.domElement.style.left = this.left + "px";
+        break;
+
+      case "ArrowRight":
+        if (this.left > this.game.offsetWidth - this.domElement.offsetWidth) {
+          break;
+
+        }
+        if (this.playerHitObstacle(0, 0, 0, DEFAULT_MOVE_INCREMENT)) {
+          this.resetGame();
+          break;
+
+        }
+
+        this.left = this.left + DEFAULT_MOVE_INCREMENT;
+        this.domElement.style.left = this.left + "px";
+          break;
+
+        default:
+        break;
+    }
+  };
 }
-        
-      
-    
 
-   let player = new Player();
-   player.die();
-   
-
-
-
-
-
-
-
-
-
-
+new Player();
