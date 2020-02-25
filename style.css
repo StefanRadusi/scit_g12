@@ -18,6 +18,9 @@
 .selected {
   opacity: 1;
 }
+.select {
+  opacity: 0.5;
+}
 
 .letters-container {
   display: flex;
