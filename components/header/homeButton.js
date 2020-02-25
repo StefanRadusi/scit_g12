@@ -14,7 +14,7 @@ export function highlightHomeButton() {
  document.getElementById("home-button").addEventListener("click", highlightHomeButton)
   document.getElementById("home-button").classList.add("selected");
   document.getElementById("meal-button").classList.remove("selected");
-  document.getElementById("home-button").classList.add("home-button");
-  document.getElementById("meal-button").classList.remove("meal-button");
+  document.getElementById("home-button").classList.add("meal-button");
+  document.getElementById("meal-button").classList.remove("home-button");
 
 }
