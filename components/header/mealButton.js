@@ -9,7 +9,7 @@ export function generateMealButton() {
 
 
 export function highlightMealButton() {
-  document.addEventListener("click", generateMealPage)
+
   document.getElementById("meal-button").classList.add("select");
   document.getElementById("home-button").classList.remove("selected");
 }

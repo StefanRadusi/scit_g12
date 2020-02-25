@@ -1,4 +1,4 @@
-import { generateMealPage } from "../mealPage/meal";
+
 
 export function generateHomeButton() {
   const button = document.createElement("button");
@@ -11,7 +11,7 @@ export function generateHomeButton() {
 
 
 export function highlightHomeButton() {
-  document.addEventListener("click",generateMealPage )
+ 
   document.getElementById("meal-button").classList.add("selected");
   document.getElementById("home-button").classList.remove("select");
 }
