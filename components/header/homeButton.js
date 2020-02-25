@@ -11,7 +11,10 @@ export function generateHomeButton() {
 
 
 export function highlightHomeButton() {
- 
-  document.getElementById("meal-button").classList.add("selected");
-  document.getElementById("home-button").classList.remove("select");
+ document.getElementById("home-button").addEventListener("click", highlightHomeButton)
+  document.getElementById("home-button").classList.add("selected");
+  document.getElementById("meal-button").classList.remove("selected");
+  document.getElementById("home-button").classList.add("home-button");
+  document.getElementById("meal-button").classList.remove("meal-button");
+
 }

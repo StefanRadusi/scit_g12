@@ -1,6 +1,6 @@
 import { generateMealPage } from "../mealPage/meal";
 
-function generateAlphabetLetters(homePage) {
+ export function generateAlphabetLetters(homePage) {
   const letterContainer = document.createElement("div");
   letterContainer.classList.add("letters-container");
   for (let i = 65; i < 91; i++) {

@@ -12,7 +12,7 @@ export function generateMealPage(event) {
   getMealsFromServer(event.target.innerText);
 }
 
-function getMealsFromServer(letter) {
+  function getMealsFromServer(letter) {
   const url = generateUrl(letter);
   fetch(url)
     .then(r => r.json())

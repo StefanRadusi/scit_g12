@@ -17,10 +17,10 @@
 
 .selected {
   opacity: 1;
+  display: block;
 }
-.select {
-  opacity: 0.5;
-}
+
+
 
 .letters-container {
   display: flex;
