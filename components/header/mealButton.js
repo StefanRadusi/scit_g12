@@ -12,8 +12,8 @@ export function generateMealButton() {
 
 export function highlightMealButton() {
   document.getElementById("meal-button").addEventListener("click", highlightMealButton)
-  document.getElementById("meal-button").classList.add("selected");
-  document.getElementById("home-button").classList.remove("selected");
+  document.getElementById("meal-button").classList.add("select");
+  document.getElementById("home-button").classList.remove("select");
   document.getElementById("meal-button").classList.add("home-button");
   document.getElementById("home-button").classList.remove("meal-button");
 }
