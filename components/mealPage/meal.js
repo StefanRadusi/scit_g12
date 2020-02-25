@@ -59,6 +59,5 @@ export function renderMealsElements(mealData, letter, container) {
   container.appendChild(mealDesc);
 
   const wiki = document.createElement("p")
-  wiki.innerText = "Wiki"
   container.appendChild(wiki)
 }
