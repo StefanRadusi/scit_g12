@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/StefanRadusi/scit_g12#readme",
   "dependencies": {
+    "cookies-js": "^1.2.3",
     "webpack": "^4.41.6",
     "webpack-dev-server": "^3.10.3"
   },
