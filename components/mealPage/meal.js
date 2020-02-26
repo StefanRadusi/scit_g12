@@ -1,6 +1,7 @@
 import { hideHomePage } from "../homePage/home";
 import { addMealsNavigation } from "./mealsNavigation";
 import { highlightMealButton } from "../header/mealButton";
+import { generateWikiButton} from "./wikiButton";
 
 export function generateMealPage(event) {
   console.log("generating meal page");
@@ -33,6 +34,7 @@ function generateMeal(json, letter) {
 
   renderMealsElements(meals[mealIndex], letter, container);
   addMealsNavigation(meals, letter, container);
+  
 }
 
 export function renderMealsElements(mealData, letter, container) {
@@ -41,10 +43,11 @@ export function renderMealsElements(mealData, letter, container) {
   const title = document.createElement("h1");
   title.innerText = `Meal that start with: ${letter}`;
   container.appendChild(title);
-
+  
   const mealName = document.createElement("h2");
   mealName.innerText = `Name: ${mealData.strMeal}`;
   container.appendChild(mealName);
+  generateWikiButton(mealName, mealData.strMeal);
 
   const mealImg = document.createElement("img");
   mealImg.setAttribute("src", mealData.strMealThumb);
@@ -54,4 +57,7 @@ export function renderMealsElements(mealData, letter, container) {
   const mealDesc = document.createElement("p");
   mealDesc.innerText = mealData.strInstructions;
   container.appendChild(mealDesc);
+
+  
+  
 }

@@ -17,6 +17,8 @@ export function addMealsNavigation(meals, letter, container) {
   document.body.appendChild(navigation);
 
   setNavigationFunctionality(meals, leftButton, rightButton, letter, container);
+
+  
 }
 
 function setNavigationFunctionality(
