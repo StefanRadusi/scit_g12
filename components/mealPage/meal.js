@@ -1,6 +1,7 @@
 import { hideHomePage } from "../homePage/home";
 import { addMealsNavigation } from "./mealsNavigation";
 import { highlightMealButton } from "../header/mealButton";
+import { addWikiPage } from "./wikiButton";
 
 export function generateMealPage(event) {
   console.log("generating meal page");
@@ -33,6 +34,7 @@ function generateMeal(json, letter) {
 
   renderMealsElements(meals[mealIndex], letter, container);
   addMealsNavigation(meals, letter, container);
+  addWikiPage(meals); 
 }
 
 export function renderMealsElements(mealData, letter, container) {
