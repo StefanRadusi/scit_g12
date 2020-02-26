@@ -45,7 +45,7 @@ function setNavigationFunctionality(
       currentIndexMeal++;
       renderMealsElements(meals[currentIndexMeal], letter, container);
       leftButton.style.opacity = 1;
-      document.cookie = `meal = ${meal}_=${currentIndexMeal}`;
+      document.cookie = `meal = ${meal}=${currentIndexMeal}`;
     }
 
     if (currentIndexMeal === meals.length - 1) {
