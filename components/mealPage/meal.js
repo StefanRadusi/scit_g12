@@ -1,7 +1,6 @@
 import { hideHomePage } from "../homePage/home";
 import { addMealsNavigation } from "./mealsNavigation";
 import { highlightMealButton } from "../header/mealButton";
-import { highlightHomeButton } from "../header/homeButton";
 import { generateWikiButton } from "./wikiButton";
 
 export function generateMealPage(event) {
