@@ -16,13 +16,10 @@
 }
 
 .selected {
-  opacity: 0.5;
-  display: block;
-}
-.select {
   opacity: 1;
+  display: block;
+  outline: none;
 }
-
 
 
 .letters-container {

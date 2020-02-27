@@ -1,4 +1,6 @@
-import { generateMealPage } from "../mealPage/meal";
+import { generateMealPage } from "../mealPage/meal"; 
+import { highlightHomeButton } from "../header/homeButton";
+import { highlightMealButton } from "../header/mealButton";
 
  export function generateAlphabetLetters(homePage) {
   const letterContainer = document.createElement("div");
@@ -17,6 +19,8 @@ export function generateHomePage() {
   const homePage = document.createElement("div");
   homePage.classList.add("home-page");
   document.body.appendChild(homePage);
+  highlightHomeButton()
+  highlightMealButton()
 
   addExplanationText(homePage);
   generateAlphabetLetters(homePage);
