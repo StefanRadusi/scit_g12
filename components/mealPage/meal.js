@@ -1,7 +1,9 @@
+import cookie from "cookies-js";
 import { hideHomePage } from "../homePage/home";
 import { addMealsNavigation } from "./mealsNavigation";
 import { highlightMealButton } from "../header/mealButton";
 import { generateWikiButton } from "./wikiButton";
+import { getGeolocation } from "../homePage/geolocation";
 
 export function generateMealPage(event) {
   console.log("generating meal page");
@@ -10,14 +12,19 @@ export function generateMealPage(event) {
   getMealsFromServer(event.target.innerText);
 }
 
-function getMealsFromServer(letter) {
+function getMealsFromServer(letter, meals) {
+  let melsFromLocal =  JSON.parse(window.localStorage.getItem(letter));
+  if (melsFromLocal){
+    generateMeal(melsFromLocal, letter);
+  }else {
   const url = generateUrl(letter);
   fetch(url)
     .then(r => r.json())
     .then(json => {
+      window.localStorage.setItem(letter, JSON.stringify(json));
       generateMeal(json, letter);
     });
-  console.log(url);
+  }
 }
 
 function generateUrl(letter) {
@@ -25,21 +32,26 @@ function generateUrl(letter) {
 }
 
 export function getIndexMealFromCookie(letter) {
-  console.log(document.cookie);
-  const cookieParam = `meal_${letter}`;
+//   console.log(document.cookie);
+//   const cookieParam = `meal_${letter}`;
 
-  const params = document.cookie.split("; ");
-  console.log(params);
+//   const params = document.cookie.split("; ");
+//   console.log(params);
 
-  for (const param of params) {
-    const splitParam = param.split("=");
-    const nameOfParam = splitParam[0];
-    const value = splitParam[1];
+//   for (const param of params) {
+//     const splitParam = param.split("=");
+//     const nameOfParam = splitParam[0];
+//     const value = splitParam[1];
 
-    if (nameOfParam === cookieParam) return value;
-  }
+//     if (nameOfParam === cookieParam) return value;
+//   }
 
-  return 0;
+//   return 0;
+// }
+
+if (cookie(`meal_${letter}`)) return cookie(`meal_${letter}`);
+
+return 0;
 }
 
 function generateMeal(json, letter) {
@@ -53,6 +65,7 @@ function generateMeal(json, letter) {
 
   renderMealsElements(meals[mealIndex], letter, container);
   addMealsNavigation(meals, letter, container);
+
 }
 
 export function renderMealsElements(mealData, letter, container) {
@@ -86,3 +99,4 @@ export function generateMealPageFromHeader() {
   hideHomePage(homePage);
   getMealsFromServer("a");
 }
+// getGeolocationn();
