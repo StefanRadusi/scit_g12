@@ -11,12 +11,19 @@ export function generateMealPage(event) {
 }
 
 function getMealsFromServer(letter) {
-  const url = generateUrl(letter);
-  fetch(url)
-    .then(r => r.json())
-    .then(json => {
-      generateMeal(json, letter);
-    });
+  const generatedUrl = JSON.parse(localStorage.getItem(letter));
+
+  if (generatedUrl) {
+    generateMeal(generatedUrl, letter);
+  } else {
+    const url = generateUrl(letter);
+    fetch(url)
+      .then(r => r.json())
+      .then(json => {
+        generateMeal(json, letter);
+        localStorage.setItem(letter, JSON.stringify(json));
+      });
+  }
   console.log(url);
 }
 
