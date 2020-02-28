@@ -76,7 +76,6 @@ class Player {
         this.domElement.style.offsetLeft === obstacle.style.offsetLeft &&
         this.domElement.style.offsetTop === obstacle.style.offsetTop
       ) {
-        console.log("-1 life");
       }
     }
   }
