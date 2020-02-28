@@ -7,6 +7,8 @@ class Game {
     this.bottomArrowEvent();
     this.horizontal = 0;
     this.vertical = 0;
+    this.horizontalMAX = 580;
+    this.verticalMAX = 380;
   }
 
   getTargetWhiteSquare() {
@@ -20,13 +22,11 @@ class Game {
 
   leftArrow = () => {
     if (event.keyCode === 37) {
-      this.horizontal -= 5;
-      this.player.style.left = `${this.horizontal}px`;
-      console.log(this.horizontal);
-      if (this.horizontal > 600) {
-        this.position = 0;
-        this.player.style.left = 0;
+      if (this.horizontal > 0) {
+        this.horizontal -= 10;
+        this.player.style.left = `${this.horizontal}px`;
       }
+      console.log(this.horizontal);
     }
   };
 
@@ -36,13 +36,11 @@ class Game {
 
   topArrow = () => {
     if (event.keyCode === 38) {
-      this.vertical -= 5;
-      this.player.style.top = `${this.vertical}px`;
-      console.log(this.vertical);
-      if (this.horizontal > 400) {
-        this.position = 0;
-        this.player.style.top = 0;
+      if (this.vertical > 0) {
+        this.vertical -= 10;
+        this.player.style.top = `${this.vertical}px`;
       }
+      console.log(this.vertical);
     }
   };
 
@@ -52,13 +50,11 @@ class Game {
 
   rightArrow = () => {
     if (event.keyCode === 39) {
-      this.horizontal += 5;
-      this.player.style.left = `${this.horizontal}px`;
-      console.log(this.horizontal);
-      if (this.horizontal < 700) {
-        this.position = 0;
-        this.player.style.left = 0;
+      if (this.horizontal < this.horizontalMAX) {
+        this.horizontal += 10;
+        this.player.style.left = `${this.horizontal}px`;
       }
+      console.log(this.horizontal);
     }
   };
 
@@ -68,13 +64,11 @@ class Game {
 
   bottomArrow = () => {
     if (event.keyCode === 40) {
-      this.vertical += 5;
-      this.player.style.top = `${this.vertical}px`;
-      console.log(this.vertical);
-      if (this.horizontal < 700) {
-        this.position = 0;
-        this.player.style.left = 0;
+      if (this.vertical < this.verticalMAX) {
+        this.vertical += 10;
+        this.player.style.top = `${this.vertical}px`;
       }
+      console.log(this.vertical);
     }
   };
 }
