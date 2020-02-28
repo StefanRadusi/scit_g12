@@ -1,5 +1,6 @@
 class Game {
   constructor() {
+    this.getTargetObstacle();
     this.getTargetWhiteSquare();
     this.leftArrowEvent();
     this.topArrowEvent();
@@ -9,11 +10,18 @@ class Game {
     this.vertical = 0;
     this.horizontalMAX = 580;
     this.verticalMAX = 380;
+    this.crashObstacle();
+  }
+
+  getTargetObstacle() {
+    const obstacle = document.getElementsByClassName("blueObs");
+    this.obstacle = obstacle;
   }
 
   getTargetWhiteSquare() {
     const player = document.getElementById("whiteSquare");
     this.player = player;
+    this.player.style.top = 0;
   }
 
   leftArrowEvent() {
@@ -71,6 +79,13 @@ class Game {
       console.log(this.vertical);
     }
   };
+
+  crashObstacle() {
+    let LEFT = obstacle.offsetLeft;
+    let RIGHT = obstacle.offsetRight;
+    let TOP = obstacle.offsetTop;
+    let BOTTOM = obstacle.offsetBottom;
+  }
 }
 
 const x = new Game();
