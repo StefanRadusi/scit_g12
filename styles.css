@@ -1,0 +1,80 @@
+#body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+h3 {
+  margin-top: -30px;
+}
+
+#bigOrangeSquare {
+  background-color: coral;
+  position: relative;
+  width: 600px;
+  height: 400px;
+}
+
+.blueObs {
+  background-color: darkturquoise;
+  position: absolute;
+  width: 20px;
+}
+
+#obstacle1 {
+  height: 100px;
+  left: 100px;
+  top: 0px;
+}
+
+#obstacle2 {
+  height: 230px;
+  left: 230px;
+  top: 0px;
+}
+
+#obstacle3 {
+  height: 350px;
+  left: 370px;
+  top: 0px;
+}
+
+#obstacle4 {
+  height: 270px;
+  left: 500px;
+  top: 0px;
+}
+
+#obstacle5 {
+  height: 300px;
+  left: 160px;
+  bottom: 0px;
+}
+
+#obstacle6 {
+  height: 100px;
+  left: 300px;
+  bottom: 0px;
+}
+
+#obstacle7 {
+  height: 150px;
+  left: 420px;
+  bottom: 0px;
+}
+
+#obstacle8 {
+  height: 270px;
+  left: 580px;
+  bottom: 0px;
+}
+
+#whiteSquare {
+  position: absolute;
+  background-color: white;
+  width: 20px;
+  height: 20px;
+}
