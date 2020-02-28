@@ -64,6 +64,7 @@ class Player {
         this.left = this.left + DEFAULT_MOVE_INCREMENT;
         this.domElement.style.left = this.left + "px";
         break;
+        break;
 
       default:
         break;
