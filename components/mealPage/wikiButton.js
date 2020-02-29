@@ -1,14 +1,15 @@
-function generateUrl(text){
-    return `https://en.wikipedia.org/wiki/${text.replace(" ", "_")}`;
+function generateUrl(text) {
+  return `https://en.wikipedia.org/wiki/${text.replace(" ", "_")}`;
 }
 
-export function addWikiPage(container, meals){
-    const wiki = document.createElement("button");
-    wiki.id = "wiki";
-     wiki.innerText = "Wiki";
-    wiki.addEventListener("click", (mealName) => {
-    let url = generateUrl(meals)
-    window.open(wikiurl);
+export function generateWikiButton(container, meal) {
+  const button = document.createElement("button");
+  button.classList.add("wiki-button");
+  button.innerText = "wiki";
+  button.addEventListener("click", () => {
+    const url = generateUrl(meal);
+    window.open(url);
   });
-    container.appendChild(wiki);
+
+  container.appendChild(button);
 }

@@ -1,40 +1,50 @@
+import cookie from "cookies-js";
 import { hideHomePage } from "../homePage/home";
 import { addMealsNavigation } from "./mealsNavigation";
 import { highlightMealButton } from "../header/mealButton";
-import { addWikiPage } from "./wikiButton";
+import { generateWikiButton } from "./wikiButton";
 
 export function generateMealPage(event) {
-  console.log("generating meal page");
   highlightMealButton();
-  hideHomePage(event.target.parentNode);
+  hideHomePage();
   getMealsFromServer(event.target.innerText);
 }
 
-function getMealsFromServer(letter) {
+function getMealsFromServer(letter, meals) {
+  let melsFromLocal =  JSON.parse(window.localStorage.getItem(letter));
+  if (melsFromLocal){
+    generateMeal(melsFromLocal, letter);
+  }else {
   const url = generateUrl(letter);
   fetch(url)
     .then(r => r.json())
     .then(json => {
+      window.localStorage.setItem(letter, JSON.stringify(json));
       generateMeal(json, letter);
     });
-  console.log(url);
+  }
 }
 
 function generateUrl(letter) {
   return `https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`;
 }
 
+export function getIndexMealFromCookie(letter) {
+if (cookie(`meal_${letter}`)) return cookie(`meal_${letter}`); return 0;
+}
+
 function generateMeal(json, letter) {
   const meals = json.meals;
-  let mealIndex = 0;
+  let mealIndex = getIndexMealFromCookie(letter);
 
   const container = document.createElement("div");
   container.classList.add("meal-page");
+  container.id = "meal-page";
   document.body.appendChild(container);
 
   renderMealsElements(meals[mealIndex], letter, container);
   addMealsNavigation(meals, letter, container);
-  addWikiPage(meals); 
+
 }
 
 export function renderMealsElements(mealData, letter, container) {
@@ -46,7 +56,10 @@ export function renderMealsElements(mealData, letter, container) {
 
   const mealName = document.createElement("h2");
   mealName.innerText = `Name: ${mealData.strMeal}`;
+  mealName.classList.add("meal-name");
   container.appendChild(mealName);
+
+  generateWikiButton(mealName, mealData.strMeal);
 
   const mealImg = document.createElement("img");
   mealImg.setAttribute("src", mealData.strMealThumb);
@@ -57,8 +70,8 @@ export function renderMealsElements(mealData, letter, container) {
   mealDesc.innerText = mealData.strInstructions;
   container.appendChild(mealDesc);
 }
+
 export function generateMealPageFromHeader() {
-  console.log("generating meal page");
   highlightMealButton();
   const homePage = document.getElementById("home-page");
   hideHomePage(homePage);

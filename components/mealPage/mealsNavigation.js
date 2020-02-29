@@ -1,7 +1,10 @@
-import { renderMealsElements } from "./meal";
+import Cookie from "cookies-js";
+import { renderMealsElements, getIndexMealFromCookie } from "./meal";
+
 
 export function addMealsNavigation(meals, letter, container) {
   const navigation = document.createElement("div");
+  navigation.id = "meal-navigation";
   navigation.classList.add("meal-navigation");
 
   const leftButton = document.createElement("div");
@@ -13,10 +16,14 @@ export function addMealsNavigation(meals, letter, container) {
 
   navigation.appendChild(leftButton);
   navigation.appendChild(rightButton);
-
   document.body.appendChild(navigation);
 
   setNavigationFunctionality(meals, leftButton, rightButton, letter, container);
+}
+
+function setLastPageCookie(letter, currentIndexMeal) {
+  document.cookie = `meal_${letter}=${currentIndexMeal}`;
+  cookie.set
 }
 
 function setNavigationFunctionality(
@@ -26,13 +33,14 @@ function setNavigationFunctionality(
   letter,
   container
 ) {
-  let currentIndexMeal = 0;
+  let currentIndexMeal = getIndexMealFromCookie(letter);
 
   leftButton.addEventListener("click", () => {
     if (currentIndexMeal > 0) {
       currentIndexMeal--;
       renderMealsElements(meals[currentIndexMeal], letter, container);
       rightButton.style.opacity = 1;
+      setLastPageCookie(letter, currentIndexMeal);
     }
 
     if (currentIndexMeal === 0) {
@@ -45,7 +53,7 @@ function setNavigationFunctionality(
       currentIndexMeal++;
       renderMealsElements(meals[currentIndexMeal], letter, container);
       leftButton.style.opacity = 1;
-      document.cookie = `meal = ${meal}=${currentIndexMeal}`;
+      setLastPageCookie(letter, currentIndexMeal);
     }
 
     if (currentIndexMeal === meals.length - 1) {
