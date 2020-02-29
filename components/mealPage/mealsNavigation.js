@@ -1,3 +1,4 @@
+import Cookie from "cookies-js";
 import { renderMealsElements, getIndexMealFromCookie } from "./meal";
 
 export function addMealsNavigation(meals, letter, container) {
