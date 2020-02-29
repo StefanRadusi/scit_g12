@@ -1,8 +1,12 @@
+import { generateMealPageFromHeader } from "../mealPage/meal";
+
 export function generateMealButton() {
   const button = document.createElement("button");
   button.classList.add("meal-button");
   button.id = "meal-button";
   button.innerText = "Meal";
+
+  button.addEventListener("click", generateMealPageFromHeader);
   return button;
 }
 

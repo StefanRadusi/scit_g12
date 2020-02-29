@@ -57,3 +57,10 @@ export function renderMealsElements(mealData, letter, container) {
   mealDesc.innerText = mealData.strInstructions;
   container.appendChild(mealDesc);
 }
+export function generateMealPageFromHeader() {
+  console.log("generating meal page");
+  highlightMealButton();
+  const homePage = document.getElementById("home-page");
+  hideHomePage(homePage);
+  getMealsFromServer("a");
+}

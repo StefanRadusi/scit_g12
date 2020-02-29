@@ -32,3 +32,15 @@ function addExplanationText(homePage) {
   explanation.innerText = "Choose a letter to find meals:";
   homePage.appendChild(explanation);
 }
+
+export function showHomePage() {
+  document.getElementById("home-page").style.display = "block";
+  document.getElementById("meal-page").remove();
+  document.getElementById("meal-navigation").remove();
+  highlightHomeButton();
+}
+
+export function highlightHomeButton() {
+  document.getElementById("meal-button").classList.remove("selected");
+  document.getElementById("home-button").classList.add("selected");
+}
