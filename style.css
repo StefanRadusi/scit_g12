@@ -23,7 +23,7 @@ body {
 .obstacle {
   position: absolute;
   background: lightskyblue;
-  width: 15px;
+  width: 16px;
 }
 
 #o1 {
@@ -70,7 +70,7 @@ body {
 
 #o8 {
   bottom: 0;
-  left: 485px;
+  left: 484px;
   height: 200px;
 }
 
@@ -78,8 +78,8 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
   background: white;
 }
 
