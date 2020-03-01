@@ -5,8 +5,14 @@ import { highlightMealButton } from "../header/mealButton";
 export function generateMealPage(event) {
   console.log("generating meal page");
   highlightMealButton();
-  hideHomePage(event.target.parentNode);
-  getMealsFromServer(event.target.innerText);
+
+  hideHomePage();
+
+  if(event.target.innerText === 'Meal') {
+    getMealsFromServer('A');
+  } else {
+    getMealsFromServer(event.target.innerText);
+  }
 }
 
 function getMealsFromServer(letter) {
@@ -29,6 +35,7 @@ function generateMeal(json, letter) {
 
   const container = document.createElement("div");
   container.classList.add("meal-page");
+  container.id = "meal-page-id";
   document.body.appendChild(container);
 
   renderMealsElements(meals[mealIndex], letter, container);

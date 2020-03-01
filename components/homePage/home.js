@@ -15,6 +15,7 @@ function generateAlphabetLetters(homePage) {
 
 export function generateHomePage() {
   const homePage = document.createElement("div");
+  homePage.id = "home-page-id";
   homePage.classList.add("home-page");
   document.body.appendChild(homePage);
 
@@ -22,7 +23,8 @@ export function generateHomePage() {
   generateAlphabetLetters(homePage);
 }
 
-export function hideHomePage(homePage) {
+export function hideHomePage() {
+  const homePage = document.getElementById("home-page-id");
   homePage.style.display = "none";
 }
 
