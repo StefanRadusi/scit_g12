@@ -22,6 +22,8 @@ export function addMealsNavigation(meals, letter, container) {
 }
 
 function setLastPageCookie(letter, currentIndexMeal) {
+  // because it is easier to use and external library when dealing with browser cookies, we will use "cookies-js" which is imported at the start of the file
+  // check the cookie in the browser to see how it is stored
   Cookie.set(`meal_${letter}`, currentIndexMeal);
 }
 
@@ -32,6 +34,9 @@ function setNavigationFunctionality(
   letter,
   container
 ) {
+  // before we start navigate through meal of a letter we check if we stored previously the index were we left off
+  // "getIndexMealFromCookie" deals with cookies and retrieves the last index used
+  // check "meal.js" file for how this function is defined
   let currentIndexMeal = getIndexMealFromCookie(letter);
 
   leftButton.addEventListener("click", () => {
@@ -39,6 +44,8 @@ function setNavigationFunctionality(
       currentIndexMeal--;
       renderMealsElements(meals[currentIndexMeal], letter, container);
       rightButton.style.opacity = 1;
+      // we store our last meal index by letter so that we we hit refresh and go the a letter we can pick the navigation were we left off
+      // we use a dedicated function that deals with cookie object of the browser
       setLastPageCookie(letter, currentIndexMeal);
     }
 
@@ -52,6 +59,8 @@ function setNavigationFunctionality(
       currentIndexMeal++;
       renderMealsElements(meals[currentIndexMeal], letter, container);
       leftButton.style.opacity = 1;
+
+      // the same explanation like before
       setLastPageCookie(letter, currentIndexMeal);
     }
 

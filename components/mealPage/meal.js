@@ -51,6 +51,8 @@ function generateUrl(letter) {
   return `https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`;
 }
 
+// this function uses 'cookies-js' library for getting data from cookies
+// in case there is no data at a given key we return "0" as is the default index
 export function getIndexMealFromCookie(letter) {
   if (Cookie(`meal_${letter}`)) return Cookie(`meal_${letter}`);
 
