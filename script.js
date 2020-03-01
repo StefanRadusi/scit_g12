@@ -37,16 +37,20 @@ class Player {
         // the payer is initial positions at top = 0 and left = 0
         // if we change this style attributes on the dom elements then we change the position in the window thus making the affect of moving a element
         this.domElement.style.top = this.top + "px";
+        if (this.playerHitObstacle()) {
+          break;
+        }
+
         break;
 
       case "ArrowUp":
         if (this.top === 0) {
-          this.totalLives--;
-          this.lives.innerHTML = this.totalLives;
           break;
         }
         this.top = this.top - DEFAULT_MOVE_INCREMENT;
         this.domElement.style.top = this.top + "px";
+        if (this.playerHitObstacle()) break;
+
         break;
 
       case "ArrowLeft":
@@ -55,15 +59,18 @@ class Player {
         }
         this.left = this.left - DEFAULT_MOVE_INCREMENT;
         this.domElement.style.left = this.left + "px";
+        if (this.playerHitObstacle()) break;
+
         break;
 
       case "ArrowRight":
         if (this.left > this.game.offsetWidth - this.domElement.offsetWidth) {
           break;
         }
+
         this.left = this.left + DEFAULT_MOVE_INCREMENT;
         this.domElement.style.left = this.left + "px";
-        break;
+        if (this.playerHitObstacle()) break;
         break;
 
       default:
@@ -74,9 +81,11 @@ class Player {
   playerHitObstacle() {
     for (const obstacle of this.obstacles) {
       if (
-        this.domElement.style.offsetLeft === obstacle.style.offsetLeft &&
-        this.domElement.style.offsetTop === obstacle.style.offsetTop
+        this.top > obstacle.offsetTop &&
+        this.top < obstacle.offsetTop + obstacle.offsetHeight
       ) {
+        console.log("you have crossed the line");
+        return true;
       }
     }
   }
