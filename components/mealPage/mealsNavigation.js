@@ -1,3 +1,4 @@
+import Cookie from "cookies-js";
 import { renderMealsElements, getIndexMealFromCookie } from "./meal";
 
 export function addMealsNavigation(meals, letter, container) {
@@ -21,7 +22,7 @@ export function addMealsNavigation(meals, letter, container) {
 }
 
 function setLastPageCookie(letter, currentIndexMeal) {
-  document.cookie = `meal_${letter}=${currentIndexMeal}`;
+  Cookie.set(`meal_${letter}`, currentIndexMeal);
 }
 
 function setNavigationFunctionality(

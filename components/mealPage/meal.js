@@ -1,3 +1,5 @@
+import Cookie from "cookies-js";
+
 import { hideHomePage } from "../homePage/home";
 import { addMealsNavigation } from "./mealsNavigation";
 import { highlightMealButton } from "../header/mealButton";
@@ -10,14 +12,39 @@ export function generateMealPage(event) {
   getMealsFromServer(event.target.innerText);
 }
 
+function cacheData(letter, json) {
+  // in order for caching some data we need a persistent method by using local storage
+  // local save data in a string format so we need to transform our js object in a string which we can latter retrieve parse back into an object
+  // we use letter a key for storing the data so that we can cache data for more then just one call to the server
+  const stringData = JSON.stringify(json);
+  localStorage.setItem(letter, stringData);
+}
+
+function getDataFromCache(letter) {
+  // we retrieve what is in the local storage a a give key by the letter
+  const data = localStorage.getItem(letter);
+  // if we found that there is something stored then we must transform it back from string into an JS object
+  if (data) {
+    return JSON.parse(data);
+  }
+}
+
 function getMealsFromServer(letter) {
-  const url = generateUrl(letter);
-  fetch(url)
-    .then(r => r.json())
-    .then(json => {
-      generateMeal(json, letter);
-    });
-  console.log(url);
+  // before making the call to the server for data we check if we cache it on another call
+  // "getDataFromCache" function retrieves what data is at the letter value key in the local storage
+  const json = getDataFromCache(letter);
+  if (json) {
+    generateMeal(json, letter);
+  } else {
+    const url = generateUrl(letter);
+    fetch(url)
+      .then(r => r.json())
+      .then(json => {
+        // cache the data using dedicated function
+        cacheData(letter, json);
+        generateMeal(json, letter);
+      });
+  }
 }
 
 function generateUrl(letter) {
@@ -25,19 +52,7 @@ function generateUrl(letter) {
 }
 
 export function getIndexMealFromCookie(letter) {
-  console.log(document.cookie);
-  const cookieParam = `meal_${letter}`;
-
-  const params = document.cookie.split("; ");
-  console.log(params);
-
-  for (const param of params) {
-    const splitParam = param.split("=");
-    const nameOfParam = splitParam[0];
-    const value = splitParam[1];
-
-    if (nameOfParam === cookieParam) return value;
-  }
+  if (Cookie(`meal_${letter}`)) return Cookie(`meal_${letter}`);
 
   return 0;
 }
