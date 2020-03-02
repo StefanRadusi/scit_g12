@@ -4,21 +4,33 @@ import { highlightMealButton } from "../header/mealButton";
 import { generateWikiButton } from "./wikiButton";
 
 export function generateMealPage(event) {
-  console.log("generating meal page");
+  console.log("generating meal page");  
   highlightMealButton();
   hideHomePage();
   getMealsFromServer(event.target.innerText);
+  
 }
 
 function getMealsFromServer(letter) {
-  const url = generateUrl(letter);
-  fetch(url)
+  const value = JSON.parse(localStorage.getItem(letter));
+  if (value){
+    generateMeal(value,letter);
+  }
+  else {
+    const url = generateUrl(letter);
+    fetch(url)
     .then(r => r.json())
     .then(json => {
+ 
+      window.localStorage.setItem(letter,JSON.stringify(json));
       generateMeal(json, letter);
     });
   console.log(url);
 }
+}
+
+
+
 
 function generateUrl(letter) {
   return `https://www.themealdb.com/api/json/v1/1/search.php?f=${letter}`;
