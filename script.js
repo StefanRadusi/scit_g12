@@ -1,6 +1,6 @@
 // ---- Example: Use data from a server to display different meals
 
-// this is the DOM element were all the the meals are render
+// this is the DOM element where all the the meals are rendered
 const mealsContainer = document.getElementById("meals-container");
 
 // the DOM element from which we get the value for the parameter of the url used to get data from server
@@ -8,10 +8,10 @@ const input = document.getElementById("meal-name");
 
 // we react to event triggered by clicking on the "get-meal" button
 document.getElementById("get-meal").addEventListener("click", function() {
-  // before we can get data from server we need to generate the correct url using the value of input
+  // before we can get data from the server we need to generate the correct url using the value of input
   const url = generateRateUrl(input.value);
 
-  //incase the "generateRateUrl" return nothing we don't have a address so we can't hit the server
+  //incase the "generateRateUrl" returns nothing we don't have an address so we can't hit the server
   if (url) {
     // we need to clear the meal container so that new data is shown
     clearMealContainer();
@@ -21,7 +21,7 @@ document.getElementById("get-meal").addEventListener("click", function() {
   }
 });
 
-// this functions return a generate an url based on the input value that is passed when this function is called
+// this functions return and generates an url based on the input value that is passed when this function is called
 // in case the "inputValue" parameter is empty then this function will return "undefined"
 function generateRateUrl(inputValue) {
   if (inputValue) {
@@ -31,7 +31,7 @@ function generateRateUrl(inputValue) {
 }
 
 // this function replaces the content of DOM element "mealsContainer" with the string "Loading"
-// this is used to show something to user when the request to server is made  and until the response comes back
+// this is used to show something to the user when the request to the server is made and until the response comes back
 function clearMealContainer() {
   mealsContainer.innerHTML = "Loading";
 }
@@ -45,12 +45,12 @@ function hitServer(url) {
     })
     // this is a callback function called when parsing the response with "response.json()" comes back
     .then(function(json) {
-      // the json is a JS object that has one key "meals", inside "meals" is and array used for rendering the meals given by the server as a response the calling it with a specific parameter in url
+      // the json is a JS object that has one key "meals", inside "meals" there is an array used for rendering the meals given by the server as a response to calling it with a specific parameter in url
       renderMeals(json.meals);
     });
 }
 
-// this function create from scratch DOM elements in order to render information passed in the parameter "meals"
+// this function creates from scratch DOM elements in order to render information passed in the parameter "meals"
 function renderMeals(meals) {
   // before adding DOM elements to mealsContainer we want to use "innerHTML" attribute to overwrite the current content so that is empty before we start adding new meals
   mealsContainer.innerHTML = "";
