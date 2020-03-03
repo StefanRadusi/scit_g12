@@ -1,18 +1,17 @@
 import { hideHomePage } from "../homePage/home";
 import { addMealsNavigation } from "./mealsNavigation";
 import { highlightMealButton } from "../header/mealButton";
-import { highlightHomeButton } from "../header/homeButton";
 import { generateWikiButton } from "./wikiButton";
 
 export function generateMealPage(event) {
   console.log("generating meal page");
   highlightMealButton();
-  highlightHomeButton();
-  hideHomePage(event.target.parentNode);
+  hideHomePage();
   getMealsFromServer(event.target.innerText);
-}
+  }
 
-  function getMealsFromServer(letter) {
+
+function getMealsFromServer(letter) {
   const url = generateUrl(letter);
   fetch(url)
     .then(r => r.json())
@@ -32,6 +31,7 @@ function generateMeal(json, letter) {
 
   const container = document.createElement("div");
   container.classList.add("meal-page");
+  container.id = "meal-page-id";
   document.body.appendChild(container);
 
   renderMealsElements(meals[mealIndex], letter, container);
@@ -49,8 +49,6 @@ export function renderMealsElements(mealData, letter, container) {
   mealName.innerText = `Name: ${mealData.strMeal}`;
   container.appendChild(mealName);
 
-  generateWikiButton(mealName, mealData.strMeal);
-
   const mealImg = document.createElement("img");
   mealImg.setAttribute("src", mealData.strMealThumb);
   mealImg.classList.add("meal-img");
@@ -59,7 +57,12 @@ export function renderMealsElements(mealData, letter, container) {
   const mealDesc = document.createElement("p");
   mealDesc.innerText = mealData.strInstructions;
   container.appendChild(mealDesc);
+}
 
-  const wiki = document.createElement("p")
-  container.appendChild(wiki)
+
+export function generateMealPageFromHeader() {
+  highlightMealButton();
+  const homePage = document.getElementById("home-page");
+  hideHomePage(homePage);
+  getMealsFromServer("a");
 }

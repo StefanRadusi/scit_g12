@@ -1,8 +1,6 @@
-import { generateMealPage } from "../mealPage/meal"; 
-import { highlightHomeButton } from "../header/homeButton";
-import { highlightMealButton } from "../header/mealButton";
+import { generateMealPage } from "../mealPage/meal";
 
- export function generateAlphabetLetters(homePage) {
+function generateAlphabetLetters(homePage) {
   const letterContainer = document.createElement("div");
   letterContainer.classList.add("letters-container");
   for (let i = 65; i < 91; i++) {
@@ -18,16 +16,27 @@ import { highlightMealButton } from "../header/mealButton";
 export function generateHomePage() {
   const homePage = document.createElement("div");
   homePage.classList.add("home-page");
+  homePage.id = "home-page";
   document.body.appendChild(homePage);
-  highlightHomeButton()
-  highlightMealButton()
 
   addExplanationText(homePage);
   generateAlphabetLetters(homePage);
 }
 
-export function hideHomePage(homePage) {
-  homePage.style.display = "none";
+export function hideHomePage() {
+  document.getElementById("home-page").style.display = "none";
+}
+
+export function showHomePage() {
+  document.getElementById("home-page").style.display = "block";
+  document.getElementById("meal-page").remove();
+  document.getElementById("meal-navigation").remove();
+  highlightHomeButton();
+}
+
+export function highlightHomeButton() {
+  document.getElementById("meal-button").classList.remove("selected");
+  document.getElementById("home-button").classList.add("selected");
 }
 
 function addExplanationText(homePage) {
