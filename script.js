@@ -31,46 +31,40 @@ class Player {
         if (this.top > this.game.offsetHeight - this.domElement.offsetHeight) {
           break;
         }
-        this.top = this.top + DEFAULT_MOVE_INCREMENT;
+        if (this.playerHitObstacle2()) break;
 
+        this.top = this.top + DEFAULT_MOVE_INCREMENT;
         // we move the white div which is out player by changing it position
         // the payer is initial positions at top = 0 and left = 0
         // if we change this style attributes on the dom elements then we change the position in the window thus making the affect of moving a element
         this.domElement.style.top = this.top + "px";
-        if (this.playerHitObstacle()) {
-          break;
-        }
-
         break;
 
       case "ArrowUp":
         if (this.top === 0) {
           break;
         }
+        // if (this.playerHitObstacle2()) break;
         this.top = this.top - DEFAULT_MOVE_INCREMENT;
         this.domElement.style.top = this.top + "px";
-        if (this.playerHitObstacle()) break;
-
         break;
 
       case "ArrowLeft":
         if (this.left === 0) {
           break;
         }
+        // if (this.playerHitObstacle2()) break;
         this.left = this.left - DEFAULT_MOVE_INCREMENT;
         this.domElement.style.left = this.left + "px";
-        if (this.playerHitObstacle()) break;
-
         break;
 
       case "ArrowRight":
         if (this.left > this.game.offsetWidth - this.domElement.offsetWidth) {
           break;
         }
-
+        if (this.playerHitObstacle()) break;
         this.left = this.left + DEFAULT_MOVE_INCREMENT;
         this.domElement.style.left = this.left + "px";
-        if (this.playerHitObstacle()) break;
         break;
 
       default:
@@ -79,13 +73,44 @@ class Player {
   };
 
   playerHitObstacle() {
+    // for (const obstacle of this.obstacles) {
+    //   if (
+    //     this.top > obstacle.offsetTop &&
+    //     this.top < obstacle.offsetTop + obstacle.offsetHeight
+    //   ) {
+    //     this.totalLives--;
+    //     this.lives.innerHTML = this.totalLives;
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // }
+
+    for (const obstacle of this.obstacles) {
+      if (
+        this.left > obstacle.offsetLeft - this.domElement.offsetWidth &&
+        this.left < obstacle.offsetLeft + obstacle.offsetWidth
+      ) {
+        this.totalLives--;
+        this.lives.innerHTML = this.totalLives;
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  playerHitObstacle2() {
     for (const obstacle of this.obstacles) {
       if (
         this.top > obstacle.offsetTop &&
         this.top < obstacle.offsetTop + obstacle.offsetHeight
       ) {
-        console.log("you have crossed the line");
+        this.totalLives--;
+        this.lives.innerHTML = this.totalLives;
         return true;
+      } else {
+        return false;
       }
     }
   }
