@@ -31,7 +31,9 @@ class Player {
         if (this.top > this.game.offsetHeight - this.domElement.offsetHeight) {
           break;
         }
-        if (this.playerHitObstacle2()) break;
+        if (this.playerHitObstacle()) {
+          this.loosingState();
+        }
 
         this.top = this.top + DEFAULT_MOVE_INCREMENT;
         // we move the white div which is out player by changing it position
@@ -44,7 +46,9 @@ class Player {
         if (this.top === 0) {
           break;
         }
-        // if (this.playerHitObstacle2()) break;
+        if (this.playerHitObstacle()) {
+          this.loosingState();
+        }
         this.top = this.top - DEFAULT_MOVE_INCREMENT;
         this.domElement.style.top = this.top + "px";
         break;
@@ -53,7 +57,9 @@ class Player {
         if (this.left === 0) {
           break;
         }
-        // if (this.playerHitObstacle2()) break;
+        if (this.playerHitObstacle()) {
+          this.loosingState();
+        }
         this.left = this.left - DEFAULT_MOVE_INCREMENT;
         this.domElement.style.left = this.left + "px";
         break;
@@ -62,7 +68,9 @@ class Player {
         if (this.left > this.game.offsetWidth - this.domElement.offsetWidth) {
           break;
         }
-        if (this.playerHitObstacle()) break;
+        if (this.playerHitObstacle()) {
+          this.loosingState();
+        }
         this.left = this.left + DEFAULT_MOVE_INCREMENT;
         this.domElement.style.left = this.left + "px";
         break;
@@ -73,46 +81,34 @@ class Player {
   };
 
   playerHitObstacle() {
-    // for (const obstacle of this.obstacles) {
-    //   if (
-    //     this.top > obstacle.offsetTop &&
-    //     this.top < obstacle.offsetTop + obstacle.offsetHeight
-    //   ) {
-    //     this.totalLives--;
-    //     this.lives.innerHTML = this.totalLives;
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // }
-
     for (const obstacle of this.obstacles) {
       if (
+        this.top < obstacle.offsetTop + obstacle.offsetHeight &&
+        this.top > obstacle.offsetTop - this.domElement.offsetHeight &&
         this.left > obstacle.offsetLeft - this.domElement.offsetWidth &&
         this.left < obstacle.offsetLeft + obstacle.offsetWidth
       ) {
         this.totalLives--;
         this.lives.innerHTML = this.totalLives;
         return true;
-      } else {
-        return false;
       }
     }
   }
 
-  playerHitObstacle2() {
-    for (const obstacle of this.obstacles) {
-      if (
-        this.top > obstacle.offsetTop &&
-        this.top < obstacle.offsetTop + obstacle.offsetHeight
-      ) {
-        this.totalLives--;
-        this.lives.innerHTML = this.totalLives;
-        return true;
-      } else {
-        return false;
-      }
+  loosingState() {
+    if (this.totalLives === 0) {
+      alert("Game Over");
+      this.resetGame();
     }
+  }
+
+  resetGame() {
+    this.top = 0;
+    this.left = 0;
+    this.domElement.style.top = this.top;
+    this.domElement.style.left = this.left;
+    this.totalLives = 3;
+    this.lives.innerHTML = this.totalLives;
   }
 }
 
