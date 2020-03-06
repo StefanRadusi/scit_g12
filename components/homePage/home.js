@@ -37,6 +37,7 @@ export function showHomePage() {
 export function highlightHomeButton() {
   document.getElementById("meal-button").classList.remove("selected");
   document.getElementById("home-button").classList.add("selected");
+  document.getElementById("meal-button").disabled = false;
 }
 
 function addExplanationText(homePage) {

@@ -77,6 +77,7 @@ export function renderMealsElements(mealData, letter, container) {
   const mealDesc = document.createElement("p");
   mealDesc.innerText = mealData.strInstructions;
   container.appendChild(mealDesc);
+  document.getElementById("meal-button").disabled = true;
 }
 
 export function generateMealPageFromHeader() {
