@@ -1,5 +1,6 @@
 import { showHomePage } from "../homePage/home";
 
+
 export function generateHomeButton() {
   const button = document.createElement("button");
   button.classList.add("home-button");
