@@ -28,9 +28,10 @@ export function hideHomePage() {
 }
 
 export function showHomePage() {
-  document.getElementById("home-page").style.display = "block";
+  document.getElementById("home-page").style.display = "block";  
   document.getElementById("meal-page").remove();
   document.getElementById("meal-navigation").remove();
+
   highlightHomeButton();
 }
 

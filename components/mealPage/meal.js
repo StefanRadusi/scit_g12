@@ -64,5 +64,7 @@ export function generateMealPageFromHeader() {
   highlightMealButton();
   const homePage = document.getElementById("home-page");
   hideHomePage(homePage);
+  document.getElementById("meal-page").remove(container);
+  document.getElementById("meal-navigation").remove(navigation);
   getMealsFromServer("a");
 }
