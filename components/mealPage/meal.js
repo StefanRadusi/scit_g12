@@ -7,9 +7,9 @@ export function generateMealPage(event) {
   console.log("generating meal page");
   highlightMealButton();
   hideHomePage();
-  getMealsFromServer(event.target.innerText);
-  }
-
+  
+  getMealsFromServer(event.target.innerText)
+}
 
 function getMealsFromServer(letter) {
   const url = generateUrl(letter);
@@ -52,6 +52,7 @@ export function renderMealsElements(mealData, letter, container) {
   const mealImg = document.createElement("img");
   mealImg.setAttribute("src", mealData.strMealThumb);
   mealImg.classList.add("meal-img");
+  mealImg.id = "meal-id"
   container.appendChild(mealImg);
 
   const mealDesc = document.createElement("p");
@@ -59,12 +60,12 @@ export function renderMealsElements(mealData, letter, container) {
   container.appendChild(mealDesc);
 }
 
-
 export function generateMealPageFromHeader() {
+  console.log("generating meal page");
   highlightMealButton();
   const homePage = document.getElementById("home-page");
   hideHomePage(homePage);
-  document.getElementById("meal-page").remove(container);
-  document.getElementById("meal-navigation").remove(navigation);
   getMealsFromServer("a");
 }
+
+

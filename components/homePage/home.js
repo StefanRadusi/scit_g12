@@ -1,5 +1,15 @@
 import { generateMealPage } from "../mealPage/meal";
 
+export function generateHomePage() {
+  const homePage = document.createElement("div");
+  homePage.classList.add("home-page");
+  homePage.id = "home-page";
+  document.body.appendChild(homePage);
+
+  addExplanationText(homePage);
+  generateAlphabetLetters(homePage);
+}
+
 function generateAlphabetLetters(homePage) {
   const letterContainer = document.createElement("div");
   letterContainer.classList.add("letters-container");
@@ -13,25 +23,16 @@ function generateAlphabetLetters(homePage) {
   homePage.appendChild(letterContainer);
 }
 
-export function generateHomePage() {
-  const homePage = document.createElement("div");
-  homePage.classList.add("home-page");
-  homePage.id = "home-page";
-  document.body.appendChild(homePage);
 
-  addExplanationText(homePage);
-  generateAlphabetLetters(homePage);
-}
 
 export function hideHomePage() {
   document.getElementById("home-page").style.display = "none";
 }
 
 export function showHomePage() {
-  document.getElementById("home-page").style.display = "block";  
-  document.getElementById("meal-page").remove();
-  document.getElementById("meal-navigation").remove();
-
+  document.getElementById("home-page").style.display = "block";
+  document.getElementById("meal-page-id").remove();
+  document.getElementById("meal-navigation-id").remove();
   highlightHomeButton();
 }
 

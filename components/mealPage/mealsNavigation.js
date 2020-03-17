@@ -3,6 +3,7 @@ import { renderMealsElements } from "./meal";
 export function addMealsNavigation(meals, letter, container) {
   const navigation = document.createElement("div");
   navigation.classList.add("meal-navigation");
+  navigation.id = "meal-navigation-id"
 
   const leftButton = document.createElement("div");
   leftButton.innerText = "<";
