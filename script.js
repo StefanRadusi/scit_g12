@@ -20,35 +20,47 @@ class Player {
   }
 
   movePlayer = event => {
-    // event is the default parameter that it is passed to any callback function of an "addEventListener"
-    // event is a complex object that contains information regarding the event that was trigger by browser
-    // in this case the event is of type "keydown" but we need to react only to some type "keydown" event
     switch (event.key) {
       case "ArrowDown":
-        this.top = this.top + DEFAULT_MOVE_INCREMENT;
+        
 
         // we move the white div which is out player by changing it position
-        // the payer is initial positions at top = 0 and left = 0
+        // the player is initial positions at top = 0 and left = 0
         // if we change this style attributes on the dom elements then we change the position in the window thus making the affect of moving a element
+        
+        this.gameContainer = document.getElementById("game");
+        if (this.top > this.gameContainer.offsetHeight - this.domElement.offsetHeight) {
+          break;
+        }
+        this.top = this.top + DEFAULT_MOVE_INCREMENT;
         this.domElement.style.top = this.top + "px";
         break;
       case "ArrowUp":
-        this.top = this.top - DEFAULT_MOVE_INCREMENT;
-        this.domElement.style.top = this.top + "px";
-        break;
+        if (this.top === 0) {
+          break;
+        }
+          this.top = this.top - DEFAULT_MOVE_INCREMENT;
+          this.domElement.style.top = this.top + "px";
+          break;
       case "ArrowLeft":
+        if (this.left === 0) {
+          break;
+        }
         this.left = this.left - DEFAULT_MOVE_INCREMENT;
         this.domElement.style.left = this.left + "px";
         break;
       case "ArrowRight":
+        if (this.left > this.gameContainer.offsetWidth - this.domElement.offsetWidth) {
+          break;
+        }
         this.left = this.left + DEFAULT_MOVE_INCREMENT;
         this.domElement.style.left = this.left + "px";
         break;
-
       default:
         break;
     }
   };
+
 }
 
 new Player();
