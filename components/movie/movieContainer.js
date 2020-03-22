@@ -1,6 +1,6 @@
-class Movie {
+ export class Movie {
     constructor() {
-
+        this.movieContainer();
     }
 
     movieContainer(movies) {

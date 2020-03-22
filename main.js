@@ -1,6 +1,7 @@
 console.log('start')
 
 import {Input} from './components/input/getInputValue'
+import {Movie} from './components/movie/movieContainer'
  
 
   class Container {
@@ -42,12 +43,15 @@ generateContainer() {
 
     form.appendChild(button);
 
-    let newInput = new Input();
+    const newInput = new Input();
 
     let newerDiv = document.createElement('div')
     newerDiv.id = 'movies-searchable';
 
-    document.getElementById('body').appendChild(newerDiv)
+    document.getElementById('body').appendChild(newerDiv);
+
+    
+    const newMovie = new Movie();
 
 }
 
