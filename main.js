@@ -1,10 +1,10 @@
 console.log('start')
 
-import {Input} from './components/input/getInputValue'
-import {Movie} from './components/movie/movieContainer'
+import {Input} from './components/input/getInputValue';
+import {Movie} from './components/movie/movieContainer';
  
 
-  class Container {
+  export class Container {
     constructor() {
        this.generateContainer()
     }
@@ -34,12 +34,21 @@ generateContainer() {
     input.id = 'inputValue';
     input.type = 'text';
 
+    
+    
+   
+    
+
     div.appendChild(input);
 
     let button = document.createElement('button')
     button.id = 'search';
     button.type = 'submit';
     button.innerText = 'Search for movie';
+
+    button.addEventListener('click', () => {
+      input.innerHTML = "";
+    })
 
     form.appendChild(button);
 
@@ -62,5 +71,9 @@ generateContainer() {
 }
 
 let newContainer = new Container();
+
+
+
+
 
 

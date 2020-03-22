@@ -1,3 +1,4 @@
+
 export class Input {
     constructor() {
         this.getInputValue();
@@ -8,13 +9,17 @@ export class Input {
 
 
         const buttonElement = document.querySelector('#search');
-        const inputElement = document.querySelector('#inputValue');
+        let inputElement = document.querySelector('#inputValue');
+
 
 
         buttonElement.addEventListener('click', (event) =>{
             event.preventDefault();
-            const value = inputElement.value
+            let value = inputElement.value;
+        
+           
 
+            
             const newUrl = url + '&query=' + value;
          
             fetch(newUrl) 

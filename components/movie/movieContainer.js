@@ -1,3 +1,5 @@
+
+ 
  export class Movie {
     constructor() {
         this.movieContainer();
