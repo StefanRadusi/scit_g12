@@ -1,6 +1,6 @@
 console.log('start')
 
-import {Input} from './components/getInputValue'
+import {Input} from './components/input/getInputValue'
  
 
   class Container {
@@ -40,9 +40,14 @@ generateContainer() {
     button.type = 'submit';
     button.innerText = 'Search for movie';
 
-    container.appendChild(button);
+    form.appendChild(button);
 
-    let inputClass = new Input();
+    let newInput = new Input();
+
+    let newerDiv = document.createElement('div')
+    newerDiv.id = 'movies-searchable';
+
+    document.getElementById('body').appendChild(newerDiv)
 
 }
 

@@ -1,0 +1,26 @@
+class Movie {
+    constructor() {
+
+    }
+
+    movieContainer(movies) {
+        const movieElement = document.createElement('div');
+        movieElement.setAttribute('class', 'movie');
+
+        const movieTemplete = `
+            <section class="section">
+
+            </section>
+         <div class="content">
+            <p id="content-close"> X </p>
+         
+         </div>   
+        `
+    }
+
+
+
+
+
+
+}
