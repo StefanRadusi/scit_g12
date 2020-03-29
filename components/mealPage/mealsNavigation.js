@@ -54,3 +54,10 @@ function setNavigationFunctionality(
     }
   });
 }
+export function hideNavigation() {
+  const hideNavigation=document.getElementsByClassName('meal-navigation')[0];
+  if (hideNavigation!=undefined){
+    hideNavigation.remove();
+  }
+    
+}

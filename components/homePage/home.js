@@ -1,4 +1,7 @@
 import { generateMealPage } from "../mealPage/meal";
+import { hideMealPage } from "../mealPage/meal";
+import { highlightHomeButton } from "../header/homeButton";
+import { hideNavigation } from "../mealPage/mealsNavigation";
 
 function generateAlphabetLetters(homePage) {
   const letterContainer = document.createElement("div");
@@ -14,16 +17,23 @@ function generateAlphabetLetters(homePage) {
 }
 
 export function generateHomePage() {
+  highlightHomeButton();
+  hideMealPage();
+  hideHomePage();
+  hideNavigation();
   const homePage = document.createElement("div");
   homePage.classList.add("home-page");
   document.body.appendChild(homePage);
-
   addExplanationText(homePage);
   generateAlphabetLetters(homePage);
 }
 
-export function hideHomePage(homePage) {
-  homePage.style.display = "none";
+export function hideHomePage() {
+  const homePage=document.getElementsByClassName('home-page')[0];
+  if (homePage!=undefined){
+    homePage.remove();
+  }
+    
 }
 
 function addExplanationText(homePage) {

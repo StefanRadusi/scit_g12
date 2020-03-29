@@ -6,3 +6,7 @@ export function generateHomeButton() {
   button.innerText = "Home";
   return button;
 }
+export function highlightHomeButton() {
+  document.getElementById("home-button").classList.add("selected");
+  document.getElementById("meal-button").classList.remove("selected");
+}

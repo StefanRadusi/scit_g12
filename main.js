@@ -5,6 +5,6 @@ import { setMealButton } from "./components/mealPage/buttonsFunctionality";
 
 console.log("start stef");
 createHeader();
-// generateHomePage();
+generateHomePage();
 setHomeButton();
 setMealButton();

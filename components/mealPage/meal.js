@@ -2,13 +2,32 @@ import { hideHomePage } from "../homePage/home";
 import { addMealsNavigation } from "./mealsNavigation";
 import { highlightMealButton } from "../header/mealButton";
 import { generateWikiButton} from "./wikiButton";
+import { hideNavigation} from "./mealsNavigation";
 
 export function generateMealPage(event) {
   console.log("generating meal page");
   highlightMealButton();
-  hideHomePage(event.target.parentNode);
+  hideHomePage();
   getMealsFromServer(event.target.innerText);
 }
+
+export function hideMealPage() {
+  const mealPage=document.getElementsByClassName('meal-page')[0];
+  if (mealPage!=undefined){
+    mealPage.remove();
+  }
+}
+
+//Function that will display the Meal Page for 'a' letter
+export function displayMealPage(){
+  console.log("generating meal page for letter a");
+  highlightMealButton();
+  hideHomePage();
+  hideMealPage();
+  hideNavigation();
+  getMealsFromServer('a');
+}
+
 
 function getMealsFromServer(letter) {
   const url = generateUrl(letter);
@@ -61,3 +80,4 @@ export function renderMealsElements(mealData, letter, container) {
   
   
 }
+
