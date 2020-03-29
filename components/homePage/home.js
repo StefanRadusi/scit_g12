@@ -4,12 +4,11 @@ export function showHomeMenue() {
   
   generateHomePage();
   highlightHomeButton();
-   hideMealPage();
+  document.getElementById("meal-page").remove();
+  document.getElementById("meal-navigation").remove();
 }
 
- export function hideMealPage() {
-  document.getElementsByName("meal-Page").remove();
-}
+ 
 
 function generateAlphabetLetters(homePage) {
   const letterContainer = document.createElement("div");
