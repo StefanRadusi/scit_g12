@@ -1,4 +1,15 @@
 import { generateMealPage } from "../mealPage/meal";
+import {highlightHomeButton} from "../header/homeButton";
+export function showHomeMenue() { 
+  
+  generateHomePage();
+  highlightHomeButton();
+   hideMealPage();
+}
+
+ export function hideMealPage() {
+  document.getElementsByName("meal-Page").remove();
+}
 
 function generateAlphabetLetters(homePage) {
   const letterContainer = document.createElement("div");
@@ -16,6 +27,7 @@ function generateAlphabetLetters(homePage) {
 export function generateHomePage() {
   const homePage = document.createElement("div");
   homePage.classList.add("home-page");
+  homePage.id ="home-page";
   document.body.appendChild(homePage);
 
   addExplanationText(homePage);
@@ -32,3 +44,4 @@ function addExplanationText(homePage) {
   explanation.innerText = "Choose a letter to find meals:";
   homePage.appendChild(explanation);
 }
+

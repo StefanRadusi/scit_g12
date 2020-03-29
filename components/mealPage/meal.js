@@ -2,6 +2,17 @@ import { hideHomePage } from "../homePage/home";
 import { addMealsNavigation } from "./mealsNavigation";
 import { highlightMealButton } from "../header/mealButton";
 
+export function generateDefaultPageA() {
+  console.log("generating meal page");
+  highlightMealButton();
+  const homePage = document.getElementById("home-page");
+  hideHomePage(homePage);
+  getMealsFromServer("a");
+} 
+
+
+
+
 export function generateMealPage(event) {
   console.log("generating meal page");
   highlightMealButton();
@@ -29,6 +40,7 @@ function generateMeal(json, letter) {
 
   const container = document.createElement("div");
   container.classList.add("meal-page");
+  container.id = "meal-page";
   document.body.appendChild(container);
 
   renderMealsElements(meals[mealIndex], letter, container);
@@ -55,3 +67,4 @@ export function renderMealsElements(mealData, letter, container) {
   mealDesc.innerText = mealData.strInstructions;
   container.appendChild(mealDesc);
 }
+
