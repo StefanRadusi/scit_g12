@@ -13,6 +13,7 @@
   margin-left: 10px;
   width: 100px;
   opacity: 0.5;
+  outline: none;
 }
 
 .selected {
@@ -45,4 +46,14 @@
 .explanation {
   margin-bottom: 0px;
   margin-left: 12px;
+}
+
+.meal-name {
+  display: flex;
+  align-items: center;
+}
+
+.wiki-button {
+  margin-left: 10px;
+  color: blue;
 }
