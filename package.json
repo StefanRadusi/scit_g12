@@ -1,0 +1,28 @@
+{
+  "name": "scit_g12",
+  "version": "1.0.0",
+  "description": "\"learning stuff\"",
+  "main": "main.js",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "bundle": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StefanRadusi/scit_g12.git"
+  },
+  "author": "g12",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StefanRadusi/scit_g12/issues"
+  },
+  "homepage": "https://github.com/StefanRadusi/scit_g12#readme",
+  "dependencies": {
+    "webpack": "^4.41.6",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.11"
+  }
+}
