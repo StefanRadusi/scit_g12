@@ -40,7 +40,6 @@
 
 .meal-navigation > div {
   user-select: none;
-  cursor: pointer;
 }
 
 .explanation {

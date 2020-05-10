@@ -85,7 +85,6 @@ export function renderMealsElements(mealData, letter, container) {
 }
 
 export function generateMealPageFromHeader() {
-  console.log("generating meal page");
   highlightMealButton();
   const homePage = document.getElementById("home-page");
   hideHomePage(homePage);

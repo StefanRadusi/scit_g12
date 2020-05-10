@@ -59,5 +59,6 @@ function setNavigationFunctionality(
     if (currentIndexMeal === meals.length - 1) {
       rightButton.style.opacity = 0.5;
     }
+    console.log(currentIndexMeal);
   });
 }
