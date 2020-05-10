@@ -55,7 +55,6 @@ function renderMeals(meals) {
   mealsContainer.innerHTML = "";
   for (const meal of meals) {
     // please check in the console the structure of the meal object so it will be easier to understand how the data is accessed and used to create the new DOM elements for the meal
-    console.log(meal);
     const mealContainer = document.createElement("div");
     mealContainer.style.marginBottom = "20px";
 
