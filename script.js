@@ -7,7 +7,7 @@ const mealsContainer = document.getElementById("meals-container");
 const input = document.getElementById("meal-name");
 
 // we react to event triggered by clicking on the "get-meal" button
-document.getElementById("get-meal").addEventListener("click", function() {
+document.getElementById("get-meal").addEventListener("click", function () {
   // before we can get data from server we need to generate the correct url using the value of input
   const url = generateRateUrl(input.value);
 
@@ -39,11 +39,11 @@ function clearMealContainer() {
 function hitServer(url) {
   fetch(url)
     // this is a callback function called when the response from server comes back
-    .then(function(response) {
+    .then(function (response) {
       return response.json();
     })
     // this is a callback function called when parsing the response with "response.json()" comes back
-    .then(function(json) {
+    .then(function (json) {
       // the json is a JS object that has one key "meals", inside "meals" is and array used for rendering the meals given by the server as a response the calling it with a specific parameter in url
       renderMeals(json.meals);
     });
@@ -75,24 +75,10 @@ const getDataMenuByLetter = document
   .getElementById("allTheLettersDiv")
   .getElementsByTagName("P");
 
-function hitServerParagraph(url) {
-  fetch(url)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(json) {
-      renderMeals(json.meals);
-    });
-}
-
 for (const dataLetter of getDataMenuByLetter) {
-  dataLetter.addEventListener("click", function() {
-    const element = dataLetter.value;
-    if (element) {
-      clearMealContainer();
-    }
-    hitServerParagraph(
-      `https://www.themealdb.com/api/json/v1/1/search.php?f=${element}`
+  dataLetter.addEventListener("click", function () {
+    hitServer(
+      `https://www.themealdb.com/api/json/v1/1/search.php?f=${dataLetter.innerHTML}`
     );
   });
 }
