@@ -2,3 +2,30 @@
   height: 100px;
   margin: 20px;
 }
+
+.carousel-container {
+  display: flex;
+}
+
+#leftButton {
+  width: 30px;
+  height: 30px;
+  align-self: center;
+}
+
+#rightButton {
+  width: 30px;
+  height: 30px;
+  align-self: center;
+}
+
+#inputContainer {
+  display: flex;
+  justify-content: center;
+}
+
+#mainContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}

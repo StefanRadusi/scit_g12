@@ -7,16 +7,20 @@ class FetchData {
   }
 
   createInput() {
+    let inputContainer = document.createElement("inputContainer");
+    inputContainer.id = "inputContainer";
     const input = document.createElement("input");
-    document.body.prepend(input);
+    input.id = "main-input";
+    document.body.appendChild(inputContainer);
     this.inputRef = input;
+    inputContainer.appendChild(input);
   }
 
   setOnEnter() {
     this.inputRef.addEventListener("keydown", this.handleEnter);
   }
 
-  handleEnter = event => {
+  handleEnter = (event) => {
     if (event.key === "Enter") {
       this.fetchRecipes();
     }
@@ -30,15 +34,15 @@ class FetchData {
     if (this.url !== this.generateUrl()) {
       this.url = this.generateUrl();
       fetch(this.url)
-        .then(response => response.json())
+        .then((response) => response.json())
         .then(this.generateImgUrl);
     }
   }
 
   // this method is called only after the fetch is done
-  generateImgUrl = json => {
+  generateImgUrl = (json) => {
     if (json.meals) {
-      this.imgUrls = json.meals.map(function(element) {
+      this.imgUrls = json.meals.map(function (element) {
         return element.strMealThumb;
       });
 
