@@ -13,7 +13,7 @@ class Player {
     this.top = 0;
     this.left = 0;
 
-    // this.soundTrack();
+    this.soundTrack();
     this.theMovingObstacle();
     this.createLivesContainer();
     this.setMovement();
@@ -186,8 +186,6 @@ class Player {
     let mover = 0;
     let moverBot = 0;
     setInterval(function () {
-      console.log(o7.offsetTop);
-
       if (o7.offsetTop < 150) {
         o7.style.top = o7.offsetTop + 10;
       } else if (o7.offsetTop > 0) {
