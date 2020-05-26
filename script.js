@@ -1,9 +1,9 @@
 console.log("start");
 
 // example of reacting to button click
-// const sendButton = document.getElementById("send");
+const sendButton = document.getElementById("send");
 
-const newFieldData = document.getElementById("addFiled")
+const newFieldData = document.getElementById("addField")
 newFieldData.addEventListener("click", onClickAddFields);
 
 function onClickAddFields() {
@@ -23,13 +23,13 @@ function onClickAddFields() {
 
     const newInputField = document.createElement("input")
     // console.log(newInputField)
-    newInputField.innerText = InputData;
+    newInputField.id= InputData;
 
     const mainDivContainer = document.getElementById("form-fields")
     newDivContainer.appendChild(newParagraph);
     newDivContainer.appendChild(newInputField);
     mainDivContainer.appendChild(newDivContainer);
-    document.getElementById("fieldName").innerText = "";
+    document.getElementById("fieldName").value = ""
 
     console.log(newDivContainer)
 
@@ -38,18 +38,10 @@ function onClickAddFields() {
 }
 
 
-// function onClickSendButton() {
+function onClickSendButton() {
 
-//   var formContainer = document.getElementById("form-container")
-//   var div = document.createElement("div");
+ 
+}
 
-//   var paragraph = document.createElement("p").addEventListener('keypress')
-  
-//   var text = document.createTextNode("Hello World");
-//   div.appendChild(paragraph);
-//   paragraph.appendChild(text)
-//   document.body.appendChild(h);
-// }
-
-// // we attached a function to click event triggered by send button
-// sendButton.addEventListener("click", onClickAddFields);
+// we attached a function to click event triggered by send button
+sendButton.addEventListener("click", onClickAddFields);
