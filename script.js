@@ -99,6 +99,8 @@ HangMan.prototype.deleteButton = function(){
   const obj = this;
   const resetButton = document.getElementById("reset");
 resetButton.addEventListener("click",function(){
+  document.getElementById("letters").innerHTML = "";
+
   const inputField = document.getElementById("input")
   obj.randomWord();
   this.lettersDOM = [];
