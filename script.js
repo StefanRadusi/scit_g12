@@ -1,21 +1,22 @@
-
 function HangMan() {
   this.lettersDOM = [];
   this.mistakes = 0;
-  this.okLetter =0;
+  this.okLetter = 0;
 }
 
-HangMan.prototype.wordRandomizer = function() {
+HangMan.prototype.randomWord = function() {
   const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
   this.word = words[Math.floor(Math.random() * words.length)];
 }
 
-HangMan.prototype.renderUnderScores = function() {
-  for (let i = 0; i < this.words.length; i++) {
+
+HangMan.prototype.renderUnderScores = function() { 
+  for (let i = 0; i < this.word.length; i++) {
     const p = document.createElement("p");
     p.innerText = "_";
     p.classList.add("word");
     document.getElementById("letters").appendChild(p);
+
     this.lettersDOM.push(p);
   }
 };
@@ -51,18 +52,21 @@ HangMan.prototype.matchLetter = function(letter) {
   // the for loop will iterate through all the letters of the computer chosen word 
   // when the user letter match the letter in the computer word we use previously stored array of paragraphs to render the found letter correctly
   for (const [index, wordLetter] of this.word.split("").entries()) {
+    const obj = this;
     const pa = this.lettersDOM[index];
     if (wordLetter === letter) {
       const p = this.lettersDOM[index];
       p.innerText = letter;
-      this.okLetter++
+      obj.okLetter ++
     }
-    if(this.word.length === okLetter){
-      console.log('You won!')
+    if(this.word.length === obj.okLetter){
+      const inputField = document.getElementById("input")
+      document.getElementById("mistakes").innerText = "You won!"
+      inputField.disabled = true;
     }
   }
  
-  console.log(this.correctLetterCounter)
+  console.log(this.okLetter)
 
 };
 
@@ -95,6 +99,16 @@ HangMan.prototype.deleteButton = function(){
   const obj = this;
   const resetButton = document.getElementById("reset");
 resetButton.addEventListener("click",function(){
+  const inputField = document.getElementById("input")
+  obj.randomWord();
+  this.lettersDOM = [];
+  this.mistakes = 0;
+  this.goodChoices = 0;
+  obj.renderUnderScores();
+  document.getElementById("mistakes").innerText = "You have 0 mistakes"
+  inputField.disabled = false;
+  
+
 })
 }
 
@@ -102,6 +116,7 @@ resetButton.addEventListener("click",function(){
 // a class is a blue print it will be useless with we do not create on abject from it
 const hangMan = new HangMan();
 // this is a method call check the above what functionality it has
+hangMan.randomWord();
 hangMan.renderUnderScores();
 hangMan.getInputFromUser();
 hangMan.deleteButton();
