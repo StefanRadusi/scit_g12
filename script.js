@@ -7,7 +7,6 @@ const newFieldData = document.getElementById("addFiled")
 newFieldData.addEventListener("click", onClickAddFields);
 
 function onClickAddFields() {
-  const mainDivContainer = document.getElementById("form-fields")
   const InputData = document.getElementById("fieldName").value;
   console.log(InputData)
   if(InputData === "" ){
@@ -26,16 +25,16 @@ function onClickAddFields() {
     // console.log(newInputField)
     newInputField.innerText = InputData;
 
-
-
     newDivContainer.appendChild(newParagraph);
     newDivContainer.appendChild(newInputField);
-    mainDivContainer.appendChild(newDivContainer)
+    document.getElementById("body").appendChild(newDivContainer)
     console.log(newDivContainer)
 
   }
   
 }
+
+
 // function onClickSendButton() {
 
 //   var formContainer = document.getElementById("form-container")
