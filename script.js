@@ -1,5 +1,6 @@
 // class constructor
 // this function is called when you instantiate a object with key word "new"
+
 function HangMan() {
   const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
   // this is a attribute which all instantiated object with this class will have
@@ -7,6 +8,7 @@ function HangMan() {
   this.word = words[Math.floor(Math.random() * words.length)];
   this.lettersDOM = [];
   this.mistakes = 0;
+  this.correctLetterCounter =0;
 }
 
 // "renderUnderScores" is a method off the HangMan class
@@ -47,28 +49,39 @@ HangMan.prototype.getInputFromUser = function() {
 
 // this method contains the logic for deciding if the user has chose a correct letter or not
 HangMan.prototype.checkForLetter = function(letter) {
+
   if (this.word.includes(letter)) {
     this.matchLetter(letter);
   } else {
     console.log("not includes");
-    this.updateMistakes();
+    this.updateMistakes(letter);
   }
 };
 
 // this method is responsible for rendering the user choice of letter in the correct paragraph which normally has a underscore
 HangMan.prototype.matchLetter = function(letter) {
+  // this.correctLetterCounter = this.correctLetterCounter +1;
+  
   // the for loop will iterate through all the letters of the computer chosen word 
   // when the user letter match the letter in the computer word we use previously stored array of paragraphs to render the found letter correctly
   for (const [index, wordLetter] of this.word.split("").entries()) {
+    const pa = this.lettersDOM[index];
     if (wordLetter === letter) {
       const p = this.lettersDOM[index];
       p.innerText = letter;
     }
+    if(pa != "_"){
+      const p = this.lettersDOM[index];
+        p.innerText = wordLetter;
+    }
   }
+ 
+  console.log(this.correctLetterCounter)
+
 };
 
 // this method updates the text regarding how many mistakes the user has done
-HangMan.prototype.updateMistakes = function() {
+HangMan.prototype.updateMistakes = function(letter) {
   // "this.mistakes" is like a counter
   // every time the "updateMistakes" is called "this.mistakes" is incremented
   const currentMistake = this.mistakes;
@@ -80,13 +93,31 @@ HangMan.prototype.updateMistakes = function() {
   const currentText = mistakes.innerText;
   const newText = currentText.replace(currentMistake, this.mistakes);
   mistakes.innerText = newText;
+
+  if(currentMistake === 2){
+    const mistsakeText = document.getElementById("mistakes");
+    const inputField = document.getElementById("input")
+    mistsakeText.innerText = "You Lost!";
+    inputField.disabled = true;
+    for (const [index, wordLetter] of this.word.split("").entries()) {
+        const p = this.lettersDOM[index];
+        p.innerText = wordLetter;
+    }
+  }
 };
+HangMan.prototype.deleteButton = function(){
+  const obj = this;
+  const resetButton = document.getElementById("reset");
+resetButton.addEventListener("click",function(){
+})
+}
 
 // this is called the instantiation of object from "HangMan" class
 // a class is a blue print it will be useless with we do not create on abject from it
 const hangMan = new HangMan();
-
 // this is a method call check the above what functionality it has
 hangMan.renderUnderScores();
 hangMan.getInputFromUser();
+hangMan.deleteButton();
 console.log(hangMan);
+
