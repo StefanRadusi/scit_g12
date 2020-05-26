@@ -25,9 +25,12 @@ function onClickAddFields() {
     // console.log(newInputField)
     newInputField.innerText = InputData;
 
+    const mainDivContainer = document.getElementById("form-fields")
     newDivContainer.appendChild(newParagraph);
     newDivContainer.appendChild(newInputField);
-    document.getElementById("body").appendChild(newDivContainer)
+    mainDivContainer.appendChild(newDivContainer);
+    document.getElementById("fieldName").innerText = "";
+
     console.log(newDivContainer)
 
   }
