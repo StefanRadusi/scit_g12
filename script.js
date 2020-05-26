@@ -3,10 +3,17 @@ console.log("start");
 // example of reacting to button click
 const sendButton = document.getElementById("send");
 
+const newFieldData = document.getElementById("fieldName")
+newFieldData.addEventListener("click", onClickAddFields);
 
-  // var input = document.getElementById("fieldName").addEventListener('keypress',onClickSendButton);
-
-// this the function that will be called when click event is triggered
+function onClickAddFields() {
+  const newData = document.getElementById("fieldName").value;
+  console.log(newData)
+  if(newData === "" ){
+    document.getElementById("fieldName").style.borderColor = "red";
+  }
+  
+}
 function onClickSendButton() {
 
   var formContainer = document.getElementById("form-container")
@@ -21,4 +28,4 @@ function onClickSendButton() {
 }
 
 // we attached a function to click event triggered by send button
-sendButton.addEventListener("click", onClickSendButton);
+sendButton.addEventListener("click", onClickAddFields);
