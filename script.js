@@ -2,13 +2,16 @@
 // this function is called when you instantiate a object with key word "new"
 
 function HangMan() {
-  const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
   // this is a attribute which all instantiated object with this class will have
   // keep in mind even thou all the object will have this attribute, the value of the attribute will be different because of the "Random" implementation
-  this.word = words[Math.floor(Math.random() * words.length)];
   this.lettersDOM = [];
   this.mistakes = 0;
-  this.correctLetterCounter =0;
+  this.okLetter =0;
+}
+
+HangMan.prototype.chooseWord = function() {
+  const words = ["cars", "cat", "donkey", "star", "africa", "jaggermeister"];
+  this.word = words[Math.floor(Math.random() * words.length)];
 }
 
 // "renderUnderScores" is a method off the HangMan class
@@ -17,7 +20,7 @@ HangMan.prototype.renderUnderScores = function() {
   // "this" key word represents the current object
   // we need "this" so we can define general function which can apply on all different instances of the class
   // the "for" loop is used to create paragraphs to render for every letter in the computer chosen word  
-  for (let i = 0; i < this.word.length; i++) {
+  for (let i = 0; i < this.words.length; i++) {
     const p = document.createElement("p");
     p.innerText = "_";
     p.classList.add("word");
@@ -69,10 +72,10 @@ HangMan.prototype.matchLetter = function(letter) {
     if (wordLetter === letter) {
       const p = this.lettersDOM[index];
       p.innerText = letter;
+      this.okLetter++
     }
-    if(pa != "_"){
-      const p = this.lettersDOM[index];
-        p.innerText = wordLetter;
+    if(this.word.length === okLetter){
+      console.log('You won!')
     }
   }
  
